@@ -57,7 +57,6 @@ class DefaultExecutorTest {
 
     executor.executeFixture(null);
 
-    verify(setup).getClients();
     verify(setup).getServers();
     assertThat(getCurrentSetup()).isNull();
   }

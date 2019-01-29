@@ -2,7 +2,6 @@ package org.teacup.core;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,8 +33,7 @@ class DefaultExecutor implements Executor {
   private void setUpFixture(Constructor<?> constructor) {
     try {
       currentSetup = (Setup) constructor.newInstance();
-      setUpTransport(currentSetup.getClients());
-      setUpTransport(currentSetup.getServers());
+      currentSetup.getServers().forEach((name, server) -> server.setUp());
     } catch (IllegalAccessException
         | IllegalArgumentException
         | InstantiationException
@@ -45,19 +43,10 @@ class DefaultExecutor implements Executor {
     }
   }
 
-  private static void setUpTransport(Map<String, ? extends Transport> transports) {
-    transports.forEach((name, transport) -> transport.setUp());
-  }
-
   private void tearDownFixture() {
     if (currentSetup != null) {
-      tearDownTransport(currentSetup.getClients());
-      tearDownTransport(currentSetup.getServers());
+      currentSetup.getServers().forEach((name, server) -> server.tearDown());
       currentSetup = null;
     }
-  }
-
-  private static void tearDownTransport(Map<String, ? extends Transport> transports) {
-    transports.forEach((name, transport) -> transport.tearDown());
   }
 }

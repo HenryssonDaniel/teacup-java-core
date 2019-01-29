@@ -13,7 +13,7 @@ public interface Setup {
    *
    * @return the clients
    */
-  Map<String, Client> getClients();
+  Map<String, Client<?, ?, ?>> getClients();
 
   /**
    * Returns the servers.
@@ -36,7 +36,7 @@ public interface Setup {
    * @return the previous value associated with {@code key}, or {@code null} if there was no mapping
    *     for {@code key}.
    */
-  Client putClient(String name, Client client);
+  Client<?, ?, ?> putClient(String name, Client<?, ?, ?> client);
 
   /**
    * Adds a server.

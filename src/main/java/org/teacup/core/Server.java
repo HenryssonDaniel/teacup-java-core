@@ -5,4 +5,8 @@ package org.teacup.core;
  *
  * @since 1.0
  */
-public interface Server extends Transport {}
+public interface Server {
+  void setUp();
+
+  void tearDown();
+}
