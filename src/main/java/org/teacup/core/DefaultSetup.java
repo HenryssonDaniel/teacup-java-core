@@ -15,11 +15,11 @@ public abstract class DefaultSetup implements Setup {
   private static final String LOG_GET = "Returning the %s";
   private static final String LOG_PUT = "Adding the %s: %s";
 
-  private final Map<String, Client<?, ?, ?>> clients = new HashMap<>(0);
+  private final Map<String, Object> clients = new HashMap<>(0);
   private final Map<String, Server> servers = new HashMap<>(0);
 
   @Override
-  public Map<String, Client<?, ?, ?>> getClients() {
+  public Map<String, Object> getClients() {
     LOGGER.log(Level.FINE, String.format(LOG_GET, "clients"));
     return new HashMap<>(clients);
   }
@@ -31,7 +31,7 @@ public abstract class DefaultSetup implements Setup {
   }
 
   @Override
-  public Client<?, ?, ?> putClient(String name, Client<?, ?, ?> client) {
+  public Object putClient(String name, Object client) {
     LOGGER.log(Level.FINE, String.format(LOG_PUT, "client", name));
     return clients.put(name, client);
   }

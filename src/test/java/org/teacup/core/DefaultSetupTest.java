@@ -22,7 +22,7 @@ class DefaultSetupTest {
 
   @Test
   void putAndGetClient() {
-    var client = mock(Client.class);
+    var client = "";
     assertThat(setup.putClient(NAME, client)).isNull();
 
     var clients = setup.getClients();

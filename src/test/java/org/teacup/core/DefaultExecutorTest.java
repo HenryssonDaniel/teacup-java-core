@@ -67,6 +67,11 @@ class DefaultExecutorTest {
     assertThat(getCurrentSetup()).isNull();
   }
 
+  @Test
+  void getCurrentSetupWhenEmpty() {
+    assertThat(executor.getCurrentSetup()).isEmpty();
+  }
+
   private Object getCurrentSetup() throws IllegalAccessException, NoSuchFieldException {
     return Utils.getField(DefaultExecutor.class, executor, CURRENT_SETUP);
   }

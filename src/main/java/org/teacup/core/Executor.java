@@ -1,11 +1,12 @@
 package org.teacup.core;
 
+import java.util.Optional;
+
 /**
  * Interface to handle execution.
  *
  * @since 1.0
  */
-@FunctionalInterface
 public interface Executor {
   /**
    * The method executes a fixture. The logic for when the fixture should be tear down or set up is
@@ -15,4 +16,11 @@ public interface Executor {
    * @param fixture the fixture
    */
   void executeFixture(Fixture fixture);
+
+  /**
+   * Returns the current setup, if any.
+   *
+   * @return the current {@link Setup}
+   */
+  Optional<Setup> getCurrentSetup();
 }

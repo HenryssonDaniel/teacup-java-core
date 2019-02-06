@@ -2,6 +2,7 @@ package org.teacup.core;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,17 +13,29 @@ class DefaultExecutor implements Executor {
 
   @Override
   public void executeFixture(Fixture fixture) {
-    LOGGER.log(Level.FINE, "Executing fixture: " + fixture);
+    if (fixture == null) {
+      LOGGER.log(Level.FINE, "No new fixture, the old one will be torn down.");
+      tearDownFixture();
+    } else execute(fixture);
+  }
 
-    if (fixture == null) tearDownFixture();
-    else {
-      var value = fixture.value();
-      if (currentSetup == null || value != currentSetup.getClass())
-        executeSetup(value.getConstructors());
-    }
+  @Override
+  public Optional<Setup> getCurrentSetup() {
+    LOGGER.log(Level.FINE, "Returns the current setup: " + currentSetup);
+    return Optional.ofNullable(currentSetup);
+  }
+
+  private void execute(Fixture fixture) {
+    LOGGER.log(
+        Level.FINE, "Checking if fixture " + fixture.getClass().getName() + " should be executed.");
+    var value = fixture.value();
+
+    if (currentSetup == null || value != currentSetup.getClass())
+      executeSetup(value.getConstructors());
   }
 
   private void executeSetup(Constructor<?>... constructors) {
+    LOGGER.log(Level.FINE, "Executing fixture");
     tearDownFixture();
 
     if (constructors.length == 0)
