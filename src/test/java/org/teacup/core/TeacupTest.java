@@ -1,6 +1,7 @@
 package org.teacup.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -21,26 +22,32 @@ class TeacupTest {
   }
 
   @Test
-  void getClient() {
+  void getClient() throws TeacupException {
     when(setup.getClients()).thenReturn(Collections.singletonMap(CLIENT, new TeacupTest()));
     assertThat(Teacup.getClient(Object.class, executor, CLIENT))
-        .containsInstanceOf(TeacupTest.class);
+        .isExactlyInstanceOf(TeacupTest.class);
   }
 
   @Test
   void getClientWhenClientNotExists() {
-    assertThat(Teacup.getClient(String.class, executor, CLIENT)).isEmpty();
+    assertThatExceptionOfType(TeacupException.class)
+        .isThrownBy(() -> Teacup.getClient(String.class, executor, CLIENT))
+        .withMessage("The client does not exist");
   }
 
   @Test
   void getClientWhenNotCorrectInstance() {
     when(setup.getClients()).thenReturn(Collections.singletonMap(CLIENT, new Object()));
-    assertThat(Teacup.getClient(TeacupTest.class, executor, CLIENT)).isEmpty();
+    assertThatExceptionOfType(TeacupException.class)
+        .isThrownBy(() -> Teacup.getClient(TeacupTest.class, executor, CLIENT))
+        .withMessage("The name exists, but is of a different instance");
   }
 
   @Test
   void getClientWhenNotPresent() {
     when(executor.getCurrentSetup()).thenReturn(Optional.empty());
-    assertThat(Teacup.getClient(String.class, executor, CLIENT)).isEmpty();
+    assertThatExceptionOfType(TeacupException.class)
+        .isThrownBy(() -> Teacup.getClient(String.class, executor, CLIENT))
+        .withMessage("No setup exists");
   }
 }
