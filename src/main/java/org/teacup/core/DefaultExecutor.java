@@ -14,7 +14,7 @@ class DefaultExecutor implements Executor {
   @Override
   public void executeFixture(Fixture fixture) {
     if (fixture == null) {
-      LOGGER.log(Level.FINE, "No new fixture, the old one will be torn down.");
+      LOGGER.log(Level.FINE, "No new fixture, the old one will be torn down");
       tearDownFixture();
     } else execute(fixture);
   }
@@ -26,8 +26,7 @@ class DefaultExecutor implements Executor {
   }
 
   private void execute(Fixture fixture) {
-    LOGGER.log(
-        Level.FINE, "Checking if fixture " + fixture.getClass().getName() + " should be executed.");
+    LOGGER.log(Level.FINE, "Checking if the fixture should be executed");
     var value = fixture.value();
 
     if (currentSetup == null || value != currentSetup.getClass())
@@ -46,6 +45,7 @@ class DefaultExecutor implements Executor {
   private void setUpFixture(Constructor<?> constructor) {
     try {
       currentSetup = (Setup) constructor.newInstance();
+      currentSetup.initialize();
       currentSetup.getServers().forEach((name, server) -> server.setUp());
     } catch (IllegalAccessException
         | IllegalArgumentException
