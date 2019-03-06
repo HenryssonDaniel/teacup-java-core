@@ -8,8 +8,9 @@ package org.teacup.core.assertion;
  * @param <V> the iterable assert type
  * @since 1.0
  */
-public interface IterableAssert<T, U extends Iterable<T>, V extends IterableAssert<T, U, V>>
-    extends EnumerableAssert<V>, ObjectAssert<U, V> {
+public interface IterableAssert<
+        T, U extends Iterable<? extends T>, V extends IterableAssert<T, U, V>>
+    extends EnumerableAssert<U, V> {
   /**
    * Verifies that the iterable contains the given values, in any order.
    *

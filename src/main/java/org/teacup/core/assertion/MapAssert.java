@@ -8,19 +8,18 @@ import java.util.Map.Entry;
  *
  * @param <T> the key type
  * @param <U> the value type
- * @param <V> the map type
- * @param <X> the map assertion type
+ * @param <V> the map assertion type
  * @since 1.0
  */
-public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, V, X>>
-    extends EnumerableAssert<X>, ObjectAssert<V, X> {
+public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
+    extends EnumerableAssert<Map<T, U>, V> {
   /**
    * Verifies that the map contains the given entries, in any order.
    *
    * @param entries the entries
    * @return the map assert
    */
-  X contains(Entry<? extends T, ? extends U>... entries);
+  V contains(Entry<? extends T, ? extends U>... entries);
 
   /**
    * Verifies that the map contains all the elements of the given map.
@@ -28,7 +27,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param map the map
    * @return the map assert
    */
-  X containsAllEntriesOf(Map<? extends T, ? extends U> map);
+  V containsAllEntriesOf(Map<? extends T, ? extends U> map);
 
   /**
    * Verifies that the map contains any of the given entries.
@@ -36,7 +35,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param entries the entries
    * @return the map assert
    */
-  X containsAnyOf(Entry<? extends T, ? extends U>... entries);
+  V containsAnyOf(Entry<? extends T, ? extends U>... entries);
 
   /**
    * Verifies that the map contains the given key and value.
@@ -45,7 +44,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param value the value
    * @return the map assert
    */
-  X containsEntry(T key, U value);
+  V containsEntry(T key, U value);
 
   /**
    * Verifies that the map contains exactly the given entries.
@@ -53,7 +52,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param entries the entries
    * @return the map assert
    */
-  X containsExactly(Entry<? extends T, ? extends U>... entries);
+  V containsExactly(Entry<? extends T, ? extends U>... entries);
 
   /**
    * Verifies that the map contains the given key.
@@ -61,7 +60,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param key the key
    * @return the map assert
    */
-  X containsKey(T key);
+  V containsKey(T key);
 
   /**
    * Verifies that the map contains the given keys.
@@ -69,7 +68,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param keys the keys
    * @return the map assert
    */
-  X containsKeys(T... keys);
+  V containsKeys(T... keys);
 
   /**
    * Verifies that the map only contains the given entries.
@@ -77,7 +76,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param entries the entries
    * @return the map assert
    */
-  X containsOnly(Entry<? extends T, ? extends U>... entries);
+  V containsOnly(Entry<? extends T, ? extends U>... entries);
 
   /**
    * Verifies that the map only contains the given keys.
@@ -85,7 +84,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param keys the keys
    * @return the map assert
    */
-  X containsOnlyKeys(T... keys);
+  V containsOnlyKeys(T... keys);
 
   /**
    * Verifies that the map contains the given value.
@@ -93,7 +92,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param value the value
    * @return the map assert
    */
-  X containsValue(U value);
+  V containsValue(U value);
 
   /**
    * Verifies that the map contains the given values.
@@ -101,7 +100,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param values the values
    * @return the map assert
    */
-  X containsValues(U... values);
+  V containsValues(U... values);
 
   /**
    * Verifies that the map does not contain the given entries.
@@ -109,7 +108,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param entries the entries
    * @return the map assert
    */
-  X doesNotContain(Entry<? extends T, ? extends U>... entries);
+  V doesNotContain(Entry<? extends T, ? extends U>... entries);
 
   /**
    * Verifies that the map does not contain the given key and value.
@@ -118,7 +117,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param value the value
    * @return the map assert
    */
-  X doesNotContainEntry(T key, U value);
+  V doesNotContainEntry(T key, U value);
 
   /**
    * Verifies that the map contains the given key.
@@ -126,7 +125,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param key the key
    * @return the map assert
    */
-  X doesNotContainKey(T key);
+  V doesNotContainKey(T key);
 
   /**
    * Verifies that the map contains the given keys.
@@ -134,7 +133,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param keys the keys
    * @return the map assert
    */
-  X doesNotContainKeys(T... keys);
+  V doesNotContainKeys(T... keys);
 
   /**
    * Verifies that the map contains the given value.
@@ -142,7 +141,7 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param value the value
    * @return the map assert
    */
-  X doesNotContainValue(U value);
+  V doesNotContainValue(U value);
 
   /**
    * Verifies that the map has the same size as the given map.
@@ -150,5 +149,5 @@ public interface MapAssert<T, U, V extends Map<T, U>, X extends MapAssert<T, U, 
    * @param map the map
    * @return the map assert
    */
-  X hasSameSizeAs(Map<?, ?> map);
+  V hasSameSizeAs(Map<?, ?> map);
 }

@@ -22,8 +22,7 @@ class MapAssertImplTest {
     MAP_ORDER_DESC.put("a", 1);
   }
 
-  private final MapAssert<String, Integer, Map<String, Integer>, ?> mapAssert =
-      new MapAssertImpl<>();
+  private final MapAssert<String, Integer, ?> mapAssert = new MapAssertImpl<>();
 
   @Test
   void contains() {

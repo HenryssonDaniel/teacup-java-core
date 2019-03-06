@@ -7,290 +7,297 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.assertj.core.api.AbstractIterableAssert;
 
-class IterableAssertImpl<T, U extends Iterable<T>, V extends IterableAssert<T, U, V>>
+class IterableAssertImpl<T, U extends Iterable<? extends T>, V extends IterableAssert<T, U, V>>
     extends ObjectAssertImpl<U, V> implements IterableAssert<T, U, V> {
   private static final Logger LOGGER = Logger.getLogger(IterableAssertImpl.class.getName());
 
   @Override
   public V contains(T... values) {
     LOGGER.log(Level.FINE, "Contains: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).contains(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().contains(values));
+    return getAssertType();
   }
 
   @Override
   public V containsAll(Iterable<? extends T> iterable) {
     LOGGER.log(Level.FINE, "Contains all: " + iterableToString(iterable));
-    addSupplier(actual -> assertThat(actual).containsAll(iterable));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsAll(iterable));
+    return getAssertType();
   }
 
   @Override
   public V containsAnyElementsOf(Iterable<? extends T> iterable) {
     LOGGER.log(Level.FINE, "Contains any elements of: " + iterableToString(iterable));
-    addSupplier(actual -> assertThat(actual).containsAnyElementsOf(iterable));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsAnyElementsOf(iterable));
+    return getAssertType();
   }
 
   @Override
   public V containsAnyOf(T... values) {
     LOGGER.log(Level.FINE, "Contains any of: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).containsAnyOf(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsAnyOf(values));
+    return getAssertType();
   }
 
   @Override
   public V containsExactly(T... values) {
     LOGGER.log(Level.FINE, "Contains exactly: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).containsExactly(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsExactly(values));
+    return getAssertType();
   }
 
   @Override
   public V containsExactlyElementsOf(Iterable<? extends T> iterable) {
     LOGGER.log(Level.FINE, "Contains exactly element of: " + iterableToString(iterable));
-    addSupplier(actual -> assertThat(actual).containsExactlyElementsOf(iterable));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsExactlyElementsOf(iterable));
+    return getAssertType();
   }
 
   @Override
   public V containsExactlyInAnyOrder(T... values) {
     LOGGER.log(Level.FINE, "Contains exactly in any order: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).containsExactlyInAnyOrder(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsExactlyInAnyOrder(values));
+    return getAssertType();
   }
 
   @Override
   public V containsExactlyInAnyOrderElementsOf(Iterable<? extends T> values) {
     LOGGER.log(
         Level.FINE, "Contains exactly in any order elements of: " + iterableToString(values));
-    addSupplier(actual -> assertThat(actual).containsExactlyInAnyOrderElementsOf(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsExactlyInAnyOrderElementsOf(values));
+    return getAssertType();
   }
 
   @Override
   public V containsNull() {
     LOGGER.log(Level.FINE, "Contains null");
-    addSupplier(actual -> assertThat(actual).containsNull());
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsNull());
+    return getAssertType();
   }
 
   @Override
   public V containsOnly(T... values) {
     LOGGER.log(Level.FINE, "Contains only: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).containsOnly(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsOnly(values));
+    return getAssertType();
   }
 
   @Override
   public V containsOnlyElementsOf(Iterable<? extends T> iterable) {
     LOGGER.log(Level.FINE, "Contains only elements of: " + iterableToString(iterable));
-    addSupplier(actual -> assertThat(actual).containsOnlyElementsOf(iterable));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsOnlyElementsOf(iterable));
+    return getAssertType();
   }
 
   @Override
   public V containsOnlyNulls() {
     LOGGER.log(Level.FINE, "Contains only null");
-    addSupplier(actual -> assertThat(actual).containsOnlyNulls());
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsOnlyNulls());
+    return getAssertType();
   }
 
   @Override
   public V containsOnlyOnce(T... values) {
     LOGGER.log(Level.FINE, "Contains only once: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).containsOnlyOnce(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsOnlyOnce(values));
+    return getAssertType();
   }
 
   @Override
   public V containsSequence(T... sequence) {
     LOGGER.log(Level.FINE, "Contains sequence: " + Arrays.toString(sequence));
-    addSupplier(actual -> assertThat(actual).containsSequence(sequence));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsSequence(sequence));
+    return getAssertType();
   }
 
   @Override
   public V containsSequence(Iterable<? extends T> sequence) {
     LOGGER.log(Level.FINE, "Contains sequence: " + iterableToString(sequence));
-    addSupplier(actual -> assertThat(actual).containsSequence(sequence));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsSequence(sequence));
+    return getAssertType();
   }
 
   @Override
   public V containsSubsequence(T... subsequence) {
     LOGGER.log(Level.FINE, "Contains sub sequence: " + Arrays.toString(subsequence));
-    addSupplier(actual -> assertThat(actual).containsSubsequence(subsequence));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsSubsequence(subsequence));
+    return getAssertType();
   }
 
   @Override
   public V containsSubsequence(Iterable<? extends T> subsequence) {
     LOGGER.log(Level.FINE, "Contains sub sequence: " + iterableToString(subsequence));
-    addSupplier(actual -> assertThat(actual).containsSubsequence(subsequence));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsSubsequence(subsequence));
+    return getAssertType();
   }
 
   @Override
   public V doesNotContain(T... values) {
     LOGGER.log(Level.FINE, "Does not contain: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).doesNotContain(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContain(values));
+    return getAssertType();
   }
 
   @Override
   public V doesNotContainAnyElementsOf(Iterable<? extends T> iterable) {
     LOGGER.log(Level.FINE, "Does not contain any elements of: " + iterableToString(iterable));
-    addSupplier(actual -> assertThat(actual).doesNotContainAnyElementsOf(iterable));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContainAnyElementsOf(iterable));
+    return getAssertType();
   }
 
   @Override
   public V doesNotContainNull() {
     LOGGER.log(Level.FINE, "Does not contain null");
-    addSupplier(actual -> assertThat(actual).doesNotContainNull());
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContainNull());
+    return getAssertType();
   }
 
   @Override
   public V doesNotContainSequence(T... sequence) {
     LOGGER.log(Level.FINE, "Does not contain sequence: " + Arrays.toString(sequence));
-    addSupplier(actual -> assertThat(actual).doesNotContainSequence(sequence));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContainSequence(sequence));
+    return getAssertType();
   }
 
   @Override
   public V doesNotContainSequence(Iterable<? extends T> sequence) {
     LOGGER.log(Level.FINE, "Does not contain sequence: " + iterableToString(sequence));
-    addSupplier(actual -> assertThat(actual).doesNotContainSequence(sequence));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContainSequence(sequence));
+    return getAssertType();
   }
 
   @Override
   public V doesNotContainSubsequence(T... subsequence) {
     LOGGER.log(Level.FINE, "Does not contain sub sequence: " + Arrays.toString(subsequence));
-    addSupplier(actual -> assertThat(actual).doesNotContainSubsequence(subsequence));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContainSubsequence(subsequence));
+    return getAssertType();
   }
 
   @Override
   public V doesNotContainSubsequence(Iterable<? extends T> subsequence) {
     LOGGER.log(Level.FINE, "Does not contain sub sequence: " + iterableToString(subsequence));
-    addSupplier(actual -> assertThat(actual).doesNotContainSubsequence(subsequence));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContainSubsequence(subsequence));
+    return getAssertType();
   }
 
   @Override
   public V doesNotHaveAnyElementsOfTypes(Class<?>... types) {
     LOGGER.log(Level.FINE, "Does not have any elements of types: " + Arrays.toString(types));
-    addSupplier(actual -> assertThat(actual).doesNotHaveAnyElementsOfTypes(types));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotHaveAnyElementsOfTypes(types));
+    return getAssertType();
   }
 
   @Override
   public V doesNotHaveDuplicates() {
     LOGGER.log(Level.FINE, "Does not have duplicates");
-    addSupplier(actual -> assertThat(actual).doesNotHaveDuplicates());
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotHaveDuplicates());
+    return getAssertType();
   }
 
   @Override
   public V endsWith(T... sequence) {
     LOGGER.log(Level.FINE, "Ends with: " + Arrays.toString(sequence));
-    addSupplier(actual -> assertThat(actual).endsWith(sequence));
-    return returnAssertType();
+    addSupplier(() -> getAssert().endsWith(sequence));
+    return getAssertType();
   }
 
   @Override
   public V hasAtLeastOneElementOfType(Class<?> type) {
     LOGGER.log(Level.FINE, "Has at least one element of type: " + type.getName());
-    addSupplier(actual -> assertThat(actual).hasAtLeastOneElementOfType(type));
-    return returnAssertType();
+    addSupplier(() -> getAssert().hasAtLeastOneElementOfType(type));
+    return getAssertType();
   }
 
   @Override
   public V hasOnlyElementsOfType(Class<?> type) {
     LOGGER.log(Level.FINE, "Has only elements of type " + type.getName());
-    addSupplier(actual -> assertThat(actual).hasOnlyElementsOfType(type));
-    return returnAssertType();
+    addSupplier(() -> getAssert().hasOnlyElementsOfType(type));
+    return getAssertType();
   }
 
   @Override
   public V hasOnlyElementsOfTypes(Class<?>... types) {
     LOGGER.log(Level.FINE, "Has only elements of types: " + Arrays.toString(types));
-    addSupplier(actual -> assertThat(actual).hasOnlyElementsOfTypes(types));
-    return returnAssertType();
+    addSupplier(() -> getAssert().hasOnlyElementsOfTypes(types));
+    return getAssertType();
   }
 
   @Override
   public V hasSameElementsAs(Iterable<? extends T> iterable) {
     LOGGER.log(Level.FINE, "Has same elements as: " + iterableToString(iterable));
-    addSupplier(actual -> assertThat(actual).hasSameElementsAs(iterable));
-    return returnAssertType();
+    addSupplier(() -> getAssert().hasSameElementsAs(iterable));
+    return getAssertType();
   }
 
   @Override
   public V hasSameSizeAs(Iterable<?> other) {
     LOGGER.log(Level.FINE, "Has same size as: " + iterableToString(other));
-    addSupplier(actual -> assertThat(actual).hasSameSizeAs(other));
-    return returnAssertType();
+    addSupplier(() -> getAssert().hasSameSizeAs(other));
+    return getAssertType();
   }
 
   @Override
   public V hasSameSizeAs(Object array) {
     LOGGER.log(Level.FINE, "Has same size as: " + array);
-    addSupplier(actual -> assertThat(actual).hasSameSizeAs(array));
-    return returnAssertType();
+    addSupplier(() -> getAssert().hasSameSizeAs(array));
+    return getAssertType();
   }
 
   @Override
   public V hasSize(int expected) {
     LOGGER.log(Level.FINE, "Has size: " + expected);
-    addSupplier(actual -> assertThat(actual).hasSize(expected));
-    return returnAssertType();
+    addSupplier(() -> getAssert().hasSize(expected));
+    return getAssertType();
   }
 
   @Override
   public V isEmpty() {
     LOGGER.log(Level.FINE, "Is empty");
-    addSupplier(actual -> assertThat(actual).isEmpty());
-    return returnAssertType();
+    addSupplier(() -> getAssert().isEmpty());
+    return getAssertType();
   }
 
   @Override
   public V isNotEmpty() {
     LOGGER.log(Level.FINE, "Is not empty");
-    addSupplier(actual -> assertThat(actual).isNotEmpty());
-    return returnAssertType();
+    addSupplier(() -> getAssert().isNotEmpty());
+    return getAssertType();
   }
 
   @Override
   public V isNullOrEmpty() {
     LOGGER.log(Level.FINE, "Is null or empty");
-    addSupplier(actual -> assertThat(actual).isNullOrEmpty());
-    return returnAssertType();
+    addSupplier(() -> getAssert().isNullOrEmpty());
+    return getAssertType();
   }
 
   @Override
   public V isSubsetOf(T... values) {
     LOGGER.log(Level.FINE, "Is subset of: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).isSubsetOf(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().isSubsetOf(values));
+    return getAssertType();
   }
 
   @Override
   public V isSubsetOf(Iterable<? extends T> iterable) {
     LOGGER.log(Level.FINE, "Is subset of: " + iterableToString(iterable));
-    addSupplier(actual -> assertThat(actual).isSubsetOf(iterable));
-    return returnAssertType();
+    addSupplier(() -> getAssert().isSubsetOf(iterable));
+    return getAssertType();
   }
 
   @Override
   public V startsWith(T... sequence) {
     LOGGER.log(Level.FINE, "Starts with: " + Arrays.toString(sequence));
-    addSupplier(actual -> assertThat(actual).startsWith(sequence));
-    return returnAssertType();
+    addSupplier(() -> getAssert().startsWith(sequence));
+    return getAssertType();
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  AbstractIterableAssert<?, U, T, ?> getAssert() {
+    return (AbstractIterableAssert<?, U, T, ?>) assertThat(getActual());
   }
 
   private static String iterableToString(Iterable<?> iterable) {

@@ -8,176 +8,181 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class MapAssertImpl<T, U, V extends Map<T, U>, X extends MapAssert<T, U, V, X>>
-    extends ObjectAssertImpl<V, X> implements MapAssert<T, U, V, X> {
+class MapAssertImpl<T, U, V extends MapAssert<T, U, V>> extends ObjectAssertImpl<Map<T, U>, V>
+    implements MapAssert<T, U, V> {
   private static final Logger LOGGER = Logger.getLogger(MapAssertImpl.class.getName());
 
   @Override
-  public X contains(Entry<? extends T, ? extends U>... entries) {
+  public V contains(Entry<? extends T, ? extends U>... entries) {
     LOGGER.log(Level.FINE, "Contains: " + Arrays.toString(entries));
-    addSupplier(actual -> assertThat(actual).contains(entries));
-    return returnAssertType();
+    addSupplier(() -> getAssert().contains(entries));
+    return getAssertType();
   }
 
   @Override
-  public X containsAllEntriesOf(Map<? extends T, ? extends U> map) {
+  public V containsAllEntriesOf(Map<? extends T, ? extends U> map) {
     var stringBuilder = new StringBuilder(0);
     map.forEach((key, value) -> stringBuilder.append(key).append(", ").append(value));
 
     LOGGER.log(Level.FINE, "Contains all entries of: " + stringBuilder);
-    addSupplier(actual -> assertThat(actual).containsAllEntriesOf(map));
+    addSupplier(() -> getAssert().containsAllEntriesOf(map));
 
-    return returnAssertType();
+    return getAssertType();
   }
 
   @Override
-  public X containsAnyOf(Entry<? extends T, ? extends U>... entries) {
+  public V containsAnyOf(Entry<? extends T, ? extends U>... entries) {
     LOGGER.log(Level.FINE, "Contains any of: " + Arrays.toString(entries));
-    addSupplier(actual -> assertThat(actual).containsAnyOf(entries));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsAnyOf(entries));
+    return getAssertType();
   }
 
   @Override
-  public X containsEntry(T key, U value) {
+  public V containsEntry(T key, U value) {
     LOGGER.log(Level.FINE, "Contains entry with key: " + key + ", value: " + value);
-    addSupplier(actual -> assertThat(actual).containsEntry(key, value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsEntry(key, value));
+    return getAssertType();
   }
 
   @Override
-  public X containsExactly(Entry<? extends T, ? extends U>... entries) {
+  public V containsExactly(Entry<? extends T, ? extends U>... entries) {
     LOGGER.log(Level.FINE, "Contains exactly: " + Arrays.toString(entries));
-    addSupplier(actual -> assertThat(actual).containsExactly(entries));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsExactly(entries));
+    return getAssertType();
   }
 
   @Override
-  public X containsKey(T key) {
+  public V containsKey(T key) {
     LOGGER.log(Level.FINE, "Contains key: " + key);
-    addSupplier(actual -> assertThat(actual).containsKey(key));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsKey(key));
+    return getAssertType();
   }
 
   @Override
-  public X containsKeys(T... keys) {
+  public V containsKeys(T... keys) {
     LOGGER.log(Level.FINE, "Contains keys: " + Arrays.toString(keys));
-    addSupplier(actual -> assertThat(actual).containsKeys(keys));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsKeys(keys));
+    return getAssertType();
   }
 
   @Override
-  public X containsOnly(Entry<? extends T, ? extends U>... entries) {
+  public V containsOnly(Entry<? extends T, ? extends U>... entries) {
     LOGGER.log(Level.FINE, "Contains only: " + Arrays.toString(entries));
-    addSupplier(actual -> assertThat(actual).containsOnly(entries));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsOnly(entries));
+    return getAssertType();
   }
 
   @Override
-  public X containsOnlyKeys(T... keys) {
+  public V containsOnlyKeys(T... keys) {
     LOGGER.log(Level.FINE, "Contains only keys: " + Arrays.toString(keys));
-    addSupplier(actual -> assertThat(actual).containsOnlyKeys(keys));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsOnlyKeys(keys));
+    return getAssertType();
   }
 
   @Override
-  public X containsValue(U value) {
+  public V containsValue(U value) {
     LOGGER.log(Level.FINE, "Contains value: " + value);
-    addSupplier(actual -> assertThat(actual).containsValue(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsValue(value));
+    return getAssertType();
   }
 
   @Override
-  public X containsValues(U... values) {
+  public V containsValues(U... values) {
     LOGGER.log(Level.FINE, "Contains values: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).containsValues(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsValues(values));
+    return getAssertType();
   }
 
   @Override
-  public X doesNotContain(Entry<? extends T, ? extends U>... entries) {
+  public V doesNotContain(Entry<? extends T, ? extends U>... entries) {
     LOGGER.log(Level.FINE, "Does not contain: " + Arrays.toString(entries));
-    addSupplier(actual -> assertThat(actual).doesNotContain(entries));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContain(entries));
+    return getAssertType();
   }
 
   @Override
-  public X doesNotContainEntry(T key, U value) {
+  public V doesNotContainEntry(T key, U value) {
     LOGGER.log(Level.FINE, "Does not contain entry with key: " + key + ", value: " + value);
-    addSupplier(actual -> assertThat(actual).doesNotContainEntry(key, value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContainEntry(key, value));
+    return getAssertType();
   }
 
   @Override
-  public X doesNotContainKey(T key) {
+  public V doesNotContainKey(T key) {
     LOGGER.log(Level.FINE, "Does not contain key: " + key);
-    addSupplier(actual -> assertThat(actual).doesNotContainKey(key));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContainKey(key));
+    return getAssertType();
   }
 
   @Override
-  public X doesNotContainKeys(T... keys) {
+  public V doesNotContainKeys(T... keys) {
     LOGGER.log(Level.FINE, "Does not contain keys: " + Arrays.toString(keys));
-    addSupplier(actual -> assertThat(actual).doesNotContainKeys(keys));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContainKeys(keys));
+    return getAssertType();
   }
 
   @Override
-  public X doesNotContainValue(U value) {
+  public V doesNotContainValue(U value) {
     LOGGER.log(Level.FINE, "Does not contain value: " + value);
-    addSupplier(actual -> assertThat(actual).doesNotContainValue(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContainValue(value));
+    return getAssertType();
   }
 
   @Override
-  public X hasSameSizeAs(Map<?, ?> map) {
+  public V hasSameSizeAs(Map<?, ?> map) {
     LOGGER.log(Level.FINE, "Has same size as: " + map.size());
-    addSupplier(actual -> assertThat(actual).hasSameSizeAs(map));
-    return returnAssertType();
+    addSupplier(() -> getAssert().hasSameSizeAs(map));
+    return getAssertType();
   }
 
   @Override
-  public X hasSameSizeAs(Iterable<?> other) {
+  public V hasSameSizeAs(Iterable<?> other) {
     var size = 0;
     for (Object ignore : other) size++;
 
     LOGGER.log(Level.FINE, "Has same size as: " + size);
-    addSupplier(actual -> assertThat(actual).hasSameSizeAs(other));
+    addSupplier(() -> getAssert().hasSameSizeAs(other));
 
-    return returnAssertType();
+    return getAssertType();
   }
 
   @Override
-  public X hasSameSizeAs(Object array) {
+  public V hasSameSizeAs(Object array) {
     LOGGER.log(Level.FINE, "Has same size as: " + array);
-    addSupplier(actual -> assertThat(actual).hasSameSizeAs(array));
-    return returnAssertType();
+    addSupplier(() -> getAssert().hasSameSizeAs(array));
+    return getAssertType();
   }
 
   @Override
-  public X hasSize(int expected) {
+  public V hasSize(int expected) {
     LOGGER.log(Level.FINE, "Has size: " + expected);
-    addSupplier(actual -> assertThat(actual).hasSize(expected));
-    return returnAssertType();
+    addSupplier(() -> getAssert().hasSize(expected));
+    return getAssertType();
   }
 
   @Override
-  public X isEmpty() {
+  public V isEmpty() {
     LOGGER.log(Level.FINE, "Is empty");
-    addSupplier(actual -> assertThat(actual).isEmpty());
-    return returnAssertType();
+    addSupplier(() -> getAssert().isEmpty());
+    return getAssertType();
   }
 
   @Override
-  public X isNotEmpty() {
+  public V isNotEmpty() {
     LOGGER.log(Level.FINE, "Is not empty");
-    addSupplier(actual -> assertThat(actual).isNotEmpty());
-    return returnAssertType();
+    addSupplier(() -> getAssert().isNotEmpty());
+    return getAssertType();
   }
 
   @Override
-  public X isNullOrEmpty() {
+  public V isNullOrEmpty() {
     LOGGER.log(Level.FINE, "Is null or empty");
-    addSupplier(actual -> assertThat(actual).isNullOrEmpty());
-    return returnAssertType();
+    addSupplier(() -> getAssert().isNullOrEmpty());
+    return getAssertType();
+  }
+
+  @Override
+  org.assertj.core.api.MapAssert<T, U> getAssert() {
+    return assertThat(getActual());
   }
 }

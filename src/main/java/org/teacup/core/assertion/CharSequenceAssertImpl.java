@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.assertj.core.api.AbstractCharSequenceAssert;
 
 class CharSequenceAssertImpl<T extends CharSequence, U extends CharSequenceAssert<T, U>>
     extends ObjectAssertImpl<T, U> implements CharSequenceAssert<T, U> {
@@ -15,92 +16,85 @@ class CharSequenceAssertImpl<T extends CharSequence, U extends CharSequenceAsser
   @Override
   public U contains(CharSequence... values) {
     LOGGER.log(Level.FINE, "Contains: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).contains(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().contains(values));
+    return getAssertType();
   }
 
   @Override
   public U containsIgnoringCase(CharSequence value) {
     LOGGER.log(Level.FINE, "Contains ignoring case: " + value);
-    addSupplier(actual -> assertThat(actual).containsIgnoringCase(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsIgnoringCase(value));
+    return getAssertType();
   }
 
   @Override
   public U containsOnlyOnce(CharSequence value) {
     LOGGER.log(Level.FINE, "Contains only once: " + value);
-    addSupplier(actual -> assertThat(actual).containsOnlyOnce(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsOnlyOnce(value));
+    return getAssertType();
   }
 
   @Override
   public U containsPattern(CharSequence regex) {
     LOGGER.log(Level.FINE, "Contains pattern: " + regex);
-    addSupplier(actual -> assertThat(actual).containsPattern(regex));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsPattern(regex));
+    return getAssertType();
   }
 
   @Override
   public U containsSequence(CharSequence... values) {
     LOGGER.log(Level.FINE, "Contains sequence: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).containsSequence(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsSequence(values));
+    return getAssertType();
   }
 
   @Override
   public U containsSubsequence(CharSequence... values) {
     LOGGER.log(Level.FINE, "Contains sub sequence: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).containsSubsequence(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().containsSubsequence(values));
+    return getAssertType();
   }
 
   @Override
   public U doesNotContain(CharSequence... values) {
     LOGGER.log(Level.FINE, "Does not contain: " + Arrays.toString(values));
-    addSupplier(actual -> assertThat(actual).doesNotContain(values));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContain(values));
+    return getAssertType();
   }
 
   @Override
   public U doesNotContainPattern(CharSequence regex) {
     LOGGER.log(Level.FINE, "Does not contain pattern: " + regex);
-    addSupplier(actual -> assertThat(actual).doesNotContainPattern(regex));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotContainPattern(regex));
+    return getAssertType();
   }
 
   @Override
   public U doesNotEndWith(CharSequence value) {
     LOGGER.log(Level.FINE, "Does not end with: " + value);
-    addSupplier(actual -> assertThat(actual).doesNotEndWith(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotEndWith(value));
+    return getAssertType();
   }
 
   @Override
   public U doesNotMatch(CharSequence regex) {
     LOGGER.log(Level.FINE, "Does not match: " + regex);
-    addSupplier(actual -> assertThat(actual).doesNotMatch(regex));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotMatch(regex));
+    return getAssertType();
   }
 
   @Override
   public U doesNotStartWith(CharSequence value) {
     LOGGER.log(Level.FINE, "Does not start with: " + value);
-    addSupplier(actual -> assertThat(actual).doesNotStartWith(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().doesNotStartWith(value));
+    return getAssertType();
   }
 
   @Override
   public U endsWith(CharSequence value) {
     LOGGER.log(Level.FINE, "Ends with: " + value);
-    addSupplier(actual -> assertThat(actual).endsWith(value));
-    return returnAssertType();
-  }
-
-  @Override
-  public U hasSameSizeAs(Object array) {
-    LOGGER.log(Level.FINE, "Has same siz as: " + array);
-    addSupplier(actual -> assertThat(actual).hasSameSizeAs(array));
-    return returnAssertType();
+    addSupplier(() -> getAssert().endsWith(value));
+    return getAssertType();
   }
 
   @Override
@@ -109,127 +103,139 @@ class CharSequenceAssertImpl<T extends CharSequence, U extends CharSequenceAsser
     other.forEach(value -> otherAsString.add(value.toString()));
 
     LOGGER.log(Level.FINE, "Has same size as: " + Arrays.toString(otherAsString.toArray()));
-    addSupplier(actual -> assertThat(actual).hasSameSizeAs(other));
+    addSupplier(() -> getAssert().hasSameSizeAs(other));
 
-    return returnAssertType();
+    return getAssertType();
+  }
+
+  @Override
+  public U hasSameSizeAs(Object array) {
+    LOGGER.log(Level.FINE, "Has same siz as: " + array);
+    addSupplier(() -> getAssert().hasSameSizeAs(array));
+    return getAssertType();
   }
 
   @Override
   public U hasSameSizeAs(CharSequence value) {
     LOGGER.log(Level.FINE, "Has same size as: " + value);
-    addSupplier(actual -> assertThat(actual).hasSameSizeAs(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().hasSameSizeAs(value));
+    return getAssertType();
   }
 
   @Override
   public U hasSize(int expected) {
     LOGGER.log(Level.FINE, "Has size: " + expected);
-    addSupplier(actual -> assertThat(actual).hasSize(expected));
-    return returnAssertType();
+    addSupplier(() -> getAssert().hasSize(expected));
+    return getAssertType();
   }
 
   @Override
   public U isEmpty() {
     LOGGER.log(Level.FINE, "Is empty");
-    addSupplier(actual -> assertThat(actual).isEmpty());
-    return returnAssertType();
+    addSupplier(() -> getAssert().isEmpty());
+    return getAssertType();
   }
 
   @Override
   public U isEqualToIgnoringCase(CharSequence value) {
     LOGGER.log(Level.FINE, "Is equal to ignoring case: " + value);
-    addSupplier(actual -> assertThat(actual).isEqualToIgnoringCase(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().isEqualToIgnoringCase(value));
+    return getAssertType();
   }
 
   @Override
   public U isEqualToIgnoringNewLines(CharSequence value) {
     LOGGER.log(Level.FINE, "Is equal to ignoring new lines: " + value);
-    addSupplier(actual -> assertThat(actual).isEqualToIgnoringNewLines(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().isEqualToIgnoringNewLines(value));
+    return getAssertType();
   }
 
   @Override
   public U isEqualToIgnoringWhitespace(CharSequence value) {
     LOGGER.log(Level.FINE, "Is equal to ignoring whitespace: " + value);
-    addSupplier(actual -> assertThat(actual).isEqualToIgnoringWhitespace(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().isEqualToIgnoringWhitespace(value));
+    return getAssertType();
   }
 
   @Override
   public U isEqualToNormalizingNewlines(CharSequence value) {
     LOGGER.log(Level.FINE, "Is equal to normalizing newlines: " + value);
-    addSupplier(actual -> assertThat(actual).isEqualToNormalizingNewlines(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().isEqualToNormalizingNewlines(value));
+    return getAssertType();
   }
 
   @Override
   public U isEqualToNormalizingWhitespace(CharSequence value) {
     LOGGER.log(Level.FINE, "Is equal to normalizing whitespace: " + value);
-    addSupplier(actual -> assertThat(actual).isEqualToNormalizingWhitespace(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().isEqualToNormalizingWhitespace(value));
+    return getAssertType();
   }
 
   @Override
   public U isNotEmpty() {
     LOGGER.log(Level.FINE, "Is not empty");
-    addSupplier(actual -> assertThat(actual).isNotEmpty());
-    return returnAssertType();
+    addSupplier(() -> getAssert().isNotEmpty());
+    return getAssertType();
   }
 
   @Override
   public U isNotEqualToIgnoringCase(CharSequence value) {
     LOGGER.log(Level.FINE, "Is not equal to ignoring case: " + value);
-    addSupplier(actual -> assertThat(actual).isNotEqualToIgnoringCase(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().isNotEqualToIgnoringCase(value));
+    return getAssertType();
   }
 
   @Override
   public U isNotEqualToIgnoringWhitespace(CharSequence value) {
     LOGGER.log(Level.FINE, "Is not equal to ignoring whitespace: " + value);
-    addSupplier(actual -> assertThat(actual).isNotEqualToIgnoringWhitespace(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().isNotEqualToIgnoringWhitespace(value));
+    return getAssertType();
   }
 
   @Override
   public U isNotEqualToNormalizingWhitespace(CharSequence value) {
     LOGGER.log(Level.FINE, "Is not equal to ignoring whitespace: " + value);
-    addSupplier(actual -> assertThat(actual).isNotEqualToNormalizingWhitespace(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().isNotEqualToNormalizingWhitespace(value));
+    return getAssertType();
   }
 
   @Override
   public U isNullOrEmpty() {
     LOGGER.log(Level.FINE, "Is null or empty");
-    addSupplier(actual -> assertThat(actual).isNullOrEmpty());
-    return returnAssertType();
+    addSupplier(() -> getAssert().isNullOrEmpty());
+    return getAssertType();
   }
 
   @Override
   public U isSubstringOf(CharSequence value) {
     LOGGER.log(Level.FINE, "Is substring of: " + value);
-    addSupplier(actual -> assertThat(actual).isSubstringOf(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().isSubstringOf(value));
+    return getAssertType();
   }
 
   @Override
   public U isXmlEqualTo(CharSequence xml) {
     LOGGER.log(Level.FINE, "Is XML equal to: " + xml);
-    addSupplier(actual -> assertThat(actual).isXmlEqualTo(xml));
-    return returnAssertType();
+    addSupplier(() -> getAssert().isXmlEqualTo(xml));
+    return getAssertType();
   }
 
   @Override
   public U matches(CharSequence regex) {
     LOGGER.log(Level.FINE, "Matches: " + regex);
-    addSupplier(actual -> assertThat(actual).matches(regex));
-    return returnAssertType();
+    addSupplier(() -> getAssert().matches(regex));
+    return getAssertType();
   }
 
   @Override
   public U startsWith(CharSequence value) {
     LOGGER.log(Level.FINE, "Starts with: " + value);
-    addSupplier(actual -> assertThat(actual).startsWith(value));
-    return returnAssertType();
+    addSupplier(() -> getAssert().startsWith(value));
+    return getAssertType();
+  }
+
+  @Override
+  AbstractCharSequenceAssert<?, T> getAssert() {
+    return (AbstractCharSequenceAssert<?, T>) assertThat(getActual());
   }
 }

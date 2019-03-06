@@ -8,7 +8,7 @@ package org.teacup.core.assertion;
  * @since 1.0
  */
 public interface CharSequenceAssert<T extends CharSequence, U extends CharSequenceAssert<T, U>>
-    extends EnumerableAssert<U>, ObjectAssert<T, U> {
+    extends EnumerableAssert<T, U> {
   /**
    * Verifies that the CharSequence contains the values.
    *

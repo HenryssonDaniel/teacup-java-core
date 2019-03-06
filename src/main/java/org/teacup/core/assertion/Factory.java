@@ -62,7 +62,7 @@ public enum Factory {
    * @param <T> the list type
    * @return the list assert
    */
-  public static <T> ListAssert<T, ?, ?> createListAssert() {
+  public static <T> ListAssert<T, ?> createListAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "list"));
     return new ListAssertImpl<>();
   }
@@ -74,7 +74,7 @@ public enum Factory {
    * @param <U> the map value type
    * @return the map assert
    */
-  public static <T, U> MapAssert<T, U, ?, ?> createMapAssert() {
+  public static <T, U> MapAssert<T, U, ?> createMapAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "map"));
     return new MapAssertImpl<>();
   }

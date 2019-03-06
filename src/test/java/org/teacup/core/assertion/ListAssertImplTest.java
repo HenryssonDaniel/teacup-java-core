@@ -3,11 +3,10 @@ package org.teacup.core.assertion;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.Collections;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ListAssertImplTest {
-  private final ListAssert<Integer, List<Integer>, ?> listAssert = new ListAssertImpl<>();
+  private final ListAssert<Integer, ?> listAssert = new ListAssertImpl<>();
 
   @Test
   void contains() {
