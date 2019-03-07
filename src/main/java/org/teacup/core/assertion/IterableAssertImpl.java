@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import org.assertj.core.api.AbstractIterableAssert;
 
 class IterableAssertImpl<T, U extends Iterable<? extends T>, V extends IterableAssert<T, U, V>>
-    extends ObjectAssertImpl<U, V> implements IterableAssert<T, U, V> {
+    extends EnumerableAssertImpl<U, V> implements IterableAssert<T, U, V> {
   private static final Logger LOGGER = Logger.getLogger(IterableAssertImpl.class.getName());
 
   @Override
@@ -228,48 +228,6 @@ class IterableAssertImpl<T, U extends Iterable<? extends T>, V extends IterableA
   public V hasSameElementsAs(Iterable<? extends T> iterable) {
     LOGGER.log(Level.FINE, "Has same elements as: " + iterableToString(iterable));
     addSupplier(() -> getAssert().hasSameElementsAs(iterable));
-    return getAssertType();
-  }
-
-  @Override
-  public V hasSameSizeAs(Iterable<?> other) {
-    LOGGER.log(Level.FINE, "Has same size as: " + iterableToString(other));
-    addSupplier(() -> getAssert().hasSameSizeAs(other));
-    return getAssertType();
-  }
-
-  @Override
-  public V hasSameSizeAs(Object array) {
-    LOGGER.log(Level.FINE, "Has same size as: " + array);
-    addSupplier(() -> getAssert().hasSameSizeAs(array));
-    return getAssertType();
-  }
-
-  @Override
-  public V hasSize(int expected) {
-    LOGGER.log(Level.FINE, "Has size: " + expected);
-    addSupplier(() -> getAssert().hasSize(expected));
-    return getAssertType();
-  }
-
-  @Override
-  public V isEmpty() {
-    LOGGER.log(Level.FINE, "Is empty");
-    addSupplier(() -> getAssert().isEmpty());
-    return getAssertType();
-  }
-
-  @Override
-  public V isNotEmpty() {
-    LOGGER.log(Level.FINE, "Is not empty");
-    addSupplier(() -> getAssert().isNotEmpty());
-    return getAssertType();
-  }
-
-  @Override
-  public V isNullOrEmpty() {
-    LOGGER.log(Level.FINE, "Is null or empty");
-    addSupplier(() -> getAssert().isNullOrEmpty());
     return getAssertType();
   }
 

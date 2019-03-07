@@ -3,8 +3,6 @@ package org.teacup.core.assertion;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.AbstractMap.SimpleEntry;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -218,80 +216,9 @@ class MapAssertImplTest {
   }
 
   @Test
-  void hasSameSizeAsArray() {
-    mapAssert.hasSameSizeAs(new Integer[] {2, 3}).verify(MAP_ORDER_ASC);
-  }
-
-  @Test
-  void hasSameSizeAsArrayFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> mapAssert.hasSameSizeAs(new Integer[] {1}).verify(MAP_ORDER_ASC));
-  }
-
-  @Test
   void hasSameSizeAsFail() {
     assertThatExceptionOfType(AssertionError.class)
         .isThrownBy(
             () -> mapAssert.hasSameSizeAs(Collections.singletonMap("a", 1)).verify(MAP_ORDER_ASC));
-  }
-
-  @Test
-  void hasSameSizeAsIterable() {
-    Collection<String> list = new ArrayList<>(2);
-    list.add("a");
-    list.add("b");
-
-    mapAssert.hasSameSizeAs(list).verify(MAP_ORDER_ASC);
-  }
-
-  @Test
-  void hasSameSizeAsIterableFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(
-            () -> mapAssert.hasSameSizeAs(Collections.singletonList(1)).verify(MAP_ORDER_ASC));
-  }
-
-  @Test
-  void hasSize() {
-    mapAssert.hasSize(2).verify(MAP_ORDER_ASC);
-  }
-
-  @Test
-  void hasSizeFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> mapAssert.hasSize(1).verify(MAP_ORDER_ASC));
-  }
-
-  @Test
-  void isEmpty() {
-    mapAssert.isEmpty().verify(Collections.emptyMap());
-  }
-
-  @Test
-  void isEmptyFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> mapAssert.isEmpty().verify(MAP_ORDER_ASC));
-  }
-
-  @Test
-  void isNotEmpty() {
-    mapAssert.isNotEmpty().verify(MAP_ORDER_ASC);
-  }
-
-  @Test
-  void isNotEmptyFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> mapAssert.isNotEmpty().verify(Collections.emptyMap()));
-  }
-
-  @Test
-  void isNullOrEmpty() {
-    mapAssert.isNullOrEmpty().verify(null);
-  }
-
-  @Test
-  void isNullOrEmptyFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> mapAssert.isNullOrEmpty().verify(MAP_ORDER_ASC));
   }
 }

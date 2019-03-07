@@ -3,17 +3,13 @@ package org.teacup.core.assertion;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.Locale;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 class CharSequenceAssertImplTest {
-  private static final String EMPTY = "";
   private static final String REGEX = ".*en.*";
   private static final String SEQUENCE = "sequence";
   private static final String SEQUENCE_END = "nce";
   private static final String SEQUENCE_LONG = "sequencelongerSequence";
-  private static final String SEQUENCE_SIZE = "abcdefgh";
-  private static final String SEQUENCE_SIZE_INCORRECT = "abcdefghi";
   private static final String SEQUENCE_SPACE = "sequence ";
   private static final String SEQUENCE_START = "seq";
   private static final CharSequence XML =
@@ -157,70 +153,13 @@ class CharSequenceAssertImplTest {
 
   @Test
   void hasSameSizeAs() {
-    charSequenceAssert.hasSameSizeAs(SEQUENCE_SIZE).verify(SEQUENCE);
-  }
-
-  @Test
-  void hasSameSizeAsArray() {
-    charSequenceAssert.hasSameSizeAs(SEQUENCE_SIZE.toCharArray()).verify(SEQUENCE);
-  }
-
-  @Test
-  void hasSameSizeAsArrayFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(
-            () ->
-                charSequenceAssert
-                    .hasSameSizeAs(SEQUENCE_SIZE_INCORRECT.toCharArray())
-                    .verify(SEQUENCE));
+    charSequenceAssert.hasSameSizeAs("abcdefgh").verify(SEQUENCE);
   }
 
   @Test
   void hasSameSizeAsFail() {
     assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(
-            () -> charSequenceAssert.hasSameSizeAs(SEQUENCE_SIZE_INCORRECT).verify(SEQUENCE));
-  }
-
-  @Test
-  void hasSameSizeAsIterable() {
-    charSequenceAssert
-        .hasSameSizeAs(SEQUENCE_SIZE.chars().boxed().collect(Collectors.toList()))
-        .verify(SEQUENCE);
-  }
-
-  @Test
-  void hasSameSizeAsIterableFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(
-            () ->
-                charSequenceAssert
-                    .hasSameSizeAs(
-                        SEQUENCE_SIZE_INCORRECT.chars().boxed().collect(Collectors.toList()))
-                    .verify(SEQUENCE));
-  }
-
-  @Test
-  void hasSize() {
-    charSequenceAssert.hasSize(SEQUENCE.length()).verify(SEQUENCE);
-  }
-
-  @Test
-  void hasSizeFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(
-            () -> charSequenceAssert.hasSize(SEQUENCE_SIZE_INCORRECT.length()).verify(SEQUENCE));
-  }
-
-  @Test
-  void isEmpty() {
-    charSequenceAssert.isEmpty().verify(EMPTY);
-  }
-
-  @Test
-  void isEmptyFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> charSequenceAssert.isEmpty().verify(SEQUENCE));
+        .isThrownBy(() -> charSequenceAssert.hasSameSizeAs("abcdefghi").verify(SEQUENCE));
   }
 
   @Test
@@ -291,17 +230,6 @@ class CharSequenceAssertImplTest {
   }
 
   @Test
-  void isNotEmpty() {
-    charSequenceAssert.isNotEmpty().verify(SEQUENCE);
-  }
-
-  @Test
-  void isNotEmptyFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> charSequenceAssert.isNotEmpty().verify(EMPTY));
-  }
-
-  @Test
   void isNotEqualToIgnoringCase() {
     charSequenceAssert.isNotEqualToIgnoringCase(SEQUENCE).verify(SEQUENCE_LONG);
   }
@@ -339,17 +267,6 @@ class CharSequenceAssertImplTest {
     assertThatExceptionOfType(AssertionError.class)
         .isThrownBy(
             () -> charSequenceAssert.isNotEqualToNormalizingWhitespace(SEQUENCE).verify(SEQUENCE));
-  }
-
-  @Test
-  void isNullOrEmpty() {
-    charSequenceAssert.isNullOrEmpty().verify(EMPTY);
-  }
-
-  @Test
-  void isNullOrEmptyFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> charSequenceAssert.isNullOrEmpty().verify(SEQUENCE));
   }
 
   @Test

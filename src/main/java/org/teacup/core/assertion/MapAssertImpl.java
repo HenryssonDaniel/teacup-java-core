@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class MapAssertImpl<T, U, V extends MapAssert<T, U, V>> extends ObjectAssertImpl<Map<T, U>, V>
+class MapAssertImpl<T, U, V extends MapAssert<T, U, V>> extends EnumerableAssertImpl<Map<T, U>, V>
     implements MapAssert<T, U, V> {
   private static final Logger LOGGER = Logger.getLogger(MapAssertImpl.class.getName());
 
@@ -132,52 +132,6 @@ class MapAssertImpl<T, U, V extends MapAssert<T, U, V>> extends ObjectAssertImpl
   public V hasSameSizeAs(Map<?, ?> map) {
     LOGGER.log(Level.FINE, "Has same size as: " + map.size());
     addSupplier(() -> getAssert().hasSameSizeAs(map));
-    return getAssertType();
-  }
-
-  @Override
-  public V hasSameSizeAs(Iterable<?> other) {
-    var size = 0;
-    for (Object ignore : other) size++;
-
-    LOGGER.log(Level.FINE, "Has same size as: " + size);
-    addSupplier(() -> getAssert().hasSameSizeAs(other));
-
-    return getAssertType();
-  }
-
-  @Override
-  public V hasSameSizeAs(Object array) {
-    LOGGER.log(Level.FINE, "Has same size as: " + array);
-    addSupplier(() -> getAssert().hasSameSizeAs(array));
-    return getAssertType();
-  }
-
-  @Override
-  public V hasSize(int expected) {
-    LOGGER.log(Level.FINE, "Has size: " + expected);
-    addSupplier(() -> getAssert().hasSize(expected));
-    return getAssertType();
-  }
-
-  @Override
-  public V isEmpty() {
-    LOGGER.log(Level.FINE, "Is empty");
-    addSupplier(() -> getAssert().isEmpty());
-    return getAssertType();
-  }
-
-  @Override
-  public V isNotEmpty() {
-    LOGGER.log(Level.FINE, "Is not empty");
-    addSupplier(() -> getAssert().isNotEmpty());
-    return getAssertType();
-  }
-
-  @Override
-  public V isNullOrEmpty() {
-    LOGGER.log(Level.FINE, "Is null or empty");
-    addSupplier(() -> getAssert().isNullOrEmpty());
     return getAssertType();
   }
 

@@ -3,7 +3,6 @@ package org.teacup.core.assertion;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.Arrays;
-import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 class IterableAssertImplTest {
@@ -363,73 +362,6 @@ class IterableAssertImplTest {
   void hasSameElementsAsFail() {
     assertThatExceptionOfType(AssertionError.class)
         .isThrownBy(() -> iterableAssert.hasSameElementsAs(DIFFERENT).verify(ORDER_ASC));
-  }
-
-  @Test
-  void hasSameSizeAs() {
-    iterableAssert.hasSameSizeAs(ORDER_DESC).verify(ORDER_ASC);
-  }
-
-  @Test
-  void hasSameSizeAsArray() {
-    iterableAssert.hasSameSizeAs(new Integer[] {2, 3}).verify(ORDER_ASC);
-  }
-
-  @Test
-  void hasSameSizeAsArrayFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> iterableAssert.hasSameSizeAs(new Integer[] {1}).verify(ORDER_ASC));
-  }
-
-  @Test
-  void hasSameSizeAsFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(
-            () -> iterableAssert.hasSameSizeAs(Collections.singletonList(1)).verify(ORDER_ASC));
-  }
-
-  @Test
-  void hasSize() {
-    iterableAssert.hasSize(2).verify(ORDER_ASC);
-  }
-
-  @Test
-  void hasSizeFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> iterableAssert.hasSize(1).verify(ORDER_ASC));
-  }
-
-  @Test
-  void isEmpty() {
-    iterableAssert.isEmpty().verify(Collections.emptyList());
-  }
-
-  @Test
-  void isEmptyFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> iterableAssert.isEmpty().verify(ORDER_ASC));
-  }
-
-  @Test
-  void isNotEmpty() {
-    iterableAssert.isNotEmpty().verify(ORDER_ASC);
-  }
-
-  @Test
-  void isNotEmptyFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> iterableAssert.isNotEmpty().verify(Collections.emptyList()));
-  }
-
-  @Test
-  void isNullOrEmpty() {
-    iterableAssert.isNullOrEmpty().verify(null);
-  }
-
-  @Test
-  void isNullOrEmptyFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(() -> iterableAssert.isNullOrEmpty().verify(ORDER_ASC));
   }
 
   @Test
