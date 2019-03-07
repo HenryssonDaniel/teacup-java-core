@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.api.AbstractDoubleArrayAssert;
 
-class DoubleArrayAssertImpl extends ArrayAssertImpl<double[], DoubleArrayAssert>
+class DoubleArrayAssertImpl extends EnumerableAssertImpl<double[], DoubleArrayAssert>
     implements DoubleArrayAssert {
   @Override
   AbstractDoubleArrayAssert<?> getAssert() {

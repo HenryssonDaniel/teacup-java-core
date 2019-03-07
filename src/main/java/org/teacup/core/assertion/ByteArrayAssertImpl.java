@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.api.AbstractByteArrayAssert;
 
-class ByteArrayAssertImpl extends ArrayAssertImpl<byte[], ByteArrayAssert>
+class ByteArrayAssertImpl extends EnumerableAssertImpl<byte[], ByteArrayAssert>
     implements ByteArrayAssert {
   @Override
   AbstractByteArrayAssert<?> getAssert() {

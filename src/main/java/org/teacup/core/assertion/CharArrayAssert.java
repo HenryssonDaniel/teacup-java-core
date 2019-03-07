@@ -5,4 +5,4 @@ package org.teacup.core.assertion;
  *
  * @since 1.0
  */
-public interface CharArrayAssert extends ArrayAssert<char[], CharArrayAssert> {}
+public interface CharArrayAssert extends EnumerableAssert<char[], CharArrayAssert> {}

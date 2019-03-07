@@ -5,4 +5,4 @@ package org.teacup.core.assertion;
  *
  * @since 1.0
  */
-public interface LongArrayAssert extends ArrayAssert<long[], LongArrayAssert> {}
+public interface LongArrayAssert extends EnumerableAssert<long[], LongArrayAssert> {}

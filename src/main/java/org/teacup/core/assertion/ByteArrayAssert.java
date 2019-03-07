@@ -5,4 +5,4 @@ package org.teacup.core.assertion;
  *
  * @since 1.0
  */
-public interface ByteArrayAssert extends ArrayAssert<byte[], ByteArrayAssert> {}
+public interface ByteArrayAssert extends EnumerableAssert<byte[], ByteArrayAssert> {}

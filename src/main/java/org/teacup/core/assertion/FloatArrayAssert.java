@@ -5,4 +5,4 @@ package org.teacup.core.assertion;
  *
  * @since 1.0
  */
-public interface FloatArrayAssert extends ArrayAssert<float[], FloatArrayAssert> {}
+public interface FloatArrayAssert extends EnumerableAssert<float[], FloatArrayAssert> {}

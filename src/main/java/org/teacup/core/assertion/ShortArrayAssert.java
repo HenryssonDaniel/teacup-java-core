@@ -5,4 +5,4 @@ package org.teacup.core.assertion;
  *
  * @since 1.0
  */
-public interface ShortArrayAssert extends ArrayAssert<short[], ShortArrayAssert> {}
+public interface ShortArrayAssert extends EnumerableAssert<short[], ShortArrayAssert> {}

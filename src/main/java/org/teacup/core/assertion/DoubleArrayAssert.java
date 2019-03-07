@@ -5,4 +5,4 @@ package org.teacup.core.assertion;
  *
  * @since 1.0
  */
-public interface DoubleArrayAssert extends ArrayAssert<double[], DoubleArrayAssert> {}
+public interface DoubleArrayAssert extends EnumerableAssert<double[], DoubleArrayAssert> {}

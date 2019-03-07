@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.api.AbstractCharArrayAssert;
 
-class CharArrayAssertImpl extends ArrayAssertImpl<char[], CharArrayAssert>
+class CharArrayAssertImpl extends EnumerableAssertImpl<char[], CharArrayAssert>
     implements CharArrayAssert {
   @Override
   AbstractCharArrayAssert<?> getAssert() {
