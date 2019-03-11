@@ -3,10 +3,11 @@ package org.teacup.core;
 import org.teacup.core.assertion.ObjectAssert;
 
 /**
- * A node builder.
+ * Node builder.
  *
  * @param <T> the actual type
  * @param <U> the node type
+ * @param <V> the node builder type
  * @since 1.0
  */
 public interface NodeBuilder<T, U extends Node<T>, V extends NodeBuilder<T, U, V>> {
