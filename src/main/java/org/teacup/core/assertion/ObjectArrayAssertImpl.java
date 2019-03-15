@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.api.AbstractObjectArrayAssert;
 
-class ObjectArrayAssertImpl<T> extends EnumerableAssertImpl<T[], ObjectArrayAssert<T>>
-    implements ObjectArrayAssert<T> {
+class ObjectArrayAssertImpl<T, U extends ObjectArrayAssert<T, U>>
+    extends EnumerableAssertImpl<T[], U> implements ObjectArrayAssert<T, U> {
   @Override
   AbstractObjectArrayAssert<?, T> getAssert() {
     return assertThat(getActual());

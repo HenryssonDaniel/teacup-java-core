@@ -8,6 +8,6 @@ import org.junit.jupiter.api.Test;
 class LongArrayAssertImplTest {
   @Test
   void getAssert() {
-    assertThat(new LongArrayAssertImpl().getAssert()).isInstanceOf(AbstractLongArrayAssert.class);
+    assertThat(new LongArrayAssertImpl<>().getAssert()).isInstanceOf(AbstractLongArrayAssert.class);
   }
 }

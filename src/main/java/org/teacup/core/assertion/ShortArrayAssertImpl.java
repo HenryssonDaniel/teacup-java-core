@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.api.AbstractShortArrayAssert;
 
-class ShortArrayAssertImpl extends EnumerableAssertImpl<short[], ShortArrayAssert>
-    implements ShortArrayAssert {
+class ShortArrayAssertImpl<T extends ShortArrayAssert<T>> extends EnumerableAssertImpl<short[], T>
+    implements ShortArrayAssert<T> {
   @Override
   AbstractShortArrayAssert<?> getAssert() {
     return assertThat(getActual());

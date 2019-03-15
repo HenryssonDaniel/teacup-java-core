@@ -1,4 +1,4 @@
 package org.teacup.core.assertion;
 
-class IntegerAssertImpl extends ComparableAssertImpl<Integer, IntegerAssert>
-    implements IntegerAssert {}
+class IntegerAssertImpl<T extends IntegerAssert<T>> extends ComparableAssertImpl<Integer, T>
+    implements IntegerAssert<T> {}

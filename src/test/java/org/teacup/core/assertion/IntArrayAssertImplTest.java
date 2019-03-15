@@ -8,6 +8,6 @@ import org.junit.jupiter.api.Test;
 class IntArrayAssertImplTest {
   @Test
   void getAssert() {
-    assertThat(new IntArrayAssertImpl().getAssert()).isInstanceOf(AbstractIntArrayAssert.class);
+    assertThat(new IntArrayAssertImpl<>().getAssert()).isInstanceOf(AbstractIntArrayAssert.class);
   }
 }

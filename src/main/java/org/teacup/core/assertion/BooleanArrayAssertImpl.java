@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.api.AbstractBooleanArrayAssert;
 
-class BooleanArrayAssertImpl extends EnumerableAssertImpl<boolean[], BooleanArrayAssert>
-    implements BooleanArrayAssert {
+class BooleanArrayAssertImpl<T extends BooleanArrayAssert<T>>
+    extends EnumerableAssertImpl<boolean[], T> implements BooleanArrayAssert<T> {
   @Override
   AbstractBooleanArrayAssert<?> getAssert() {
     return assertThat(getActual());

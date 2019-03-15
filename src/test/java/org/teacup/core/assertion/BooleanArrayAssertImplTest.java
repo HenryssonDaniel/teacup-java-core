@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class BooleanArrayAssertImplTest {
   @Test
   void getAssert() {
-    assertThat(new BooleanArrayAssertImpl().getAssert())
+    assertThat(new BooleanArrayAssertImpl<>().getAssert())
         .isInstanceOf(AbstractBooleanArrayAssert.class);
   }
 }

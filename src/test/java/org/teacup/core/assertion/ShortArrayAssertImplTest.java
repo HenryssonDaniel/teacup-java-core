@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 class ShortArrayAssertImplTest {
   @Test
   void getAssert() {
-    assertThat(new ShortArrayAssertImpl().getAssert()).isInstanceOf(AbstractShortArrayAssert.class);
+    assertThat(new ShortArrayAssertImpl<>().getAssert())
+        .isInstanceOf(AbstractShortArrayAssert.class);
   }
 }

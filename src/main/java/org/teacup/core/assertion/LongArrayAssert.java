@@ -3,6 +3,8 @@ package org.teacup.core.assertion;
 /**
  * Long array assertions.
  *
+ * @param <T> the long array assert
  * @since 1.0
  */
-public interface LongArrayAssert extends EnumerableAssert<long[], LongArrayAssert> {}
+public interface LongArrayAssert<T extends LongArrayAssert<T>>
+    extends EnumerableAssert<long[], T> {}

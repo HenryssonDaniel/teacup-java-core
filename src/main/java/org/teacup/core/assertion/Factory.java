@@ -19,9 +19,9 @@ public enum Factory {
    *
    * @return the boolean array assert
    */
-  public static BooleanArrayAssert createBooleanArrayAssert() {
+  public static BooleanArrayAssert<?> createBooleanArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "boolean array"));
-    return new BooleanArrayAssertImpl();
+    return new BooleanArrayAssertImpl<>();
   }
 
   /**
@@ -29,9 +29,9 @@ public enum Factory {
    *
    * @return the boolean assert
    */
-  public static BooleanAssert createBooleanAssert() {
+  public static BooleanAssert<?> createBooleanAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "boolean"));
-    return new BooleanAssertImpl();
+    return new BooleanAssertImpl<>();
   }
 
   /**
@@ -39,9 +39,9 @@ public enum Factory {
    *
    * @return the byte array assert
    */
-  public static ByteArrayAssert createByteArrayAssert() {
+  public static ByteArrayAssert<?> createByteArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "byte array"));
-    return new ByteArrayAssertImpl();
+    return new ByteArrayAssertImpl<>();
   }
 
   /**
@@ -49,9 +49,9 @@ public enum Factory {
    *
    * @return the char array assert
    */
-  public static CharArrayAssert createCharArrayAssert() {
+  public static CharArrayAssert<?> createCharArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "char array"));
-    return new CharArrayAssertImpl();
+    return new CharArrayAssertImpl<>();
   }
 
   /**
@@ -81,9 +81,9 @@ public enum Factory {
    *
    * @return the double array assert
    */
-  public static DoubleArrayAssert createDoubleArrayAssert() {
+  public static DoubleArrayAssert<?> createDoubleArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "double array"));
-    return new DoubleArrayAssertImpl();
+    return new DoubleArrayAssertImpl<>();
   }
 
   /**
@@ -91,9 +91,9 @@ public enum Factory {
    *
    * @return the float array assert
    */
-  public static FloatArrayAssert createFloatArrayAssert() {
+  public static FloatArrayAssert<?> createFloatArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "float array"));
-    return new FloatArrayAssertImpl();
+    return new FloatArrayAssertImpl<>();
   }
 
   /**
@@ -101,9 +101,9 @@ public enum Factory {
    *
    * @return the int array assert
    */
-  public static IntArrayAssert createIntArrayAssert() {
+  public static IntArrayAssert<?> createIntArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "int array"));
-    return new IntArrayAssertImpl();
+    return new IntArrayAssertImpl<>();
   }
 
   /**
@@ -111,9 +111,9 @@ public enum Factory {
    *
    * @return the integer assert
    */
-  public static IntegerAssert createIntegerAssert() {
+  public static IntegerAssert<?> createIntegerAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "integer"));
-    return new IntegerAssertImpl();
+    return new IntegerAssertImpl<>();
   }
 
   /**
@@ -145,9 +145,9 @@ public enum Factory {
    *
    * @return the long array assert
    */
-  public static LongArrayAssert createLongArrayAssert() {
+  public static LongArrayAssert<?> createLongArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "long array"));
-    return new LongArrayAssertImpl();
+    return new LongArrayAssertImpl<>();
   }
 
   /**
@@ -155,9 +155,9 @@ public enum Factory {
    *
    * @return the long assert
    */
-  public static LongAssert createLongAssert() {
+  public static LongAssert<?> createLongAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "long"));
-    return new LongAssertImpl();
+    return new LongAssertImpl<>();
   }
 
   /**
@@ -178,7 +178,7 @@ public enum Factory {
    * @param <T> the type
    * @return the object array assert
    */
-  public static <T> ObjectArrayAssert<T> createObjectArrayAssert() {
+  public static <T> ObjectArrayAssert<T, ?> createObjectArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "object array"));
     return new ObjectArrayAssertImpl<>();
   }
@@ -199,9 +199,9 @@ public enum Factory {
    *
    * @return the short array assert
    */
-  public static ShortArrayAssert createShortArrayAssert() {
+  public static ShortArrayAssert<?> createShortArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "short array"));
-    return new ShortArrayAssertImpl();
+    return new ShortArrayAssertImpl<>();
   }
 
   /**
@@ -209,8 +209,8 @@ public enum Factory {
    *
    * @return the string assert
    */
-  public static StringAssert createStringAssert() {
+  public static StringAssert<?> createStringAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "string"));
-    return new StringAssertImpl();
+    return new StringAssertImpl<>();
   }
 }

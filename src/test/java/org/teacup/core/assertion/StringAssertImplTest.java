@@ -8,7 +8,7 @@ class StringAssertImplTest {
   private static final String GREATER = "b";
   private static final String LESS = "a";
 
-  private final StringAssert stringAssert = new StringAssertImpl();
+  private final StringAssert<?> stringAssert = new StringAssertImpl<>();
 
   @Test
   void isGreaterThan() {

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 class FloatArrayAssertImplTest {
   @Test
   void getAssert() {
-    assertThat(new FloatArrayAssertImpl().getAssert()).isInstanceOf(AbstractFloatArrayAssert.class);
+    assertThat(new FloatArrayAssertImpl<>().getAssert())
+        .isInstanceOf(AbstractFloatArrayAssert.class);
   }
 }

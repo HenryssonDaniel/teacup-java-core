@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class DoubleArrayAssertImplTest {
   @Test
   void getAssert() {
-    assertThat(new DoubleArrayAssertImpl().getAssert())
+    assertThat(new DoubleArrayAssertImpl<>().getAssert())
         .isInstanceOf(AbstractDoubleArrayAssert.class);
   }
 }
