@@ -12,8 +12,7 @@ import org.teacup.core.assertion.ObjectAssert;
 class DefaultNodeBuilderTest {
   private static final String ACTUAL = "actual";
 
-  @Mock private Node<String> setter;
-  @Mock private Node<String> setterNew;
+  @Mock private Node<String> node;
 
   @BeforeEach
   void beforeEach() {
@@ -21,38 +20,24 @@ class DefaultNodeBuilderTest {
   }
 
   @Test
-  void build() {
-    NodeBuilder<String, Node<String>, TestDefaultNodeBuilder> defaultNodeBuilder =
-        new TestDefaultNodeBuilder(setter, setterNew);
-
-    assertThat(defaultNodeBuilder.build()).isSameAs(setter);
-    assertThat(defaultNodeBuilder.build()).isSameAs(setterNew);
-  }
-
-  @Test
-  void getSetter() {
-    assertThat(new TestDefaultNodeBuilder(setter, setterNew).getSetter()).isSameAs(setter);
-  }
-
-  @Test
   void setAssertion() {
     NodeBuilder<String, Node<String>, TestDefaultNodeBuilder> defaultNodeBuilder =
-        new TestDefaultNodeBuilder(setter, setterNew);
+        new TestDefaultNodeBuilder(node);
     assertThat(defaultNodeBuilder.setAssertion(null)).isSameAs(defaultNodeBuilder);
-    verify(setterNew).verify(ACTUAL);
+    verify(node).verify(ACTUAL);
   }
 
   private static final class TestDefaultNodeBuilder
       extends DefaultNodeBuilder<String, Node<String>, Node<String>, TestDefaultNodeBuilder> {
     private final Node<String> setterNew;
 
-    private TestDefaultNodeBuilder(Node<String> setter, Node<String> setterNew) {
-      super(setter);
+    private TestDefaultNodeBuilder(Node<String> setterNew) {
+      super(null);
       this.setterNew = setterNew;
     }
 
     @Override
-    protected Node<String> createSetter() {
+    protected Node<String> createImplementation() {
       return setterNew;
     }
 

@@ -10,14 +10,8 @@ import org.teacup.core.assertion.ObjectAssert;
  * @param <V> the node builder type
  * @since 1.0
  */
-public interface NodeBuilder<T, U extends Node<T>, V extends NodeBuilder<T, U, V>> {
-  /**
-   * Build the node.
-   *
-   * @return the node
-   */
-  U build();
-
+public interface NodeBuilder<T, U extends Node<T>, V extends NodeBuilder<T, U, V>>
+    extends Builder<U> {
   /**
    * Sets the assertion.
    *

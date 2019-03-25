@@ -15,9 +15,8 @@ import org.teacup.core.assertion.ObjectAssert;
  */
 public abstract class DefaultNodeBuilder<
         T, U extends Node<T>, V extends Node<T>, X extends NodeBuilder<T, U, X>>
-    implements NodeBuilder<T, U, X> {
+    extends DefaultBuilder<U, V> implements NodeBuilder<T, U, X> {
   private static final Logger LOGGER = Logger.getLogger(DefaultNodeBuilder.class.getName());
-  private V setter;
 
   /**
    * Constructor.
@@ -25,18 +24,7 @@ public abstract class DefaultNodeBuilder<
    * @param setter the setter
    */
   protected DefaultNodeBuilder(V setter) {
-    this.setter = setter;
-  }
-
-  @Override
-  public U build() {
-    LOGGER.log(Level.FINE, "Building");
-
-    @SuppressWarnings("unchecked")
-    var node = (U) setter;
-    setter = createSetter();
-
-    return node;
+    super(setter);
   }
 
   @SuppressWarnings("unchecked")
@@ -47,21 +35,10 @@ public abstract class DefaultNodeBuilder<
     return (X) this;
   }
 
-  protected abstract V createSetter();
-
   /**
    * Define what should happen when {@link #setAssertion(ObjectAssert)} is called.
    *
    * @param assertion the assertion
    */
   protected abstract void doAssertion(ObjectAssert<T, ?> assertion);
-
-  /**
-   * Returns the setter.
-   *
-   * @return the setter
-   */
-  protected V getSetter() {
-    return setter;
-  }
 }
