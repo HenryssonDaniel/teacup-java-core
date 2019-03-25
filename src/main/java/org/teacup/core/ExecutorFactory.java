@@ -22,6 +22,6 @@ public enum ExecutorFactory {
    */
   public static Executor create() {
     LOGGER.log(Level.FINE, "Creating a new default executor.");
-    return new DefaultExecutor();
+    return new DefaultExecutor(null);
   }
 }

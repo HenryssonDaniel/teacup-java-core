@@ -8,76 +8,81 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.Test;
 
 class DefaultExecutorTest {
-  private static final String CURRENT_SETUP = "currentSetup";
-
-  private final Executor executor = new DefaultExecutor();
   private final Fixture fixture = mock(Fixture.class);
 
   @Test
   void executeClassWithFixtureAndNoPublicClass()
       throws IllegalAccessException, NoSuchFieldException {
     doReturn(Setup.class).when(fixture).value();
+
+    Executor executor = new DefaultExecutor(null);
     executor.executeFixture(fixture);
-    assertThat(getCurrentSetup()).isNull();
+
+    assertThat(getCurrentSetup(executor)).isNull();
   }
 
   @Test
   void executeClassWithFixtureAndNoPublicConstructor()
       throws IllegalAccessException, NoSuchFieldException {
     doReturn(DefaultSetup.class).when(fixture).value();
+
+    Executor executor = new DefaultExecutor(null);
     executor.executeFixture(fixture);
-    assertThat(getCurrentSetup()).isNull();
+
+    assertThat(getCurrentSetup(executor)).isNull();
   }
 
   @Test
   void executeClassWithFixtureDifferentAsCurrent()
       throws IllegalAccessException, NoSuchFieldException {
-    setCurrentSetup(new TestSubSetup());
-
     doReturn(TestSetup.class).when(fixture).value();
+
+    Executor executor = new DefaultExecutor(new TestSubSetup());
     executor.executeFixture(fixture);
 
-    assertThat(getCurrentSetup()).isExactlyInstanceOf(TestSetup.class);
+    assertThat(getCurrentSetup(executor)).isExactlyInstanceOf(TestSetup.class);
   }
 
   @Test
   void executeClassWithFixtureSameAsCurrent() throws IllegalAccessException, NoSuchFieldException {
-    setCurrentSetup(new TestSetup());
-
     doReturn(TestSetup.class).when(fixture).value();
+
+    Executor executor = new DefaultExecutor(new TestSetup());
     executor.executeFixture(fixture);
 
-    assertThat(getCurrentSetup()).isExactlyInstanceOf(TestSetup.class);
+    assertThat(getCurrentSetup(executor)).isExactlyInstanceOf(TestSetup.class);
   }
 
   @Test
   void executeClassWithoutFixtureWhenCurrent() throws IllegalAccessException, NoSuchFieldException {
     var setup = mock(Setup.class);
-    setCurrentSetup(setup);
 
+    Executor executor = new DefaultExecutor(setup);
     executor.executeFixture(null);
 
     verify(setup).getServers();
-    assertThat(getCurrentSetup()).isNull();
+    assertThat(getCurrentSetup(executor)).isNull();
   }
 
   @Test
   void executeFixtureWithoutFixture() throws IllegalAccessException, NoSuchFieldException {
+    Executor executor = new DefaultExecutor(null);
     executor.executeFixture(null);
-    assertThat(getCurrentSetup()).isNull();
+
+    assertThat(getCurrentSetup(executor)).isNull();
   }
 
   @Test
   void getCurrentSetupWhenEmpty() {
-    assertThat(executor.getCurrentSetup()).isEmpty();
+    assertThat(new DefaultExecutor(null).getCurrentSetup()).isEmpty();
   }
 
-  private Object getCurrentSetup() throws IllegalAccessException, NoSuchFieldException {
-    return Utils.getField(DefaultExecutor.class, executor, CURRENT_SETUP);
-  }
+  private static Object getCurrentSetup(Executor executor)
+      throws IllegalAccessException, NoSuchFieldException {
+    var field = DefaultExecutor.class.getDeclaredField("currentSetup");
+    field.setAccessible(true);
 
-  private void setCurrentSetup(Object value) throws IllegalAccessException, NoSuchFieldException {
-    Utils.setField(DefaultExecutor.class, executor, CURRENT_SETUP, value);
+    return field.get(executor);
   }
 
   private static final class TestSubSetup extends TestSetup {

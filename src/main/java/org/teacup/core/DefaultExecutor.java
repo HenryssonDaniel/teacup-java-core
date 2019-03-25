@@ -11,6 +11,10 @@ class DefaultExecutor implements Executor {
 
   private Setup currentSetup;
 
+  DefaultExecutor(Setup currentSetup) {
+    this.currentSetup = currentSetup;
+  }
+
   @Override
   public void executeFixture(Fixture fixture) {
     if (fixture == null) {
