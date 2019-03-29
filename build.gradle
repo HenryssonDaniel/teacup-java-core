@@ -1,10 +1,26 @@
 plugins {
     id 'java-library'
+    id 'maven'
     id 'maven-publish'
+    id 'signing'
 }
 
 group = 'io.github.henryssondaniel.teacup'
 version = '1.0.0-SNAPSHOT'
+
+task javadocJar(type: Jar) {
+    archiveClassifier.set('javadoc')
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
 
 dependencies {
     implementation 'org.assertj:assertj-core:3.12.2'
@@ -25,10 +41,58 @@ repositories {
     jcenter()
 }
 
+signing {
+    sign configurations.archives
+}
+
 test {
     useJUnitPlatform {}
 
     testLogging {
         showStandardStreams = true
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name project.group + ':' + project.name
+                description 'Java Testing Framework for Communication Protocols and Web Services'
+                url 'https://github.com/HenryssonDaniel/teacup-java-core'
+
+                licenses {
+                    license {
+                        name 'MIT License'
+                        url 'http://www.opensource.org/licenses/mit-license.php'
+                    }
+                }
+
+                developers {
+                    developer {
+                        name 'Daniel Henrysson'
+                        email 'henrysson.daniel@gmail.com'
+                        organization 'Daniel Henrysson AB'
+                        organizationUrl 'https://github.com/HenryssonDaniel'
+                    }
+                }
+
+                scm {
+                    connection 'scm:git:git://github.com/HenryssonDaniel/teacup-java-core.git'
+                    developerConnection 'scm:git:ssh://github.com/HenryssonDaniel/teacup-java-core.git'
+                    url 'https://github.com/HenryssonDaniel/teacup-java-core'
+                }
+            }
+        }
     }
 }
