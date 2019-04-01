@@ -1,6 +1,5 @@
 plugins {
     id 'java-library'
-    id 'maven'
     id 'maven-publish'
     id 'signing'
 }
@@ -8,18 +7,14 @@ plugins {
 group = 'io.github.henryssondaniel.teacup'
 version = '1.0.0-SNAPSHOT'
 
-task javadocJar(type: Jar) {
-    archiveClassifier.set('javadoc')
-    from javadoc
-}
-
 task sourcesJar(type: Jar) {
-    archiveClassifier.set('sources')
-    from sourceSets.main.allSource
+    from sourceSets.main.allJava
+    archiveClassifier = 'sources'
 }
 
-artifacts {
-    archives javadocJar, sourcesJar
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier = 'javadoc'
 }
 
 dependencies {
@@ -31,18 +26,70 @@ dependencies {
 
 publishing {
     publications {
-        core(MavenPublication) {
+        mavenJava(MavenPublication) {
             from components.java
+            artifact sourcesJar
+            artifact javadocJar
+
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+
+            pom {
+                name = project.group + ':' + project.name
+                description = 'Java Testing Framework for Communication Protocols and Web Services'
+                url = 'https://github.com/HenryssonDaniel/teacup-java-core'
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'http://www.opensource.org/licenses/mit-license.php'
+                    }
+                }
+
+                developers {
+                    developer {
+                        name = 'Daniel Henrysson'
+                        email = 'henrysson.daniel@gmail.com'
+                        organization = 'Daniel Henrysson AB'
+                        organizationUrl = 'https://github.com/HenryssonDaniel'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git://github.com/HenryssonDaniel/teacup-java-core.git'
+                    developerConnection = 'scm:git:ssh://github.com/HenryssonDaniel/teacup-java-core.git'
+                    url = 'https://github.com/HenryssonDaniel/teacup-java-core'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def repoUrl = "https://oss.sonatype.org/"
+            def releasesRepoUrl = repoUrl + "service/local/staging/deploy/maven2"
+            def snapshotsRepoUrl = repoUrl + "content/repositories/snapshots"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username = ossrhUsername
+                password = ossrhPassword
+            }
         }
     }
 }
 
-repositories {
-    jcenter()
+signing {
+    sign publishing.publications.mavenJava
 }
 
-signing {
-    sign configurations.archives
+repositories {
+    jcenter()
 }
 
 test {
@@ -50,49 +97,5 @@ test {
 
     testLogging {
         showStandardStreams = true
-    }
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            pom.project {
-                name project.group + ':' + project.name
-                description 'Java Testing Framework for Communication Protocols and Web Services'
-                url 'https://github.com/HenryssonDaniel/teacup-java-core'
-
-                licenses {
-                    license {
-                        name 'MIT License'
-                        url 'http://www.opensource.org/licenses/mit-license.php'
-                    }
-                }
-
-                developers {
-                    developer {
-                        name 'Daniel Henrysson'
-                        email 'henrysson.daniel@gmail.com'
-                        organization 'Daniel Henrysson AB'
-                        organizationUrl 'https://github.com/HenryssonDaniel'
-                    }
-                }
-
-                scm {
-                    connection 'scm:git:git://github.com/HenryssonDaniel/teacup-java-core.git'
-                    developerConnection 'scm:git:ssh://github.com/HenryssonDaniel/teacup-java-core.git'
-                    url 'https://github.com/HenryssonDaniel/teacup-java-core'
-                }
-            }
-        }
     }
 }
