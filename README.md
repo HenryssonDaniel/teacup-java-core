@@ -1,4 +1,6 @@
 # teacup-java-core
+[![Build Status](https://travis-ci.com/HenryssonDaniel/teacup-java-core.svg?branch=master)](https://travis-ci.com/HenryssonDaniel/teacup-java-core)
+
 Java **Te**sting Fr**a**mework for **C**omm**u**nication **P**rotocols and Web Services
 
 ## What ##
