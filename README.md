@@ -1,5 +1,5 @@
 # teacup-java-core
-[![Build Status](https://travis-ci.com/HenryssonDaniel/teacup-java-core.svg?branch=master)](https://travis-ci.com/HenryssonDaniel/teacup-java-core)
+[![Build Status](https://travis-ci.com/HenryssonDaniel/teacup-java-core.svg?branch=master)](https://travis-ci.com/HenryssonDaniel/teacup-java-core) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=HenryssonDaniel_teacup-java-core&metric=coverage)](https://sonarcloud.io/dashboard?id=HenryssonDaniel_teacup-java-core)
 
 Java **Te**sting Fr**a**mework for **C**omm**u**nication **P**rotocols and Web Services
 
