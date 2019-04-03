@@ -1,0 +1,23 @@
+before_install:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+  - echo $secring_password | gpg --passphrase-fd 0 secring.gpg.gpg
+  - chmod +x gradlew
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+install: true
+jdk:
+  - oraclejdk11
+  - openjdk10
+  - openjdk11
+  - openjdk12
+  - openjdk-ea
+language: java
+matrix:
+  allow_failures:
+    - jdk: openjdk-ea
+script:
+  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then ./gradlew clean build javadoc; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./gradlew clean build publish -Psigning.keyId=$keyId -Psigning.password=$password -Psigning.secretKeyRingFile=$secretKeyRingFile -PossrhUsername=$ossrhUsername -PossrhPassword=$ossrhPassword; fi'
