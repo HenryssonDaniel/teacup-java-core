@@ -12,33 +12,33 @@ import java.util.logging.Logger;
  */
 public abstract class DefaultSetup implements Setup {
   private static final Logger LOGGER = Logger.getLogger(DefaultSetup.class.getName());
-  private static final String LOG_GET = "Returning the %s";
-  private static final String LOG_PUT = "Adding the %s: %s";
+  private static final String LOG_GET = "Returning the {0}";
+  private static final String LOG_PUT = "Adding the {0}: {1}";
 
   private final Map<String, Object> clients = new HashMap<>(0);
   private final Map<String, Server> servers = new HashMap<>(0);
 
   @Override
   public Map<String, Object> getClients() {
-    LOGGER.log(Level.FINE, String.format(LOG_GET, "clients"));
+    LOGGER.log(Level.FINE, LOG_GET, "clients");
     return new HashMap<>(clients);
   }
 
   @Override
   public Map<String, Server> getServers() {
-    LOGGER.log(Level.FINE, String.format(LOG_GET, "servers"));
+    LOGGER.log(Level.FINE, LOG_GET, "servers");
     return new HashMap<>(servers);
   }
 
   @Override
   public Object putClient(String name, Object client) {
-    LOGGER.log(Level.FINE, String.format(LOG_PUT, "client", name));
+    LOGGER.log(Level.FINE, LOG_PUT, new Object[] {"client", name});
     return clients.put(name, client);
   }
 
   @Override
   public Server putServer(String name, Server server) {
-    LOGGER.log(Level.FINE, String.format(LOG_PUT, "server", name));
+    LOGGER.log(Level.FINE, LOG_PUT, new Object[] {"server", name});
     return servers.put(name, server);
   }
 }

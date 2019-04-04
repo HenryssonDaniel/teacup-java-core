@@ -24,15 +24,15 @@ public abstract class DefaultBuilder<T, U> implements Builder<T> {
     this.implementation = implementation;
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public T build() {
     LOGGER.log(Level.FINE, "Building");
 
-    @SuppressWarnings("unchecked")
-    var node = (T) implementation;
+    var node = implementation;
     implementation = createImplementation();
 
-    return node;
+    return (T) node;
   }
 
   /**

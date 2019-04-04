@@ -25,7 +25,7 @@ class DefaultExecutor implements Executor {
 
   @Override
   public Optional<Setup> getCurrentSetup() {
-    LOGGER.log(Level.FINE, "Returns the current setup: " + currentSetup);
+    LOGGER.log(Level.FINE, "Returns the current setup: {0}", currentSetup);
     return Optional.ofNullable(currentSetup);
   }
 

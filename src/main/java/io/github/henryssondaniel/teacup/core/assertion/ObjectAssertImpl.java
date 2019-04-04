@@ -15,35 +15,35 @@ class ObjectAssertImpl<T, U extends ObjectAssert<T, U>> implements ObjectAssert<
 
   @Override
   public U doesNotHaveSameClassAs(Object value) {
-    LOGGER.log(Level.FINE, "Does not have the same class as: " + value);
+    LOGGER.log(Level.FINE, "Does not have the same class as: {0}", value);
     addSupplier(() -> getAssert().doesNotHaveSameClassAs(value));
     return getAssertType();
   }
 
   @Override
   public U hasSameClassAs(Object value) {
-    LOGGER.log(Level.FINE, "Has the same class as: " + value);
+    LOGGER.log(Level.FINE, "Has the same class as: {0}", value);
     addSupplier(() -> getAssert().hasSameClassAs(value));
     return getAssertType();
   }
 
   @Override
   public U isEqualTo(Object value) {
-    LOGGER.log(Level.FINE, "Is equal to: " + value);
+    LOGGER.log(Level.FINE, "Is equal to: {0}", value);
     addSupplier(() -> getAssert().isEqualTo(value));
     return getAssertType();
   }
 
   @Override
   public U isNotEqualTo(Object value) {
-    LOGGER.log(Level.FINE, "Is not equal to: " + value);
+    LOGGER.log(Level.FINE, "Is not equal to: {0}", value);
     addSupplier(() -> getAssert().isNotEqualTo(value));
     return getAssertType();
   }
 
   @Override
   public U isNotSameAs(Object value) {
-    LOGGER.log(Level.FINE, "Is not same as: " + value);
+    LOGGER.log(Level.FINE, "Is not same as: {0}", value);
     addSupplier(() -> getAssert().isNotSameAs(value));
 
     return getAssertType();
@@ -51,20 +51,20 @@ class ObjectAssertImpl<T, U extends ObjectAssert<T, U>> implements ObjectAssert<
 
   @Override
   public U isSameAs(Object value) {
-    LOGGER.log(Level.FINE, "Is same as: " + value);
+    LOGGER.log(Level.FINE, "Is same as: {0}", value);
     addSupplier(() -> getAssert().isSameAs(value));
     return getAssertType();
   }
 
   @Override
   public void verify(T actual) {
-    LOGGER.log(Level.FINE, "Verify " + actual);
+    LOGGER.log(Level.FINE, "Verify {0}", actual);
     this.actual = actual;
     suppliers.forEach(Supplier::get);
   }
 
   void addSupplier(Supplier supplier) {
-    LOGGER.log(Level.FINE, "Adding supplier " + supplier);
+    LOGGER.log(Level.FINE, "Adding supplier {0}", supplier);
     suppliers.add(supplier);
   }
 
@@ -72,8 +72,9 @@ class ObjectAssertImpl<T, U extends ObjectAssert<T, U>> implements ObjectAssert<
     return actual;
   }
 
-  AbstractAssert<?, T> getAssert() {
-    return assertThat(actual);
+  @SuppressWarnings("unchecked")
+  <V extends AbstractAssert<V, T>> AbstractAssert<V, T> getAssert() {
+    return (AbstractAssert<V, T>) assertThat(actual);
   }
 
   @SuppressWarnings("unchecked")

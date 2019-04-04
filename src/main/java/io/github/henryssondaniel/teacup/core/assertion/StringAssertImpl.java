@@ -12,28 +12,28 @@ class StringAssertImpl<T extends StringAssert<T>> extends CharSequenceAssertImpl
 
   @Override
   public T isGreaterThan(String value) {
-    LOGGER.log(Level.FINE, "Is greater than: " + value);
+    LOGGER.log(Level.FINE, "Is greater than: {0}", value);
     addSupplier(() -> getAssert().isGreaterThan(value));
     return getAssertType();
   }
 
   @Override
   public T isGreaterThanOrEqualTo(String value) {
-    LOGGER.log(Level.FINE, "Is greater than or equal to: " + value);
+    LOGGER.log(Level.FINE, "Is greater than or equal to: {0}", value);
     addSupplier(() -> getAssert().isGreaterThanOrEqualTo(value));
     return getAssertType();
   }
 
   @Override
   public T isLessThan(String value) {
-    LOGGER.log(Level.FINE, "Is less than: " + value);
+    LOGGER.log(Level.FINE, "Is less than: {0}", value);
     addSupplier(() -> getAssert().isLessThan(value));
     return getAssertType();
   }
 
   @Override
   public T isLessThanOrEqualTo(String value) {
-    LOGGER.log(Level.FINE, "Is less than or equal to: " + value);
+    LOGGER.log(Level.FINE, "Is less than or equal to: {0}", value);
     addSupplier(() -> getAssert().isLessThanOrEqualTo(value));
     return getAssertType();
   }

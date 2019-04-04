@@ -13,14 +13,14 @@ class ListAssertImpl<T, U extends ListAssert<T, U>>
 
   @Override
   public U contains(T value, int index) {
-    LOGGER.log(Level.FINE, "Contains: " + value + " at index: " + index);
+    LOGGER.log(Level.FINE, "Contains: {0} at index: {1}", new Object[] {value, index});
     addSupplier(() -> getAssert().contains(value, Index.atIndex(index)));
     return getAssertType();
   }
 
   @Override
   public U doesNotContain(T value, int index) {
-    LOGGER.log(Level.FINE, "Does not contain: " + value + " at index: " + index);
+    LOGGER.log(Level.FINE, "Does not contain: {0} at index: {1}", new Object[] {value, index});
     addSupplier(() -> getAssert().doesNotContain(value, Index.atIndex(index)));
     return getAssertType();
   }

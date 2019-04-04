@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 public enum Teacup {
   ;
 
+  private static final String ERROR = "No setup exists";
   private static final Logger LOGGER = Logger.getLogger(Teacup.class.getName());
+  private static final String MESSAGE = "Getting the {0}: {1} with class: {2}";
 
   /**
    * Returns the client.
@@ -26,12 +28,12 @@ public enum Teacup {
    */
   public static <T> T getClient(Class<T> clazz, Executor executor, String name)
       throws TeacupException {
-    LOGGER.log(Level.FINE, "Getting the client: " + name + " with class: " + clazz.getName());
+    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"client", name, clazz.getName()});
 
     var setup = executor.getCurrentSetup();
     if (setup.isPresent()) return get(clazz, setup.get().getClients().get(name), "client");
 
-    throw new TeacupException("No setup exists");
+    throw new TeacupException(ERROR);
   }
 
   /**
@@ -47,12 +49,12 @@ public enum Teacup {
    */
   public static <T extends Server> T getServer(Class<T> clazz, Executor executor, String name)
       throws TeacupException {
-    LOGGER.log(Level.FINE, "Getting the server: " + name + " with class: " + clazz.getName());
+    LOGGER.log(Level.FINE, MESSAGE, new Object[] {"server", name, clazz.getName()});
 
     var setup = executor.getCurrentSetup();
     if (setup.isPresent()) return get(clazz, setup.get().getServers().get(name), "server");
 
-    throw new TeacupException("No setup exists");
+    throw new TeacupException(ERROR);
   }
 
   @SuppressWarnings("unchecked")

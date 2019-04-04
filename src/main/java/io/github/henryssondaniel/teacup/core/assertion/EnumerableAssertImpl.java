@@ -16,7 +16,7 @@ abstract class EnumerableAssertImpl<T, U extends EnumerableAssert<T, U>>
     List<String> otherAsString = new LinkedList<>();
     other.forEach(value -> otherAsString.add(value.toString()));
 
-    LOGGER.log(Level.FINE, "Has same size as: " + Arrays.toString(otherAsString.toArray()));
+    LOGGER.log(Level.FINE, "Has same size as: {0}", Arrays.toString(otherAsString.toArray()));
     addSupplier(() -> getEnumerableAssert().hasSameSizeAs(other));
 
     return getAssertType();
@@ -24,14 +24,14 @@ abstract class EnumerableAssertImpl<T, U extends EnumerableAssert<T, U>>
 
   @Override
   public U hasSameSizeAs(Object array) {
-    LOGGER.log(Level.FINE, "Has same siz as: " + array);
+    LOGGER.log(Level.FINE, "Has same siz as: {0}", array);
     addSupplier(() -> getEnumerableAssert().hasSameSizeAs(array));
     return getAssertType();
   }
 
   @Override
   public U hasSize(int expected) {
-    LOGGER.log(Level.FINE, "Has size: " + expected);
+    LOGGER.log(Level.FINE, "Has size: {0}", expected);
     addSupplier(() -> getEnumerableAssert().hasSize(expected));
     return getAssertType();
   }
