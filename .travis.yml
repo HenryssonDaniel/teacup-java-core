@@ -13,6 +13,7 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
     - $HOME/.sonar/cache
+if: tag IS blank
 install: true
 language: java
 matrix:
