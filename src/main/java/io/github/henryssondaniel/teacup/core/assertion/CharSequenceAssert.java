@@ -14,6 +14,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param values the values
    * @return the char sequence assert
+   * @since 1.0
    */
   U contains(CharSequence... values);
 
@@ -22,6 +23,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U containsIgnoringCase(CharSequence value);
 
@@ -30,6 +32,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U containsOnlyOnce(CharSequence value);
 
@@ -38,6 +41,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param regex the regex
    * @return the char sequence assert
+   * @since 1.0
    */
   U containsPattern(CharSequence regex);
 
@@ -47,6 +51,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param values the values
    * @return the char sequence assert
+   * @since 1.0
    */
   U containsSequence(CharSequence... values);
 
@@ -56,6 +61,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param values the values
    * @return the char sequence assert
+   * @since 1.0
    */
   U containsSubsequence(CharSequence... values);
 
@@ -64,6 +70,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param values the values
    * @return the char sequence assert
+   * @since 1.0
    */
   U doesNotContain(CharSequence... values);
 
@@ -72,6 +79,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param regex the regex
    * @return the char sequence assert
+   * @since 1.0
    */
   U doesNotContainPattern(CharSequence regex);
 
@@ -80,6 +88,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U doesNotEndWith(CharSequence value);
 
@@ -88,6 +97,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param regex the regex
    * @return the char sequence assert
+   * @since 1.0
    */
   U doesNotMatch(CharSequence regex);
 
@@ -96,6 +106,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U doesNotStartWith(CharSequence value);
 
@@ -104,6 +115,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U endsWith(CharSequence value);
 
@@ -112,6 +124,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U hasSameSizeAs(CharSequence value);
 
@@ -120,6 +133,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U isEqualToIgnoringCase(CharSequence value);
 
@@ -128,6 +142,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U isEqualToIgnoringNewLines(CharSequence value);
 
@@ -136,6 +151,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U isEqualToIgnoringWhitespace(CharSequence value);
 
@@ -144,6 +160,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U isEqualToNormalizingNewlines(CharSequence value);
 
@@ -152,6 +169,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U isEqualToNormalizingWhitespace(CharSequence value);
 
@@ -160,6 +178,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U isNotEqualToIgnoringCase(CharSequence value);
 
@@ -168,6 +187,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U isNotEqualToIgnoringWhitespace(CharSequence value);
 
@@ -176,6 +196,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U isNotEqualToNormalizingWhitespace(CharSequence value);
 
@@ -184,6 +205,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U isSubstringOf(CharSequence value);
 
@@ -193,6 +215,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param xml the XML
    * @return the char sequence assert
+   * @since 1.0
    */
   U isXmlEqualTo(CharSequence xml);
 
@@ -201,6 +224,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param regex the regex
    * @return the char sequence assert
+   * @since 1.0
    */
   U matches(CharSequence regex);
 
@@ -209,6 +233,7 @@ public interface CharSequenceAssert<T extends CharSequence, U extends CharSequen
    *
    * @param value the value
    * @return the char sequence assert
+   * @since 1.0
    */
   U startsWith(CharSequence value);
 }

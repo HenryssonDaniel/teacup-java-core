@@ -18,6 +18,7 @@ public enum Factory {
    * Creates an boolean array assert.
    *
    * @return the boolean array assert
+   * @since 1.0
    */
   public static BooleanArrayAssert<?> createBooleanArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "boolean array"));
@@ -28,6 +29,7 @@ public enum Factory {
    * Creates an boolean assert.
    *
    * @return the boolean assert
+   * @since 1.0
    */
   public static BooleanAssert<?> createBooleanAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "boolean"));
@@ -38,6 +40,7 @@ public enum Factory {
    * Creates an byte array assert.
    *
    * @return the byte array assert
+   * @since 1.0
    */
   public static ByteArrayAssert<?> createByteArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "byte array"));
@@ -48,6 +51,7 @@ public enum Factory {
    * Creates an char array assert.
    *
    * @return the char array assert
+   * @since 1.0
    */
   public static CharArrayAssert<?> createCharArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "char array"));
@@ -59,6 +63,7 @@ public enum Factory {
    *
    * @param <T> the type
    * @return the char sequence assert
+   * @since 1.0
    */
   public static <T extends CharSequence> CharSequenceAssert<T, ?> createCharSequenceAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "char sequence"));
@@ -70,6 +75,7 @@ public enum Factory {
    *
    * @param <T> the comparable type
    * @return the comparable assert
+   * @since 1.0
    */
   public static <T extends Comparable<? super T>> ComparableAssert<T, ?> createComparableAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "comparator"));
@@ -80,6 +86,7 @@ public enum Factory {
    * Creates an double array assert.
    *
    * @return the double array assert
+   * @since 1.0
    */
   public static DoubleArrayAssert<?> createDoubleArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "double array"));
@@ -90,6 +97,7 @@ public enum Factory {
    * Creates an float array assert.
    *
    * @return the float array assert
+   * @since 1.0
    */
   public static FloatArrayAssert<?> createFloatArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "float array"));
@@ -100,6 +108,7 @@ public enum Factory {
    * Creates an int array assert.
    *
    * @return the int array assert
+   * @since 1.0
    */
   public static IntArrayAssert<?> createIntArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "int array"));
@@ -110,6 +119,7 @@ public enum Factory {
    * Creates an integer assert.
    *
    * @return the integer assert
+   * @since 1.0
    */
   public static IntegerAssert<?> createIntegerAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "integer"));
@@ -122,6 +132,7 @@ public enum Factory {
    * @param <T> the type
    * @param <U> the iterable type
    * @return the iterable assert
+   * @since 1.0
    */
   public static <T, U extends Iterable<? extends T>>
       IterableAssert<T, U, ?> createIterableAssert() {
@@ -134,6 +145,7 @@ public enum Factory {
    *
    * @param <T> the list type
    * @return the list assert
+   * @since 1.0
    */
   public static <T> ListAssert<T, ?> createListAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "list"));
@@ -144,6 +156,7 @@ public enum Factory {
    * Creates an long array assert.
    *
    * @return the long array assert
+   * @since 1.0
    */
   public static LongArrayAssert<?> createLongArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "long array"));
@@ -154,6 +167,7 @@ public enum Factory {
    * Creates an long assert.
    *
    * @return the long assert
+   * @since 1.0
    */
   public static LongAssert<?> createLongAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "long"));
@@ -166,6 +180,7 @@ public enum Factory {
    * @param <T> the map key type
    * @param <U> the map value type
    * @return the map assert
+   * @since 1.0
    */
   public static <T, U> MapAssert<T, U, ?> createMapAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "map"));
@@ -177,6 +192,7 @@ public enum Factory {
    *
    * @param <T> the type
    * @return the object array assert
+   * @since 1.0
    */
   public static <T> ObjectArrayAssert<T, ?> createObjectArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "object array"));
@@ -188,6 +204,7 @@ public enum Factory {
    *
    * @param <T> the type
    * @return the object assert
+   * @since 1.0
    */
   public static <T> ObjectAssert<T, ?> createObjectAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "object"));
@@ -198,6 +215,7 @@ public enum Factory {
    * Creates an short array assert.
    *
    * @return the short array assert
+   * @since 1.0
    */
   public static ShortArrayAssert<?> createShortArrayAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "short array"));
@@ -208,6 +226,7 @@ public enum Factory {
    * Creates an string assert.
    *
    * @return the string assert
+   * @since 1.0
    */
   public static StringAssert<?> createStringAssert() {
     LOGGER.log(Level.FINE, String.format(LOG, "string"));

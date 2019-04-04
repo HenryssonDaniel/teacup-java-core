@@ -18,6 +18,7 @@ public @interface Fixture {
    * Sets the {@link Setup} class belonging to this fixture.
    *
    * @return the value
+   * @since 1.0
    */
   Class<? extends Setup> value();
 }

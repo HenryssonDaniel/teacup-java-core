@@ -22,6 +22,7 @@ public abstract class DefaultNodeBuilder<
    * Constructor.
    *
    * @param setter the setter
+   * @since 1.0
    */
   protected DefaultNodeBuilder(V setter) {
     super(setter);
@@ -39,6 +40,7 @@ public abstract class DefaultNodeBuilder<
    * Define what should happen when {@link #setAssertion(ObjectAssert)} is called.
    *
    * @param assertion the assertion
+   * @since 1.0
    */
   protected abstract void doAssertion(ObjectAssert<T, ?> assertion);
 }

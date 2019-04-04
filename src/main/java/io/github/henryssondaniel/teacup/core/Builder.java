@@ -12,6 +12,7 @@ public interface Builder<T> {
    * Build.
    *
    * @return thr type
+   * @since 1.0
    */
   T build();
 }

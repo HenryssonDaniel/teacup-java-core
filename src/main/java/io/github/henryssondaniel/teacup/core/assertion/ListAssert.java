@@ -17,6 +17,7 @@ public interface ListAssert<T, U extends ListAssert<T, U>>
    * @param value the value
    * @param index the index
    * @return the list assert
+   * @since 1.0
    */
   U contains(T value, int index);
 
@@ -26,6 +27,7 @@ public interface ListAssert<T, U extends ListAssert<T, U>>
    * @param value the value
    * @param index the index
    * @return the list assert
+   * @since 1.0
    */
   U doesNotContain(T value, int index);
 }

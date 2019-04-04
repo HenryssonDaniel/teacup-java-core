@@ -17,6 +17,7 @@ public interface NodeBuilder<T, U extends Node<T>, V extends NodeBuilder<T, U, V
    *
    * @param assertion the assertion
    * @return the node builder
+   * @since 1.0
    */
   V setAssertion(ObjectAssert<T, ?> assertion);
 }

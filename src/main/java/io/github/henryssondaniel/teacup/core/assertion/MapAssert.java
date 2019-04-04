@@ -18,6 +18,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param entries the entries
    * @return the map assert
+   * @since 1.0
    */
   V contains(Entry<? extends T, ? extends U>... entries);
 
@@ -26,6 +27,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param map the map
    * @return the map assert
+   * @since 1.0
    */
   V containsAllEntriesOf(Map<? extends T, ? extends U> map);
 
@@ -34,6 +36,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param entries the entries
    * @return the map assert
+   * @since 1.0
    */
   V containsAnyOf(Entry<? extends T, ? extends U>... entries);
 
@@ -43,6 +46,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    * @param key the key
    * @param value the value
    * @return the map assert
+   * @since 1.0
    */
   V containsEntry(T key, U value);
 
@@ -51,6 +55,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param entries the entries
    * @return the map assert
+   * @since 1.0
    */
   V containsExactly(Entry<? extends T, ? extends U>... entries);
 
@@ -59,6 +64,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param key the key
    * @return the map assert
+   * @since 1.0
    */
   V containsKey(T key);
 
@@ -67,6 +73,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param keys the keys
    * @return the map assert
+   * @since 1.0
    */
   V containsKeys(T... keys);
 
@@ -75,6 +82,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param entries the entries
    * @return the map assert
+   * @since 1.0
    */
   V containsOnly(Entry<? extends T, ? extends U>... entries);
 
@@ -83,6 +91,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param keys the keys
    * @return the map assert
+   * @since 1.0
    */
   V containsOnlyKeys(T... keys);
 
@@ -91,6 +100,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param value the value
    * @return the map assert
+   * @since 1.0
    */
   V containsValue(U value);
 
@@ -99,6 +109,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param values the values
    * @return the map assert
+   * @since 1.0
    */
   V containsValues(U... values);
 
@@ -107,6 +118,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param entries the entries
    * @return the map assert
+   * @since 1.0
    */
   V doesNotContain(Entry<? extends T, ? extends U>... entries);
 
@@ -116,6 +128,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    * @param key the key
    * @param value the value
    * @return the map assert
+   * @since 1.0
    */
   V doesNotContainEntry(T key, U value);
 
@@ -124,6 +137,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param key the key
    * @return the map assert
+   * @since 1.0
    */
   V doesNotContainKey(T key);
 
@@ -132,6 +146,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param keys the keys
    * @return the map assert
+   * @since 1.0
    */
   V doesNotContainKeys(T... keys);
 
@@ -140,6 +155,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param value the value
    * @return the map assert
+   * @since 1.0
    */
   V doesNotContainValue(U value);
 
@@ -148,6 +164,7 @@ public interface MapAssert<T, U, V extends MapAssert<T, U, V>>
    *
    * @param map the map
    * @return the map assert
+   * @since 1.0
    */
   V hasSameSizeAs(Map<?, ?> map);
 }

@@ -12,6 +12,7 @@ public interface Setup {
    * Returns the clients.
    *
    * @return the clients
+   * @since 1.0
    */
   Map<String, Object> getClients();
 
@@ -19,12 +20,15 @@ public interface Setup {
    * Returns the servers.
    *
    * @return the servers
+   * @since 1.0
    */
   Map<String, Server> getServers();
 
   /**
    * The initializer for the setup class. This method should prepare the setup class so that it can
    * be used from the executor.
+   *
+   * @since 1.0
    */
   void initialize();
 
@@ -34,7 +38,8 @@ public interface Setup {
    * @param name the name
    * @param client the client
    * @return the previous client associated with {@code name}, or {@code null} if there was no
-   *     mapping for {@code name}.
+   *     mapping for {@code name}
+   * @since 1.0
    */
   Object putClient(String name, Object client);
 
@@ -44,7 +49,8 @@ public interface Setup {
    * @param name the name
    * @param server the server
    * @return the previous server associated with {@code name}, or {@code null} if there was no
-   *     mapping for {@code name}.
+   *     mapping for {@code name}
+   * @since 1.0
    */
   Server putServer(String name, Server server);
 }

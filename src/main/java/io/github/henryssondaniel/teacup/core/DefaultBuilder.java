@@ -18,6 +18,7 @@ public abstract class DefaultBuilder<T, U> implements Builder<T> {
    * Constructor.
    *
    * @param implementation the implementation
+   * @since 1.0
    */
   protected DefaultBuilder(U implementation) {
     this.implementation = implementation;
@@ -34,12 +35,19 @@ public abstract class DefaultBuilder<T, U> implements Builder<T> {
     return node;
   }
 
+  /**
+   * Create implementation.
+   *
+   * @return the implementation
+   * @since 1.0
+   */
   protected abstract U createImplementation();
 
   /**
    * Returns the implementation.
    *
    * @return the implementation
+   * @since 1.0
    */
   protected U getImplementation() {
     return implementation;

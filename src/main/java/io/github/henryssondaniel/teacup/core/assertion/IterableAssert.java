@@ -16,6 +16,7 @@ public interface IterableAssert<
    *
    * @param values the values
    * @return the iterable assert
+   * @since 1.0
    */
   V contains(T... values);
 
@@ -24,6 +25,7 @@ public interface IterableAssert<
    *
    * @param iterable the iterable
    * @return the iterable assert
+   * @since 1.0
    */
   V containsAll(Iterable<? extends T> iterable);
 
@@ -32,6 +34,7 @@ public interface IterableAssert<
    *
    * @param iterable the iterable
    * @return the iterable assert
+   * @since 1.0
    */
   V containsAnyElementsOf(Iterable<? extends T> iterable);
 
@@ -40,6 +43,7 @@ public interface IterableAssert<
    *
    * @param values the value
    * @return the iterable assert
+   * @since 1.0
    */
   V containsAnyOf(T... values);
 
@@ -48,6 +52,7 @@ public interface IterableAssert<
    *
    * @param values the values
    * @return the iterable assert
+   * @since 1.0
    */
   V containsExactly(T... values);
 
@@ -56,6 +61,7 @@ public interface IterableAssert<
    *
    * @param iterable the iterable
    * @return the iterable assert
+   * @since 1.0
    */
   V containsExactlyElementsOf(Iterable<? extends T> iterable);
 
@@ -64,6 +70,7 @@ public interface IterableAssert<
    *
    * @param values the values
    * @return the iterable assert
+   * @since 1.0
    */
   V containsExactlyInAnyOrder(T... values);
 
@@ -73,6 +80,7 @@ public interface IterableAssert<
    *
    * @param values the values
    * @return the iterable assert
+   * @since 1.0
    */
   V containsExactlyInAnyOrderElementsOf(Iterable<? extends T> values);
 
@@ -80,6 +88,7 @@ public interface IterableAssert<
    * Verifies that the iterable contains at least one null element.
    *
    * @return the iterable assert
+   * @since 1.0
    */
   V containsNull();
 
@@ -88,6 +97,7 @@ public interface IterableAssert<
    *
    * @param values the values
    * @return the iterable assert
+   * @since 1.0
    */
   V containsOnly(T... values);
 
@@ -96,6 +106,7 @@ public interface IterableAssert<
    *
    * @param iterable the iterable
    * @return the iterable assert
+   * @since 1.0
    */
   V containsOnlyElementsOf(Iterable<? extends T> iterable);
 
@@ -103,6 +114,7 @@ public interface IterableAssert<
    * Verifies that the iterable only contains null element.
    *
    * @return the iterable assert
+   * @since 1.0
    */
   V containsOnlyNulls();
 
@@ -111,6 +123,7 @@ public interface IterableAssert<
    *
    * @param values the values
    * @return the iterable assert
+   * @since 1.0
    */
   V containsOnlyOnce(T... values);
 
@@ -119,6 +132,7 @@ public interface IterableAssert<
    *
    * @param sequence the sequence
    * @return the iterable assert
+   * @since 1.0
    */
   V containsSequence(T... sequence);
 
@@ -127,6 +141,7 @@ public interface IterableAssert<
    *
    * @param sequence the sequence
    * @return the iterable assert
+   * @since 1.0
    */
   V containsSequence(Iterable<? extends T> sequence);
 
@@ -135,6 +150,7 @@ public interface IterableAssert<
    *
    * @param subsequence the subsequence
    * @return the iterable assert
+   * @since 1.0
    */
   V containsSubsequence(T... subsequence);
 
@@ -143,6 +159,7 @@ public interface IterableAssert<
    *
    * @param subsequence the subsequence
    * @return the iterable assert
+   * @since 1.0
    */
   V containsSubsequence(Iterable<? extends T> subsequence);
 
@@ -151,6 +168,7 @@ public interface IterableAssert<
    *
    * @param values the values
    * @return the iterable assert
+   * @since 1.0
    */
   V doesNotContain(T... values);
 
@@ -159,6 +177,7 @@ public interface IterableAssert<
    *
    * @param iterable the iterable
    * @return the iterable assert
+   * @since 1.0
    */
   V doesNotContainAnyElementsOf(Iterable<? extends T> iterable);
 
@@ -166,6 +185,7 @@ public interface IterableAssert<
    * Verifies that the iterable does not contain any null element.
    *
    * @return the iterable assert
+   * @since 1.0
    */
   V doesNotContainNull();
 
@@ -174,6 +194,7 @@ public interface IterableAssert<
    *
    * @param sequence the sequence
    * @return the iterable assert
+   * @since 1.0
    */
   V doesNotContainSequence(T... sequence);
 
@@ -182,6 +203,7 @@ public interface IterableAssert<
    *
    * @param sequence the sequence
    * @return the iterable assert
+   * @since 1.0
    */
   V doesNotContainSequence(Iterable<? extends T> sequence);
 
@@ -190,6 +212,7 @@ public interface IterableAssert<
    *
    * @param subsequence the subsequence
    * @return the iterable assert
+   * @since 1.0
    */
   V doesNotContainSubsequence(T... subsequence);
 
@@ -198,6 +221,7 @@ public interface IterableAssert<
    *
    * @param subsequence the subsequence
    * @return the iterable assert
+   * @since 1.0
    */
   V doesNotContainSubsequence(Iterable<? extends T> subsequence);
 
@@ -206,6 +230,7 @@ public interface IterableAssert<
    *
    * @param types the types
    * @return the iterable assert
+   * @since 1.0
    */
   V doesNotHaveAnyElementsOfTypes(Class<?>... types);
 
@@ -213,6 +238,7 @@ public interface IterableAssert<
    * Verifies that the iterable does not have duplicates.
    *
    * @return the iterable assert
+   * @since 1.0
    */
   V doesNotHaveDuplicates();
 
@@ -221,6 +247,7 @@ public interface IterableAssert<
    *
    * @param sequence the sequence
    * @return the iterable assert
+   * @since 1.0
    */
   V endsWith(T... sequence);
 
@@ -229,6 +256,7 @@ public interface IterableAssert<
    *
    * @param type the type
    * @return the iterable assert
+   * @since 1.0
    */
   V hasAtLeastOneElementOfType(Class<?> type);
 
@@ -237,6 +265,7 @@ public interface IterableAssert<
    *
    * @param type type
    * @return the iterable assert
+   * @since 1.0
    */
   V hasOnlyElementsOfType(Class<?> type);
 
@@ -245,6 +274,7 @@ public interface IterableAssert<
    *
    * @param types the types
    * @return the iterable assert
+   * @since 1.0
    */
   V hasOnlyElementsOfTypes(Class<?>... types);
 
@@ -253,6 +283,7 @@ public interface IterableAssert<
    *
    * @param iterable the iterable
    * @return the iterable assert
+   * @since 1.0
    */
   V hasSameElementsAs(Iterable<? extends T> iterable);
 
@@ -261,6 +292,7 @@ public interface IterableAssert<
    *
    * @param values the values
    * @return the iterable assert
+   * @since 1.0
    */
   V isSubsetOf(T... values);
 
@@ -269,6 +301,7 @@ public interface IterableAssert<
    *
    * @param iterable the iterable
    * @return the iterable assert
+   * @since 1.0
    */
   V isSubsetOf(Iterable<? extends T> iterable);
 
@@ -277,6 +310,7 @@ public interface IterableAssert<
    *
    * @param sequence the sequence
    * @return the iterable assert
+   * @since 1.0
    */
   V startsWith(T... sequence);
 }

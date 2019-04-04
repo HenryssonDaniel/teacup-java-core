@@ -12,6 +12,7 @@ public interface Node<T> {
    * Verifies the actual.
    *
    * @param actual the actual
+   * @since 1.0
    */
   void verify(T actual);
 }

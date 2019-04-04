@@ -14,6 +14,7 @@ public interface ComparableAssert<T extends Comparable<? super T>, U extends Com
    *
    * @param value the value
    * @return the comparable assert
+   * @since 1.0
    */
   U isGreaterThan(T value);
 
@@ -22,6 +23,7 @@ public interface ComparableAssert<T extends Comparable<? super T>, U extends Com
    *
    * @param value the value
    * @return the comparable assert
+   * @since 1.0
    */
   U isGreaterThanOrEqualTo(T value);
 
@@ -30,6 +32,7 @@ public interface ComparableAssert<T extends Comparable<? super T>, U extends Com
    *
    * @param value the value
    * @return the comparable assert
+   * @since 1.0
    */
   U isLessThan(T value);
 
@@ -38,6 +41,7 @@ public interface ComparableAssert<T extends Comparable<? super T>, U extends Com
    *
    * @param value the value
    * @return the comparable assert
+   * @since 1.0
    */
   U isLessThanOrEqualTo(T value);
 }

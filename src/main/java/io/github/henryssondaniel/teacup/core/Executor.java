@@ -14,6 +14,7 @@ public interface Executor {
    * set up.
    *
    * @param fixture the fixture
+   * @since 1.0
    */
   void executeFixture(Fixture fixture);
 
@@ -21,6 +22,7 @@ public interface Executor {
    * Returns the current setup, if any.
    *
    * @return the current {@link Setup}
+   * @since 1.0
    */
   Optional<Setup> getCurrentSetup();
 }

@@ -13,6 +13,7 @@ public interface EnumerableAssert<T, U extends EnumerableAssert<T, U>> extends O
    *
    * @param other the other
    * @return the enumerable assert
+   * @since 1.0
    */
   U hasSameSizeAs(Iterable<?> other);
 
@@ -21,6 +22,7 @@ public interface EnumerableAssert<T, U extends EnumerableAssert<T, U>> extends O
    *
    * @param array the other
    * @return the enumerable assert
+   * @since 1.0
    */
   U hasSameSizeAs(Object array);
 
@@ -29,6 +31,7 @@ public interface EnumerableAssert<T, U extends EnumerableAssert<T, U>> extends O
    *
    * @param expected the array
    * @return the enumerable assert
+   * @since 1.0
    */
   U hasSize(int expected);
 
@@ -36,6 +39,7 @@ public interface EnumerableAssert<T, U extends EnumerableAssert<T, U>> extends O
    * Verifies that the enumerable is empty.
    *
    * @return the enumerable assert
+   * @since 1.0
    */
   U isEmpty();
 
@@ -43,6 +47,7 @@ public interface EnumerableAssert<T, U extends EnumerableAssert<T, U>> extends O
    * Verifies that the enumerable is not empty.
    *
    * @return the enumerable assert
+   * @since 1.0
    */
   U isNotEmpty();
 
@@ -50,6 +55,7 @@ public interface EnumerableAssert<T, U extends EnumerableAssert<T, U>> extends O
    * Verifies that the enumerable is null or empty.
    *
    * @return the enumerable assert
+   * @since 1.0
    */
   U isNullOrEmpty();
 }

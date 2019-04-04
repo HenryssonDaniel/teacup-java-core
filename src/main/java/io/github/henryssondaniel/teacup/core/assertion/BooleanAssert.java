@@ -11,6 +11,7 @@ public interface BooleanAssert<T extends BooleanAssert<T>> extends ObjectAssert<
    * Verifies that the boolean is false.
    *
    * @return the boolean assert
+   * @since 1.0
    */
   T isFalse();
 
@@ -18,6 +19,7 @@ public interface BooleanAssert<T extends BooleanAssert<T>> extends ObjectAssert<
    * Verifies that the boolean is true.
    *
    * @return the boolean assert
+   * @since 1.0
    */
   T isTrue();
 }

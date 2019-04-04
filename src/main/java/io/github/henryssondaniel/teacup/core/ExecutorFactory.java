@@ -19,6 +19,7 @@ public enum ExecutorFactory {
    * current fixture, if any, will be torn down and the new fixture will be set up.
    *
    * @return the executor
+   * @since 1.0
    */
   public static Executor create() {
     LOGGER.log(Level.FINE, "Creating a new default executor.");

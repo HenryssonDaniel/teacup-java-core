@@ -12,6 +12,7 @@ public interface ObjectAssert<T, U extends ObjectAssert<T, U>> {
    *
    * @param value the value
    * @return the object assert
+   * @since 1.0
    */
   U doesNotHaveSameClassAs(Object value);
 
@@ -20,6 +21,7 @@ public interface ObjectAssert<T, U extends ObjectAssert<T, U>> {
    *
    * @param value the value
    * @return the object assert
+   * @since 1.0
    */
   U hasSameClassAs(Object value);
 
@@ -28,6 +30,7 @@ public interface ObjectAssert<T, U extends ObjectAssert<T, U>> {
    *
    * @param value the value
    * @return the object assert
+   * @since 1.0
    */
   U isEqualTo(Object value);
 
@@ -36,6 +39,7 @@ public interface ObjectAssert<T, U extends ObjectAssert<T, U>> {
    *
    * @param value the value
    * @return the object assert
+   * @since 1.0
    */
   U isNotEqualTo(Object value);
 
@@ -44,6 +48,7 @@ public interface ObjectAssert<T, U extends ObjectAssert<T, U>> {
    *
    * @param value the value
    * @return the object assert
+   * @since 1.0
    */
   U isNotSameAs(Object value);
 
@@ -52,6 +57,7 @@ public interface ObjectAssert<T, U extends ObjectAssert<T, U>> {
    *
    * @param value the value
    * @return the object assert
+   * @since 1.0
    */
   U isSameAs(Object value);
 
@@ -59,6 +65,7 @@ public interface ObjectAssert<T, U extends ObjectAssert<T, U>> {
    * Verifies the actual.
    *
    * @param actual the actual
+   * @since 1.0
    */
   void verify(T actual);
 }

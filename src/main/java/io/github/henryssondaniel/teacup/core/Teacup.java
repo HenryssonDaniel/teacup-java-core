@@ -22,6 +22,7 @@ public enum Teacup {
    * @param <T> the client type
    * @return the client
    * @throws TeacupException if the client could not be retrieved
+   * @since 1.0
    */
   public static <T> T getClient(Class<T> clazz, Executor executor, String name)
       throws TeacupException {
@@ -42,6 +43,7 @@ public enum Teacup {
    * @param <T> the server type
    * @return the server
    * @throws TeacupException if the server could not be retrieved
+   * @since 1.0
    */
   public static <T extends Server> T getServer(Class<T> clazz, Executor executor, String name)
       throws TeacupException {
