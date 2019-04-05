@@ -92,6 +92,7 @@ class EnumerableAssertImplTest {
   private static final class TestEnumerableAssertImpl
       extends EnumerableAssertImpl<int[], TestEnumerableAssert> implements TestEnumerableAssert {
     @Override
+    @SuppressWarnings("unchecked")
     AbstractAssert<?, int[]> getAssert() {
       return assertThat(getActual());
     }

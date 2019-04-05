@@ -3,7 +3,7 @@ package io.github.henryssondaniel.teacup.core;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -42,7 +42,7 @@ class DefaultNodeBuilderTest {
     }
 
     @Override
-    protected void doAssertion(ObjectAssert<String, ?> assertion) {
+    protected void doAssertion(GenericObjectAssert<String, ?> assertion) {
       setterNew.verify(ACTUAL);
     }
   }

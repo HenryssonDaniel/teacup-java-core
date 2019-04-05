@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import org.assertj.core.api.AbstractAssert;
 
 abstract class EnumerableAssertImpl<T, U extends EnumerableAssert<T, U>>
-    extends ObjectAssertImpl<T, U> implements EnumerableAssert<T, U> {
+    extends AbstractObjectAssert<T, U> implements EnumerableAssert<T, U> {
   private static final Logger LOGGER = Logger.getLogger(EnumerableAssertImpl.class.getName());
 
   @Override
@@ -58,7 +58,7 @@ abstract class EnumerableAssertImpl<T, U extends EnumerableAssert<T, U>>
   }
 
   @Override
-  abstract AbstractAssert<?, T> getAssert();
+  abstract <V extends AbstractAssert<V, T>> AbstractAssert<V, T> getAssert();
 
   private org.assertj.core.api.EnumerableAssert<?, ?> getEnumerableAssert() {
     return (org.assertj.core.api.EnumerableAssert<?, ?>) getAssert();

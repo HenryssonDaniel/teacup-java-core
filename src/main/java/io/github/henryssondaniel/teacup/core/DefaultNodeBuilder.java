@@ -1,6 +1,6 @@
 package io.github.henryssondaniel.teacup.core;
 
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,17 +30,17 @@ public abstract class DefaultNodeBuilder<
 
   @SuppressWarnings("unchecked")
   @Override
-  public X setAssertion(ObjectAssert<T, ?> assertion) {
+  public X setAssertion(GenericObjectAssert<T, ?> assertion) {
     LOGGER.log(Level.FINE, "Setting the assertion");
     doAssertion(assertion);
     return (X) this;
   }
 
   /**
-   * Define what should happen when {@link #setAssertion(ObjectAssert)} is called.
+   * Define what should happen when {@link #setAssertion(GenericObjectAssert)} is called.
    *
    * @param assertion the assertion
    * @since 1.0
    */
-  protected abstract void doAssertion(ObjectAssert<T, ?> assertion);
+  protected abstract void doAssertion(GenericObjectAssert<T, ?> assertion);
 }

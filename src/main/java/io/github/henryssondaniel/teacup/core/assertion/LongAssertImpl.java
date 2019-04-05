@@ -1,4 +1,3 @@
 package io.github.henryssondaniel.teacup.core.assertion;
 
-class LongAssertImpl<T extends LongAssert<T>> extends ComparableAssertImpl<Long, T>
-    implements LongAssert<T> {}
+class LongAssertImpl extends AbstractLongAssert<LongAssert> implements LongAssert {}

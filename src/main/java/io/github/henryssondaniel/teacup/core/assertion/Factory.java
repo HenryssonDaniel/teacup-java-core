@@ -17,75 +17,66 @@ public enum Factory {
   /**
    * Creates an boolean array assert.
    *
-   * @param <T> the boolean array assert type
    * @return the boolean array assert
    * @since 1.0
    */
-  public static <T extends BooleanArrayAssert<T>> BooleanArrayAssert<T> createBooleanArrayAssert() {
+  public static BooleanArrayAssert createBooleanArrayAssert() {
     LOGGER.log(Level.FINE, LOG, "boolean array");
-    return new BooleanArrayAssertImpl<>();
+    return new BooleanArrayAssertImpl();
   }
 
   /**
    * Creates an boolean assert.
    *
-   * @param <T> the boolean assert type
    * @return the boolean assert
    * @since 1.0
    */
-  public static <T extends BooleanAssert<T>> BooleanAssert<T> createBooleanAssert() {
+  public static BooleanAssert createBooleanAssert() {
     LOGGER.log(Level.FINE, LOG, "boolean");
-    return new BooleanAssertImpl<>();
+    return new BooleanAssertImpl();
   }
 
   /**
    * Creates an byte array assert.
    *
-   * @param <T> the byte array assert type
    * @return the byte array assert
    * @since 1.0
    */
-  public static <T extends ByteArrayAssert<T>> ByteArrayAssert<T> createByteArrayAssert() {
+  public static ByteArrayAssert createByteArrayAssert() {
     LOGGER.log(Level.FINE, LOG, "byte array");
-    return new ByteArrayAssertImpl<>();
+    return new ByteArrayAssertImpl();
   }
 
   /**
    * Creates an char array assert.
    *
-   * @param <T> the char array assert type
    * @return the char array assert
    * @since 1.0
    */
-  public static <T extends CharArrayAssert<T>> CharArrayAssert<T> createCharArrayAssert() {
+  public static CharArrayAssert createCharArrayAssert() {
     LOGGER.log(Level.FINE, LOG, "char array");
-    return new CharArrayAssertImpl<>();
+    return new CharArrayAssertImpl();
   }
 
   /**
    * Creates an char sequence assert.
    *
-   * @param <T> the type
-   * @param <U> the char sequence assert type
    * @return the char sequence assert
    * @since 1.0
    */
-  public static <T extends CharSequence, U extends CharSequenceAssert<T, U>>
-      CharSequenceAssert<T, U> createCharSequenceAssert() {
+  public static CharSequenceAssert createCharSequenceAssert() {
     LOGGER.log(Level.FINE, LOG, "char sequence");
-    return new CharSequenceAssertImpl<>();
+    return new CharSequenceAssertImpl();
   }
 
   /**
    * Creates an comparable assert.
    *
    * @param <T> the comparable type
-   * @param <U> the comparable assert type
    * @return the comparable assert
    * @since 1.0
    */
-  public static <T extends Comparable<? super T>, U extends ComparableAssert<T, U>>
-      ComparableAssert<T, U> createComparableAssert() {
+  public static <T extends Comparable<? super T>> ComparableAssert<T> createComparableAssert() {
     LOGGER.log(Level.FINE, LOG, "comparator");
     return new ComparableAssertImpl<>();
   }
@@ -93,62 +84,55 @@ public enum Factory {
   /**
    * Creates an double array assert.
    *
-   * @param <T> the double array assert type
    * @return the double array assert
    * @since 1.0
    */
-  public static <T extends DoubleArrayAssert<T>> DoubleArrayAssert<T> createDoubleArrayAssert() {
+  public static DoubleArrayAssert createDoubleArrayAssert() {
     LOGGER.log(Level.FINE, LOG, "double array");
-    return new DoubleArrayAssertImpl<>();
+    return new DoubleArrayAssertImpl();
   }
 
   /**
    * Creates an float array assert.
    *
-   * @param <T> the float array assert type
    * @return the float array assert
    * @since 1.0
    */
-  public static <T extends FloatArrayAssert<T>> FloatArrayAssert<T> createFloatArrayAssert() {
+  public static FloatArrayAssert createFloatArrayAssert() {
     LOGGER.log(Level.FINE, LOG, "float array");
-    return new FloatArrayAssertImpl<>();
+    return new FloatArrayAssertImpl();
   }
 
   /**
    * Creates an int array assert.
    *
-   * @param <T> the int array assert type
    * @return the int array assert
    * @since 1.0
    */
-  public static <T extends IntArrayAssert<T>> IntArrayAssert<T> createIntArrayAssert() {
+  public static IntArrayAssert createIntArrayAssert() {
     LOGGER.log(Level.FINE, LOG, "int array");
-    return new IntArrayAssertImpl<>();
+    return new IntArrayAssertImpl();
   }
 
   /**
    * Creates an integer assert.
    *
-   * @param <T> the integer assert type
    * @return the integer assert
    * @since 1.0
    */
-  public static <T extends IntegerAssert<T>> IntegerAssert<T> createIntegerAssert() {
+  public static IntegerAssert createIntegerAssert() {
     LOGGER.log(Level.FINE, LOG, "integer");
-    return new IntegerAssertImpl<>();
+    return new IntegerAssertImpl();
   }
 
   /**
    * Creates an iterable assert.
    *
    * @param <T> the type
-   * @param <U> the iterable type
-   * @param <V> the iterable assert type
    * @return the iterable assert
    * @since 1.0
    */
-  public static <T, U extends Iterable<? extends T>, V extends IterableAssert<T, U, V>>
-      IterableAssert<T, U, V> createIterableAssert() {
+  public static <T> IterableAssert<T> createIterableAssert() {
     LOGGER.log(Level.FINE, LOG, "iterable");
     return new IterableAssertImpl<>();
   }
@@ -157,11 +141,10 @@ public enum Factory {
    * Creates an list assert.
    *
    * @param <T> the list type
-   * @param <U> the list assert type
    * @return the list assert
    * @since 1.0
    */
-  public static <T, U extends ListAssert<T, U>> ListAssert<T, U> createListAssert() {
+  public static <T> ListAssert<T> createListAssert() {
     LOGGER.log(Level.FINE, LOG, "list");
     return new ListAssertImpl<>();
   }
@@ -169,25 +152,23 @@ public enum Factory {
   /**
    * Creates an long array assert.
    *
-   * @param <T> the long array assert type
    * @return the long array assert
    * @since 1.0
    */
-  public static <T extends LongArrayAssert<T>> LongArrayAssert<T> createLongArrayAssert() {
+  public static LongArrayAssert createLongArrayAssert() {
     LOGGER.log(Level.FINE, LOG, "long array");
-    return new LongArrayAssertImpl<>();
+    return new LongArrayAssertImpl();
   }
 
   /**
    * Creates an long assert.
    *
-   * @param <T> the long assert type
    * @return the long assert
    * @since 1.0
    */
-  public static <T extends LongAssert<T>> LongAssert<T> createLongAssert() {
+  public static LongAssert createLongAssert() {
     LOGGER.log(Level.FINE, LOG, "long");
-    return new LongAssertImpl<>();
+    return new LongAssertImpl();
   }
 
   /**
@@ -195,11 +176,10 @@ public enum Factory {
    *
    * @param <T> the map key type
    * @param <U> the map value type
-   * @param <V> the map assert type
    * @return the map assert
    * @since 1.0
    */
-  public static <T, U, V extends MapAssert<T, U, V>> MapAssert<T, U, V> createMapAssert() {
+  public static <T, U> MapAssert<T, U> createMapAssert() {
     LOGGER.log(Level.FINE, LOG, "map");
     return new MapAssertImpl<>();
   }
@@ -207,51 +187,44 @@ public enum Factory {
   /**
    * Creates an object array assert.
    *
-   * @param <T> the type
-   * @param <U> the object array assert type
    * @return the object array assert
    * @since 1.0
    */
-  public static <T, U extends ObjectArrayAssert<T, U>>
-      ObjectArrayAssert<T, U> createObjectArrayAssert() {
+  public static ObjectArrayAssert createObjectArrayAssert() {
     LOGGER.log(Level.FINE, LOG, "object array");
-    return new ObjectArrayAssertImpl<>();
+    return new ObjectArrayAssertImpl();
   }
 
   /**
    * Creates an object assert.
    *
-   * @param <T> the type
-   * @param <U> the object assert type
    * @return the object assert
    * @since 1.0
    */
-  public static <T, U extends ObjectAssert<T, U>> ObjectAssert<T, U> createObjectAssert() {
+  public static ObjectAssert createObjectAssert() {
     LOGGER.log(Level.FINE, LOG, "object");
-    return new ObjectAssertImpl<>();
+    return new ObjectAssertImpl();
   }
 
   /**
    * Creates an short array assert.
    *
-   * @param <T> the short array assert type
    * @return the short array assert
    * @since 1.0
    */
-  public static <T extends ShortArrayAssert<T>> ShortArrayAssert<T> createShortArrayAssert() {
+  public static ShortArrayAssert createShortArrayAssert() {
     LOGGER.log(Level.FINE, LOG, "short array");
-    return new ShortArrayAssertImpl<>();
+    return new ShortArrayAssertImpl();
   }
 
   /**
    * Creates an string assert.
    *
-   * @param <T> the string assert type
    * @return the string assert
    * @since 1.0
    */
-  public static <T extends StringAssert<T>> StringAssert<T> createStringAssert() {
+  public static StringAssert createStringAssert() {
     LOGGER.log(Level.FINE, LOG, "string");
-    return new StringAssertImpl<>();
+    return new StringAssertImpl();
   }
 }

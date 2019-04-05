@@ -1,6 +1,6 @@
 package io.github.henryssondaniel.teacup.core;
 
-import io.github.henryssondaniel.teacup.core.assertion.ObjectAssert;
+import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
 
 /**
  * Node builder.
@@ -19,5 +19,5 @@ public interface NodeBuilder<T, U extends Node<T>, V extends NodeBuilder<T, U, V
    * @return the node builder
    * @since 1.0
    */
-  V setAssertion(ObjectAssert<T, ?> assertion);
+  V setAssertion(GenericObjectAssert<T, ?> assertion);
 }

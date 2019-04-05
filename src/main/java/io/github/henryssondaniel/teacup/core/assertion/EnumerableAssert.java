@@ -7,7 +7,8 @@ package io.github.henryssondaniel.teacup.core.assertion;
  * @param <U> the enumerable assert type
  * @since 1.0
  */
-public interface EnumerableAssert<T, U extends EnumerableAssert<T, U>> extends ObjectAssert<T, U> {
+public interface EnumerableAssert<T, U extends EnumerableAssert<T, U>>
+    extends GenericObjectAssert<T, U> {
   /**
    * Verifies that the enumerable has the same size as the other.
    *
