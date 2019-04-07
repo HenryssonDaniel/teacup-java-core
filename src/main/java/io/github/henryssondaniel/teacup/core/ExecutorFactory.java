@@ -12,6 +12,7 @@ public enum ExecutorFactory {
   ;
 
   private static final Logger LOGGER = Logger.getLogger(ExecutorFactory.class.getName());
+
   /**
    * Creates an instance of {@link Executor}. This executor has support for one active fixture at
    * the time. If the fixture is null, the current fixture, if any, will be torn down. If the

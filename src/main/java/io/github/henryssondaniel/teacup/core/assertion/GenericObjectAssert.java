@@ -5,6 +5,7 @@ package io.github.henryssondaniel.teacup.core.assertion;
  *
  * @param <T> the type
  * @param <U> the generic object assert type
+ * @since 1.0
  */
 public interface GenericObjectAssert<T, U extends GenericObjectAssert<T, U>> {
   /**
