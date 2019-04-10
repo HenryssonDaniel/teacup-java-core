@@ -5,6 +5,7 @@ Java **Te**sting Fr**a**mework for **C**omm**u**nication **P**rotocols and Web S
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=HenryssonDaniel_teacup-java-core&metric=coverage)](https://sonarcloud.io/dashboard?id=HenryssonDaniel_teacup-java-core)
 [![latest release](https://img.shields.io/badge/release%20notes-1.0.0-yellow.svg)](https://github.com/HenryssonDaniel/teacup-java-core/blob/master/doc/release-notes/official.md)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.henryssondaniel.teacup/core.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22io.github.henryssondaniel.teacup%22%20AND%20a%3A%22core%22)
+[![Javadocs](https://www.javadoc.io/badge/io.github.henryssondaniel.teacup/core.svg)](https://www.javadoc.io/doc/io.github.henryssondaniel.teacup/core)
 ## What ##
 The core project has three main responsibilities and does not rely on any special test engine or protocol:  
 
