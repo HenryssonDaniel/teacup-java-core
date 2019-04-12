@@ -25,6 +25,11 @@ task integrationTest(type: Test) {
     shouldRunAfter test
 }
 
+task integrationTestReport(type: JacocoReport) {
+    executionData integrationTest
+    sourceSets sourceSets.intTest
+}
+
 task javadocJar(type: Jar) {
     from javadoc
     archiveClassifier = 'javadoc'
@@ -36,6 +41,7 @@ task sourcesJar(type: Jar) {
 }
 
 check.dependsOn integrationTest
+jacocoTestReport.dependsOn integrationTestReport
 
 tasks.withType(Test) {
     useJUnitPlatform()
