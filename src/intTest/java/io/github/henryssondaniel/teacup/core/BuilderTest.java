@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-class DefaultBuilderTest {
+class BuilderTest {
   private static final String VALUE = "value";
 
   @Test
