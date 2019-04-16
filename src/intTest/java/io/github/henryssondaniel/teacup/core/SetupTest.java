@@ -7,13 +7,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-class ExecutorTest {
+class SetupTest {
   @Test
-  void executeFixture() {
-    var executor = ExecutorFactory.create();
-    executor.executeFixture(TestSetup.class.getAnnotation(Fixture.class));
+  void initialize() {
+    Setup setup = new TestSetup();
 
-    var setup = executor.getCurrentSetup().orElseThrow();
+    assertThat(setup.getClients()).isEmpty();
+    assertThat(setup.getServers()).isEmpty();
+
+    setup.initialize();
 
     var clients = setup.getClients();
     assertThat(clients).containsKey(CLIENT_NAME);
@@ -27,7 +29,7 @@ class ExecutorTest {
     assertThat(servers).containsValue(testServer);
     assertThat(servers).hasSize(1);
 
-    assertThat(testServer.isSetUp()).isTrue();
+    assertThat(testServer.isSetUp()).isFalse();
     assertThat(testServer.isTearDown()).isFalse();
   }
 }
