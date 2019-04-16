@@ -5,6 +5,8 @@ import static io.github.henryssondaniel.teacup.core.Constants.CLIENT_NAME;
 import static io.github.henryssondaniel.teacup.core.Constants.SERVER_NAME;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 
 class ExecutorTest {
@@ -29,5 +31,25 @@ class ExecutorTest {
 
     assertThat(testServer.isSetUp()).isTrue();
     assertThat(testServer.isTearDown()).isFalse();
+
+    executor.executeFixture(null);
+    assertThat(executor.getCurrentSetup()).isEmpty();
+    assertThat(testServer.isTearDown()).isTrue();
+
+    executor.executeFixture(PrivateSetup.class.getAnnotation(Fixture.class));
+    assertThat(executor.getCurrentSetup()).isEmpty();
+
+    executor.executeFixture(ConstructorSetup.class.getAnnotation(Fixture.class));
+    assertThat(executor.getCurrentSetup()).isEmpty();
+  }
+
+  @Fixture(PrivateSetup.class)
+  private static final class PrivateSetup extends DefaultSetup {
+    private static final Logger LOGGER = Logger.getLogger(PrivateSetup.class.getName());
+
+    @Override
+    public void initialize() {
+      LOGGER.log(Level.FINE, "Initialize");
+    }
   }
 }
