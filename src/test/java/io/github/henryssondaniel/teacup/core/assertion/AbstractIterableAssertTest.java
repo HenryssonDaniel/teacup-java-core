@@ -1,5 +1,6 @@
 package io.github.henryssondaniel.teacup.core.assertion;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.Arrays;
@@ -11,8 +12,8 @@ class AbstractIterableAssertTest {
   private static final Iterable<Integer> ORDER_ASC = Arrays.asList(1, 2);
   private static final Iterable<Integer> ORDER_DESC = Arrays.asList(2, 1);
 
-  private final TestGenericIterableAssert testGenericIterableAssert =
-      new TestAbstractIterableAssert();
+  private final TestGenericIterableAssert<Integer> testGenericIterableAssert =
+      new TestAbstractIterableAssert<>();
 
   @Test
   void contains() {
@@ -426,10 +427,15 @@ class AbstractIterableAssertTest {
         .isThrownBy(() -> testGenericIterableAssert.startsWith(new Integer[2]).verify(ORDER_ASC));
   }
 
-  private interface TestGenericIterableAssert
-      extends GenericIterableAssert<Integer, Iterable<Integer>, TestGenericIterableAssert> {}
+  private interface TestGenericIterableAssert<T>
+      extends GenericIterableAssert<T, Iterable<? extends T>, TestGenericIterableAssert<T>> {}
 
-  private static final class TestAbstractIterableAssert
-      extends AbstractIterableAssert<Integer, Iterable<Integer>, TestGenericIterableAssert>
-      implements TestGenericIterableAssert {}
+  private static final class TestAbstractIterableAssert<T>
+      extends AbstractIterableAssert<T, Iterable<? extends T>, TestGenericIterableAssert<T>>
+      implements TestGenericIterableAssert<T> {
+    @Override
+    org.assertj.core.api.AbstractIterableAssert<?, Iterable<? extends T>, T, ?> getAssert() {
+      return assertThat(getActual());
+    }
+  }
 }

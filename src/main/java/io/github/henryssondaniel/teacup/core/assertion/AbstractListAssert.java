@@ -1,7 +1,5 @@
 package io.github.henryssondaniel.teacup.core.assertion;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,8 +33,5 @@ public abstract class AbstractListAssert<
   }
 
   @Override
-  @SuppressWarnings("unchecked")
-  org.assertj.core.api.AbstractListAssert<?, U, T, ?> getAssert() {
-    return (org.assertj.core.api.AbstractListAssert<?, U, T, ?>) assertThat(getActual());
-  }
+  abstract org.assertj.core.api.AbstractListAssert<?, U, T, ?> getAssert();
 }

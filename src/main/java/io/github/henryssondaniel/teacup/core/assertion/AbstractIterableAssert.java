@@ -1,7 +1,5 @@
 package io.github.henryssondaniel.teacup.core.assertion;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -260,11 +258,9 @@ public abstract class AbstractIterableAssert<
     return getAssertType();
   }
 
-  @SuppressWarnings("unchecked")
   @Override
-  org.assertj.core.api.AbstractIterableAssert<?, U, T, ?> getAssert() {
-    return (org.assertj.core.api.AbstractIterableAssert<?, U, T, ?>) assertThat(getActual());
-  }
+  @SuppressWarnings("unchecked")
+  abstract org.assertj.core.api.AbstractIterableAssert<?, U, T, ?> getAssert();
 
   private static String iterableToString(Iterable<?> iterable) {
     List<String> iterableAsString = new LinkedList<>();
