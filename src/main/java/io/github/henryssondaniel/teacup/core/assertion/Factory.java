@@ -198,12 +198,13 @@ public enum Factory {
   /**
    * Creates an object assert.
    *
+   * @param <T> the type
    * @return the object assert
    * @since 1.0
    */
-  public static ObjectAssert createObjectAssert() {
+  public static <T> ObjectAssert<T> createObjectAssert() {
     LOGGER.log(Level.FINE, LOG, "object");
-    return new ObjectAssertImpl();
+    return new ObjectAssertImpl<>();
   }
 
   /**

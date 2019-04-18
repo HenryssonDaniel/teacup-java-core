@@ -1,3 +1,4 @@
 package io.github.henryssondaniel.teacup.core.assertion;
 
-class ObjectAssertImpl extends AbstractObjectAssert<Object, ObjectAssert> implements ObjectAssert {}
+class ObjectAssertImpl<T> extends AbstractObjectAssert<T, ObjectAssert<T>>
+    implements ObjectAssert<T> {}
