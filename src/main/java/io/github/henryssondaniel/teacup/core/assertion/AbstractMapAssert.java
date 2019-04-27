@@ -2,6 +2,7 @@ package io.github.henryssondaniel.teacup.core.assertion;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
 public abstract class AbstractMapAssert<
         T, U, V extends Map<T, U>, W extends GenericMapAssert<T, U, V, W>>
     extends EnumerableAssertImpl<V, W> implements GenericMapAssert<T, U, V, W> {
-  private static final Logger LOGGER = Logger.getLogger(AbstractMapAssert.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(AbstractMapAssert.class);
 
   @Override
   public W contains(Entry<? extends T, ? extends U>... entries) {

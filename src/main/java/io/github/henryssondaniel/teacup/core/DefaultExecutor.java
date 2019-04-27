@@ -1,5 +1,6 @@
 package io.github.henryssondaniel.teacup.core;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
@@ -7,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class DefaultExecutor implements Executor {
-  private static final Logger LOGGER = Logger.getLogger(DefaultExecutor.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(DefaultExecutor.class);
 
   private Setup currentSetup;
 

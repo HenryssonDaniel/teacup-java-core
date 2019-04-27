@@ -1,5 +1,6 @@
 package io.github.henryssondaniel.teacup.core.assertion;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +17,7 @@ import org.assertj.core.data.Index;
 public abstract class AbstractListAssert<
         T, U extends List<? extends T>, V extends GenericListAssert<T, U, V>>
     extends AbstractIterableAssert<T, U, V> implements GenericListAssert<T, U, V> {
-  private static final Logger LOGGER = Logger.getLogger(AbstractListAssert.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(AbstractListAssert.class);
 
   @Override
   public V contains(T value, int index) {

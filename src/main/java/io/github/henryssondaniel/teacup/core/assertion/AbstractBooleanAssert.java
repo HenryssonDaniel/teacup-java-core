@@ -2,6 +2,7 @@ package io.github.henryssondaniel.teacup.core.assertion;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
  */
 public abstract class AbstractBooleanAssert<T extends GenericBooleanAssert<T>>
     extends AbstractObjectAssert<Boolean, T> implements GenericBooleanAssert<T> {
-  private static final Logger LOGGER = Logger.getLogger(AbstractBooleanAssert.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(AbstractBooleanAssert.class);
 
   @Override
   public T isFalse() {

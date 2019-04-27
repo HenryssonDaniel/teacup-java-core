@@ -2,6 +2,7 @@ package io.github.henryssondaniel.teacup.core.assertion;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -17,7 +18,7 @@ import org.assertj.core.api.AbstractAssert;
  */
 public abstract class AbstractObjectAssert<T, U extends GenericObjectAssert<T, U>>
     implements GenericObjectAssert<T, U> {
-  private static final Logger LOGGER = Logger.getLogger(AbstractObjectAssert.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(AbstractObjectAssert.class);
   private final Collection<Supplier> suppliers = new LinkedList<>();
   private T actual;
 

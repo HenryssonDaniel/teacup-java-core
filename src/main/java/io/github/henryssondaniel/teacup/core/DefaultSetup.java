@@ -1,5 +1,6 @@
 package io.github.henryssondaniel.teacup.core;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -11,7 +12,7 @@ import java.util.logging.Logger;
  * @since 1.0
  */
 public abstract class DefaultSetup implements Setup {
-  private static final Logger LOGGER = Logger.getLogger(DefaultSetup.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(DefaultSetup.class);
   private static final String LOG_GET = "Returning the {0}";
   private static final String LOG_PUT = "Adding the {0}: {1}";
 

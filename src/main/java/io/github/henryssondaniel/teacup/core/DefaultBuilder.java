@@ -1,5 +1,6 @@
 package io.github.henryssondaniel.teacup.core;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,7 +12,7 @@ import java.util.logging.Logger;
  * @since 1.0
  */
 public abstract class DefaultBuilder<T, U> implements Builder<T> {
-  private static final Logger LOGGER = Logger.getLogger(DefaultBuilder.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(DefaultBuilder.class);
   private U implementation;
 
   /**

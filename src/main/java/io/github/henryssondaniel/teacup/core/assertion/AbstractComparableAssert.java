@@ -2,6 +2,7 @@ package io.github.henryssondaniel.teacup.core.assertion;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,7 +16,7 @@ import java.util.logging.Logger;
 public abstract class AbstractComparableAssert<
         T extends Comparable<? super T>, U extends GenericComparableAssert<T, U>>
     extends AbstractObjectAssert<T, U> implements GenericComparableAssert<T, U> {
-  private static final Logger LOGGER = Logger.getLogger(AbstractComparableAssert.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(AbstractComparableAssert.class);
   private static final String MESSAGE = "Is {0} than{1}: {2}";
 
   @Override

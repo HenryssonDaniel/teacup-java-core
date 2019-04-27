@@ -1,5 +1,6 @@
 package io.github.henryssondaniel.teacup.core;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,7 +13,7 @@ public enum Teacup {
   ;
 
   private static final String ERROR = "No setup exists";
-  private static final Logger LOGGER = Logger.getLogger(Teacup.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(Teacup.class);
   private static final String MESSAGE = "Getting the {0}: {1} with class: {2}";
 
   /**

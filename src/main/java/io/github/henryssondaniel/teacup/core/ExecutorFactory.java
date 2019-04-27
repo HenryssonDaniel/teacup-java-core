@@ -1,5 +1,6 @@
 package io.github.henryssondaniel.teacup.core;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,7 +12,7 @@ import java.util.logging.Logger;
 public enum ExecutorFactory {
   ;
 
-  private static final Logger LOGGER = Logger.getLogger(ExecutorFactory.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(ExecutorFactory.class);
 
   /**
    * Creates an instance of {@link Executor}. This executor has support for one active fixture at

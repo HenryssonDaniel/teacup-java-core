@@ -2,6 +2,7 @@ package io.github.henryssondaniel.teacup.core.assertion;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
  */
 public abstract class AbstractStringAssert<T extends GenericStringAssert<T>>
     extends AbstractCharSequenceAssert<String, T> implements GenericStringAssert<T> {
-  private static final Logger LOGGER = Logger.getLogger(AbstractStringAssert.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(AbstractStringAssert.class);
 
   @Override
   public T isGreaterThan(String value) {

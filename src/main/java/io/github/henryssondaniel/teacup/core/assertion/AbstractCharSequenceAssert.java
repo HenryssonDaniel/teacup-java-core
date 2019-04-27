@@ -2,6 +2,7 @@ package io.github.henryssondaniel.teacup.core.assertion;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +17,7 @@ import java.util.logging.Logger;
 public abstract class AbstractCharSequenceAssert<
         T extends CharSequence, U extends GenericCharSequenceAssert<T, U>>
     extends EnumerableAssertImpl<T, U> implements GenericCharSequenceAssert<T, U> {
-  private static final Logger LOGGER = Logger.getLogger(AbstractCharSequenceAssert.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(AbstractCharSequenceAssert.class);
 
   @Override
   public U contains(CharSequence... values) {

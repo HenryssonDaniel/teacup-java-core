@@ -1,5 +1,6 @@
 package io.github.henryssondaniel.teacup.core.assertion;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,7 +10,7 @@ import org.assertj.core.api.AbstractAssert;
 
 abstract class EnumerableAssertImpl<T, U extends EnumerableAssert<T, U>>
     extends AbstractObjectAssert<T, U> implements EnumerableAssert<T, U> {
-  private static final Logger LOGGER = Logger.getLogger(EnumerableAssertImpl.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(EnumerableAssertImpl.class);
 
   @Override
   public U hasSameSizeAs(Iterable<?> other) {

@@ -1,5 +1,6 @@
 package io.github.henryssondaniel.teacup.core.assertion;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 public abstract class AbstractIterableAssert<
         T, U extends Iterable<? extends T>, V extends GenericIterableAssert<T, U, V>>
     extends EnumerableAssertImpl<U, V> implements GenericIterableAssert<T, U, V> {
-  private static final Logger LOGGER = Logger.getLogger(AbstractIterableAssert.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(AbstractIterableAssert.class);
 
   @Override
   public V contains(T... values) {

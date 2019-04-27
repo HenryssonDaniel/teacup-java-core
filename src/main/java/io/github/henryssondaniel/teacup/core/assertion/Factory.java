@@ -12,7 +12,8 @@ public enum Factory {
   ;
 
   private static final String LOG = "Creating {0} assert";
-  private static final Logger LOGGER = Logger.getLogger(Factory.class.getName());
+  private static final Logger LOGGER =
+      io.github.henryssondaniel.teacup.core.logging.Factory.getLogger(Factory.class);
 
   /**
    * Creates an boolean array assert.

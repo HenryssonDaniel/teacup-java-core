@@ -1,6 +1,7 @@
 package io.github.henryssondaniel.teacup.core;
 
 import io.github.henryssondaniel.teacup.core.assertion.GenericObjectAssert;
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,7 +17,7 @@ import java.util.logging.Logger;
 public abstract class DefaultNodeBuilder<
         T, U extends Node<T>, V extends Node<T>, X extends NodeBuilder<T, U, X>>
     extends DefaultBuilder<U, V> implements NodeBuilder<T, U, X> {
-  private static final Logger LOGGER = Logger.getLogger(DefaultNodeBuilder.class.getName());
+  private static final Logger LOGGER = Factory.getLogger(DefaultNodeBuilder.class);
 
   /**
    * Constructor.
