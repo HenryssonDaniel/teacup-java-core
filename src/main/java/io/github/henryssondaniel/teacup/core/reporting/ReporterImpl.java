@@ -26,9 +26,9 @@ class ReporterImpl implements Reporter {
   }
 
   @Override
-  public void finished(TestCase testCase) {
+  public void finished(TestCase testCase, TestResult testResult) {
     LOGGER.log(Level.FINE, "Finished test case");
-    reporters.forEach(reporter -> reporter.finished(testCase));
+    reporters.forEach(reporter -> reporter.finished(testCase, testResult));
   }
 
   @Override

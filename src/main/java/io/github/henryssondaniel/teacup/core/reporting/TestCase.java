@@ -25,14 +25,6 @@ public interface TestCase {
   Path getPath();
 
   /**
-   * Return the test status.
-   *
-   * @return the test status
-   * @since 1.1
-   */
-  TestStatus getTestStatus();
-
-  /**
    * Returns the time finished.
    *
    * @return the time finished
@@ -47,14 +39,6 @@ public interface TestCase {
    * @since 1.1
    */
   long getTimeStarted();
-
-  /**
-   * Sets the test status.
-   *
-   * @param testStatus the test status
-   * @since 1.1
-   */
-  void setTestStatus(TestStatus testStatus);
 
   /**
    * Sets the time finished.

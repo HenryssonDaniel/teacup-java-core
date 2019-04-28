@@ -22,17 +22,6 @@ public enum Factory {
               .toFile());
 
   /**
-   * Creates a new reporter.
-   *
-   * @return the reporter
-   * @since 1.1
-   */
-  public static Reporter createReporter() {
-    LOGGER.log(Level.FINE, "Creating a new reporter.");
-    return REPORTER;
-  }
-
-  /**
    * Creates a new test case.
    *
    * @param name the name
@@ -46,6 +35,19 @@ public enum Factory {
   }
 
   /**
+   * Creates a new test result.
+   *
+   * @param testStatus the test status
+   * @param throwable the throwable
+   * @return the test result
+   * @since 1.1
+   */
+  public static TestResult createTestResult(TestStatus testStatus, Throwable throwable) {
+    LOGGER.log(Level.FINE, "Creating a new test result.");
+    return new TestResultImpl(testStatus, throwable);
+  }
+
+  /**
    * Creates a new test suite.
    *
    * @param name the name
@@ -56,5 +58,16 @@ public enum Factory {
   public static TestSuite createTestSuite(String name, Set<TestCase> testCases) {
     LOGGER.log(Level.FINE, "Creating a new test suite.");
     return new TestSuiteImpl(name, testCases);
+  }
+
+  /**
+   * Returns the reporter.
+   *
+   * @return the reporter
+   * @since 1.1
+   */
+  public static Reporter getReporter() {
+    LOGGER.log(Level.FINE, "Returns the reporter.");
+    return REPORTER;
   }
 }

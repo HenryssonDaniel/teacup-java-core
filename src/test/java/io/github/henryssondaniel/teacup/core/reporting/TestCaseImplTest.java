@@ -22,11 +22,6 @@ class TestCaseImplTest {
   }
 
   @Test
-  void getTestStatus() {
-    assertThat(testCase.getTestStatus()).isSameAs(TestStatus.INITIALIZED);
-  }
-
-  @Test
   void getTimeFinished() {
     assertThat(testCase.getTimeFinished()).isZero();
   }
@@ -34,13 +29,6 @@ class TestCaseImplTest {
   @Test
   void getTimeStarted() {
     assertThat(testCase.getTimeStarted()).isZero();
-  }
-
-  @Test
-  void setAndGetTestStatus() {
-    var testStatus = TestStatus.SUCCESSFULL;
-    testCase.setTestStatus(testStatus);
-    assertThat(testCase.getTestStatus()).isSameAs(testStatus);
   }
 
   @Test

@@ -6,7 +6,6 @@ class TestCaseImpl implements TestCase {
   private final String name;
   private final Path path;
 
-  private TestStatus testStatus = TestStatus.INITIALIZED;
   private long timeFinished;
   private long timeStarted;
 
@@ -26,11 +25,6 @@ class TestCaseImpl implements TestCase {
   }
 
   @Override
-  public TestStatus getTestStatus() {
-    return testStatus;
-  }
-
-  @Override
   public long getTimeFinished() {
     return timeFinished;
   }
@@ -38,11 +32,6 @@ class TestCaseImpl implements TestCase {
   @Override
   public long getTimeStarted() {
     return timeStarted;
-  }
-
-  @Override
-  public void setTestStatus(TestStatus testStatus) {
-    this.testStatus = testStatus;
   }
 
   @Override

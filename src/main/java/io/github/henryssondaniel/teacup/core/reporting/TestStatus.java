@@ -19,21 +19,9 @@ public enum TestStatus {
    */
   FAILED,
   /**
-   * Initialized.
+   * Successful.
    *
    * @since 1.1
    */
-  INITIALIZED,
-  /**
-   * Started.
-   *
-   * @since 1.1
-   */
-  STARTED,
-  /**
-   * Successfull.
-   *
-   * @since 1.1
-   */
-  SUCCESSFULL
+  SUCCESSFUL
 }

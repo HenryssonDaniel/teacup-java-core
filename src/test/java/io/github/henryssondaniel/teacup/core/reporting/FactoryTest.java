@@ -7,18 +7,23 @@ import org.junit.jupiter.api.Test;
 
 class FactoryTest {
   @Test
-  void createReporter() {
-    assertThat(Factory.createReporter()).isExactlyInstanceOf(ReporterImpl.class);
+  void createTestCase() {
+    assertThat(Factory.createTestCase(null, null)).isExactlyInstanceOf(TestCaseImpl.class);
   }
 
   @Test
-  void createTestCase() {
-    assertThat(Factory.createTestCase(null, null)).isExactlyInstanceOf(TestCaseImpl.class);
+  void createTestResult() {
+    assertThat(Factory.createTestResult(null, null)).isExactlyInstanceOf(TestResultImpl.class);
   }
 
   @Test
   void createTestSuite() {
     assertThat(Factory.createTestSuite(null, Collections.emptySet()))
         .isExactlyInstanceOf(TestSuiteImpl.class);
+  }
+
+  @Test
+  void getReporter() {
+    assertThat(Factory.getReporter()).isExactlyInstanceOf(ReporterImpl.class);
   }
 }

@@ -9,7 +9,7 @@ public class DefaultReporter implements Reporter {
   private static final Logger LOGGER = Factory.getLogger(DefaultReporter.class);
 
   @Override
-  public void finished(TestCase testCase) {
+  public void finished(TestCase testCase, TestResult testResult) {
     LOGGER.log(Level.FINE, "Finished");
     testCase.getName();
   }

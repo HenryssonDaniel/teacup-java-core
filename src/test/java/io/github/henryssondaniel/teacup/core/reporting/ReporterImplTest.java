@@ -23,19 +23,19 @@ class ReporterImplTest {
 
     Files.writeString(file.toPath(), "reporter=");
 
-    assertThat(getCurrentSetup(new ReporterImpl(file))).isEmpty();
+    assertThat(getReporters(new ReporterImpl(file))).isEmpty();
   }
 
   @Test
   void constructorWithFolder(@TempDir File folder)
       throws IllegalAccessException, NoSuchFieldException {
-    assertThat(getCurrentSetup(new ReporterImpl(folder))).isEmpty();
+    assertThat(getReporters(new ReporterImpl(folder))).isEmpty();
   }
 
   @Test
   void constructorWithNonExistingFile() throws IllegalAccessException, NoSuchFieldException {
     var file = mock(File.class);
-    assertThat(getCurrentSetup(new ReporterImpl(file))).isEmpty();
+    assertThat(getReporters(new ReporterImpl(file))).isEmpty();
   }
 
   @Test
@@ -47,14 +47,16 @@ class ReporterImplTest {
     Files.writeString(
         file.toPath(), "reporter=io.github.henryssondaniel.teacup.core.reporting.NonExisting");
 
-    assertThat(getCurrentSetup(new ReporterImpl(file))).isEmpty();
+    assertThat(getReporters(new ReporterImpl(file))).isEmpty();
   }
 
   @Test
   void finishedTestCase(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
     var testCase = mock(TestCase.class);
-    createReporter(folder).finished(testCase);
+    var testResult = mock(TestResult.class);
+
+    createReporter(folder).finished(testCase, testResult);
     verify(testCase).getName();
   }
 
@@ -107,7 +109,7 @@ class ReporterImplTest {
 
     Reporter reporter = new ReporterImpl(file);
 
-    var reporters = getCurrentSetup(reporter);
+    var reporters = getReporters(reporter);
     assertThat(reporters).hasSize(1);
     assertThat(reporters.iterator().next()).isExactlyInstanceOf(DefaultReporter.class);
 
@@ -115,7 +117,7 @@ class ReporterImplTest {
   }
 
   @SuppressWarnings("unchecked")
-  private static Iterable<Reporter> getCurrentSetup(Reporter reporter)
+  private static Iterable<Reporter> getReporters(Reporter reporter)
       throws IllegalAccessException, NoSuchFieldException {
     var field = ReporterImpl.class.getDeclaredField("reporters");
     field.setAccessible(true);

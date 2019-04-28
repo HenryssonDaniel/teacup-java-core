@@ -12,14 +12,16 @@ public interface Reporter {
    * Finished.
    *
    * @param testCase the test case
+   * @param testResult the test status
    * @since 1.1
    */
-  void finished(TestCase testCase);
+  void finished(TestCase testCase, TestResult testResult);
 
   /**
    * Finished.
    *
    * @param testSuites the test suites
+   * @since 1.1
    */
   void finished(Iterable<? extends TestSuite> testSuites);
 
@@ -36,6 +38,7 @@ public interface Reporter {
    *
    * @param reason the reason
    * @param testCase the test case
+   * @since 1.1
    */
   void skipped(String reason, TestCase testCase);
 

@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 class ReporterHandlerImpl extends Handler {
   private static final Logger LOGGER = Logger.getLogger(ReporterHandlerImpl.class.getName());
-  private static final Reporter REPORTER = Factory.createReporter();
+  private static final Reporter REPORTER = Factory.getReporter();
 
   @Override
   public void close() {
