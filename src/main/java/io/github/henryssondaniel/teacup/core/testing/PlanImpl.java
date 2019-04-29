@@ -1,14 +1,16 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-class PlanImpl implements Plan {
+class PlanImpl extends DataImpl implements Plan {
+  private static final Logger LOGGER = Factory.getLogger(PlanImpl.class);
+
   private final Collection<Case> cases = new LinkedHashSet<>(0);
   private final Collection<Suite> suites = new LinkedHashSet<>(0);
-
-  private long timeFinished;
-  private long timeStarted;
 
   PlanImpl(Collection<? extends Case> cases, Collection<? extends Suite> suites) {
     this.cases.addAll(cases);
@@ -17,31 +19,13 @@ class PlanImpl implements Plan {
 
   @Override
   public Iterable<Case> getCases() {
+    LOGGER.log(Level.FINE, "Get cases");
     return new LinkedHashSet<>(cases);
   }
 
   @Override
   public Iterable<Suite> getSuites() {
+    LOGGER.log(Level.FINE, "Get suites");
     return new LinkedHashSet<>(suites);
-  }
-
-  @Override
-  public long getTimeFinished() {
-    return timeFinished;
-  }
-
-  @Override
-  public long getTimeStarted() {
-    return timeStarted;
-  }
-
-  @Override
-  public void setTimeFinished(long timeFinished) {
-    this.timeFinished = timeFinished;
-  }
-
-  @Override
-  public void setTimeStarted(long timeStarted) {
-    this.timeStarted = timeStarted;
   }
 }

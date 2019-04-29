@@ -28,28 +28,4 @@ class SuiteImplTest {
   void getSuites() {
     assertThat(suite.getSuites()).isEqualTo(suites);
   }
-
-  @Test
-  void getTimeFinished() {
-    assertThat(suite.getTimeFinished()).isZero();
-  }
-
-  @Test
-  void getTimeStarted() {
-    assertThat(suite.getTimeStarted()).isZero();
-  }
-
-  @Test
-  void setAndGetTimeFinished() {
-    var timeFinished = 1L;
-    suite.setTimeFinished(timeFinished);
-    assertThat(suite.getTimeFinished()).isSameAs(timeFinished);
-  }
-
-  @Test
-  void setAndGetTimeStarted() {
-    var timeStarted = 1L;
-    suite.setTimeStarted(timeStarted);
-    assertThat(suite.getTimeStarted()).isSameAs(timeStarted);
-  }
 }

@@ -7,7 +7,7 @@ import java.nio.file.Path;
  *
  * @since 1.1
  */
-public interface Suite {
+public interface Suite extends Data {
   /**
    * Returns the cases.
    *
@@ -30,36 +30,4 @@ public interface Suite {
    * @return the suites
    */
   Iterable<Suite> getSuites();
-
-  /**
-   * Returns the time finished.
-   *
-   * @return the time finished
-   * @since 1.1
-   */
-  long getTimeFinished();
-
-  /**
-   * Returns the time started.
-   *
-   * @return the time started
-   * @since 1.1
-   */
-  long getTimeStarted();
-
-  /**
-   * Sets the time finished.
-   *
-   * @param timeFinished the time finished
-   * @since 1.1
-   */
-  void setTimeFinished(long timeFinished);
-
-  /**
-   * Sets the time started.
-   *
-   * @param timeStarted the time started
-   * @since 1.1
-   */
-  void setTimeStarted(long timeStarted);
 }

@@ -1,15 +1,18 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
+import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-class SuiteImpl implements Suite {
+class SuiteImpl extends DataImpl implements Suite {
+  private static final Logger LOGGER = Factory.getLogger(SuiteImpl.class);
+
   private final Collection<Case> cases = new LinkedHashSet<>(0);
   private final Path path;
   private final Collection<Suite> suites = new LinkedHashSet<>(0);
-  private long timeFinished;
-  private long timeStarted;
 
   SuiteImpl(Collection<? extends Case> cases, Path path, Collection<? extends Suite> suites) {
     this.cases.addAll(cases);
@@ -19,6 +22,7 @@ class SuiteImpl implements Suite {
 
   @Override
   public Iterable<Case> getCases() {
+    LOGGER.log(Level.FINE, "Get cases");
     return new LinkedHashSet<>(cases);
   }
 
@@ -29,26 +33,7 @@ class SuiteImpl implements Suite {
 
   @Override
   public Iterable<Suite> getSuites() {
+    LOGGER.log(Level.FINE, "Get cases");
     return new LinkedHashSet<>(suites);
-  }
-
-  @Override
-  public long getTimeFinished() {
-    return timeFinished;
-  }
-
-  @Override
-  public long getTimeStarted() {
-    return timeStarted;
-  }
-
-  @Override
-  public void setTimeFinished(long timeFinished) {
-    this.timeFinished = timeFinished;
-  }
-
-  @Override
-  public void setTimeStarted(long timeStarted) {
-    this.timeStarted = timeStarted;
   }
 }

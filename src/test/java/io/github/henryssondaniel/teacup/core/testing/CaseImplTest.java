@@ -20,28 +20,4 @@ class CaseImplTest {
   void getPath() {
     assertThat(testCase.getPath()).isSameAs(path);
   }
-
-  @Test
-  void getTimeFinished() {
-    assertThat(testCase.getTimeFinished()).isZero();
-  }
-
-  @Test
-  void getTimeStarted() {
-    assertThat(testCase.getTimeStarted()).isZero();
-  }
-
-  @Test
-  void setAndGetTimeFinished() {
-    var timeFinished = 1L;
-    testCase.setTimeFinished(timeFinished);
-    assertThat(testCase.getTimeFinished()).isSameAs(timeFinished);
-  }
-
-  @Test
-  void setAndGetTimeStarted() {
-    var timeStarted = 1L;
-    testCase.setTimeStarted(timeStarted);
-    assertThat(testCase.getTimeStarted()).isSameAs(timeStarted);
-  }
 }
