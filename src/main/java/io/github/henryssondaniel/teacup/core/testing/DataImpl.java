@@ -1,17 +1,19 @@
-package io.github.henryssondaniel.teacup.core.reporting;
+package io.github.henryssondaniel.teacup.core.testing;
 
 import java.nio.file.Path;
 
-class TestCaseImpl implements TestCase {
+class DataImpl implements Data {
   private final String name;
   private final Path path;
+  private final Type type;
 
   private long timeFinished;
   private long timeStarted;
 
-  TestCaseImpl(String name, Path path) {
+  DataImpl(String name, Path path, Type type) {
     this.name = name;
     this.path = path;
+    this.type = type;
   }
 
   @Override
@@ -32,6 +34,11 @@ class TestCaseImpl implements TestCase {
   @Override
   public long getTimeStarted() {
     return timeStarted;
+  }
+
+  @Override
+  public Type getType() {
+    return type;
   }
 
   @Override

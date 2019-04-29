@@ -1,5 +1,8 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
+import io.github.henryssondaniel.teacup.core.testing.Data;
+import io.github.henryssondaniel.teacup.core.testing.Plan;
+import io.github.henryssondaniel.teacup.core.testing.Result;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,15 +29,15 @@ class ReporterImpl implements Reporter {
   }
 
   @Override
-  public void finished(TestCase testCase, TestResult testResult) {
-    LOGGER.log(Level.FINE, "Finished test case");
-    reporters.forEach(reporter -> reporter.finished(testCase, testResult));
+  public void finished(Data data, Result result) {
+    LOGGER.log(Level.FINE, "Finished data");
+    reporters.forEach(reporter -> reporter.finished(data, result));
   }
 
   @Override
-  public void finished(Iterable<? extends TestSuite> testSuites) {
-    LOGGER.log(Level.FINE, "Finished test suite");
-    reporters.forEach(reporter -> reporter.finished(testSuites));
+  public void finished(Plan plan) {
+    LOGGER.log(Level.FINE, "Finished plan");
+    reporters.forEach(reporter -> reporter.finished(plan));
   }
 
   @Override
@@ -44,21 +47,21 @@ class ReporterImpl implements Reporter {
   }
 
   @Override
-  public void skipped(String reason, TestCase testCase) {
-    LOGGER.log(Level.FINE, "Skipped test case");
-    reporters.forEach(reporter -> reporter.skipped(reason, testCase));
+  public void skipped(Data data, String reason) {
+    LOGGER.log(Level.FINE, "Skipped data");
+    reporters.forEach(reporter -> reporter.skipped(data, reason));
   }
 
   @Override
-  public void started(TestCase testCase) {
-    LOGGER.log(Level.FINE, "Started test case");
-    reporters.forEach(reporter -> reporter.started(testCase));
+  public void started(Data data) {
+    LOGGER.log(Level.FINE, "Started data");
+    reporters.forEach(reporter -> reporter.started(data));
   }
 
   @Override
-  public void started(Iterable<? extends TestSuite> testSuites) {
-    LOGGER.log(Level.FINE, "Started test suite");
-    reporters.forEach(reporter -> reporter.started(testSuites));
+  public void started(Plan plan) {
+    LOGGER.log(Level.FINE, "Started plan");
+    reporters.forEach(reporter -> reporter.started(plan));
   }
 
   private void addReporter(String name) {

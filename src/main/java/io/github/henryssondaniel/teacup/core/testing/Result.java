@@ -1,20 +1,20 @@
-package io.github.henryssondaniel.teacup.core.reporting;
+package io.github.henryssondaniel.teacup.core.testing;
 
 import java.util.Optional;
 
 /**
- * Test result.
+ * Result.
  *
  * @since 1.1
  */
-public interface TestResult {
+public interface Result {
   /**
-   * Retuns the test status.
+   * Retuns the status.
    *
-   * @return the test status
+   * @return the status
    * @since 1.1
    */
-  TestStatus getTestStatus();
+  Status getStatus();
 
   /**
    * Returns an optional throwable.

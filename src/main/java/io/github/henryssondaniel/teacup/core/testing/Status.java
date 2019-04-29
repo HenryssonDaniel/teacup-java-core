@@ -1,11 +1,11 @@
-package io.github.henryssondaniel.teacup.core.reporting;
+package io.github.henryssondaniel.teacup.core.testing;
 
 /**
  * Test status.
  *
  * @since 1.1
  */
-public enum TestStatus {
+public enum Status {
   /**
    * Aborted.
    *

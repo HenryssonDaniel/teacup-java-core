@@ -1,13 +1,13 @@
-package io.github.henryssondaniel.teacup.core.reporting;
+package io.github.henryssondaniel.teacup.core.testing;
 
 import java.nio.file.Path;
 
 /**
- * Test case.
+ * Data.
  *
  * @since 1.1
  */
-public interface TestCase {
+public interface Data {
   /**
    * Returns the name.
    *
@@ -39,6 +39,14 @@ public interface TestCase {
    * @since 1.1
    */
   long getTimeStarted();
+
+  /**
+   * Returns the type.
+   *
+   * @return the type
+   * @since 1.1
+   */
+  Type getType();
 
   /**
    * Sets the time finished.

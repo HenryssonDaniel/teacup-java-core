@@ -1,5 +1,8 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
+import io.github.henryssondaniel.teacup.core.testing.Data;
+import io.github.henryssondaniel.teacup.core.testing.Plan;
+import io.github.henryssondaniel.teacup.core.testing.Result;
 import java.util.logging.LogRecord;
 
 /**
@@ -11,19 +14,19 @@ public interface Reporter {
   /**
    * Finished.
    *
-   * @param testCase the test case
-   * @param testResult the test status
+   * @param data the data
+   * @param result the result
    * @since 1.1
    */
-  void finished(TestCase testCase, TestResult testResult);
+  void finished(Data data, Result result);
 
   /**
    * Finished.
    *
-   * @param testSuites the test suites
+   * @param plan the plan
    * @since 1.1
    */
-  void finished(Iterable<? extends TestSuite> testSuites);
+  void finished(Plan plan);
 
   /**
    * Log.
@@ -36,25 +39,25 @@ public interface Reporter {
   /**
    * Skipped.
    *
+   * @param data the data
    * @param reason the reason
-   * @param testCase the test case
    * @since 1.1
    */
-  void skipped(String reason, TestCase testCase);
+  void skipped(Data data, String reason);
 
   /**
    * Started.
    *
-   * @param testCase the test case
+   * @param data the data
    * @since 1.1
    */
-  void started(TestCase testCase);
+  void started(Data data);
 
   /**
    * Started.
    *
-   * @param testSuites the test suites
+   * @param plan the plan
    * @since 1.1
    */
-  void started(Iterable<? extends TestSuite> testSuites);
+  void started(Plan plan);
 }

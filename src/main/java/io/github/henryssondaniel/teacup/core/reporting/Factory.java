@@ -1,7 +1,6 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
 import java.nio.file.Path;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,45 +19,6 @@ public enum Factory {
               .resolve(".teacup")
               .resolve("teacup.properties")
               .toFile());
-
-  /**
-   * Creates a new test case.
-   *
-   * @param name the name
-   * @param path the path
-   * @return the test case
-   * @since 1.1
-   */
-  public static TestCase createTestCase(String name, Path path) {
-    LOGGER.log(Level.FINE, "Creating a new test case.");
-    return new TestCaseImpl(name, path);
-  }
-
-  /**
-   * Creates a new test result.
-   *
-   * @param testStatus the test status
-   * @param throwable the throwable
-   * @return the test result
-   * @since 1.1
-   */
-  public static TestResult createTestResult(TestStatus testStatus, Throwable throwable) {
-    LOGGER.log(Level.FINE, "Creating a new test result.");
-    return new TestResultImpl(testStatus, throwable);
-  }
-
-  /**
-   * Creates a new test suite.
-   *
-   * @param name the name
-   * @param testCases the test cases
-   * @return the test suite
-   * @since 1.1
-   */
-  public static TestSuite createTestSuite(String name, Set<TestCase> testCases) {
-    LOGGER.log(Level.FINE, "Creating a new test suite.");
-    return new TestSuiteImpl(name, testCases);
-  }
 
   /**
    * Returns the reporter.

@@ -4,16 +4,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import io.github.henryssondaniel.teacup.core.testing.Data;
+import io.github.henryssondaniel.teacup.core.testing.Plan;
+import io.github.henryssondaniel.teacup.core.testing.Result;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Collections;
 import java.util.logging.LogRecord;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 class ReporterImplTest {
   private static final String NAME = "teacup.properties";
+
+  private final Data data = mock(Data.class);
+  private final Plan plan = mock(Plan.class);
 
   @Test
   void constructorWithEmptyProperty(@TempDir File folder)
@@ -51,21 +56,18 @@ class ReporterImplTest {
   }
 
   @Test
-  void finishedTestCase(@TempDir File folder)
+  void finishedData(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
-    var testCase = mock(TestCase.class);
-    var testResult = mock(TestResult.class);
-
-    createReporter(folder).finished(testCase, testResult);
-    verify(testCase).getName();
+    var result = mock(Result.class);
+    createReporter(folder).finished(data, result);
+    verify(data).getName();
   }
 
   @Test
-  void finishedTestSuite(@TempDir File folder)
+  void finishedPlan(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
-    var testSuite = mock(TestSuite.class);
-    createReporter(folder).finished(Collections.singleton(testSuite));
-    verify(testSuite).getName();
+    createReporter(folder).finished(plan);
+    verify(plan).getTimeFinished();
   }
 
   @Test
@@ -78,25 +80,22 @@ class ReporterImplTest {
   @Test
   void skipped(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
-    var testCase = mock(TestCase.class);
-    createReporter(folder).skipped("reason", testCase);
-    verify(testCase).getName();
+    createReporter(folder).skipped(data, "reason");
+    verify(data).getName();
   }
 
   @Test
-  void startedTestCase(@TempDir File folder)
+  void startedData(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
-    var testCase = mock(TestCase.class);
-    createReporter(folder).started(testCase);
-    verify(testCase).getName();
+    createReporter(folder).started(data);
+    verify(data).getName();
   }
 
   @Test
-  void startedTestSuite(@TempDir File folder)
+  void startedPlan(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
-    var testSuite = mock(TestSuite.class);
-    createReporter(folder).started(Collections.singleton(testSuite));
-    verify(testSuite).getName();
+    createReporter(folder).started(plan);
+    verify(plan).getTimeFinished();
   }
 
   private static Reporter createReporter(@TempDir File folder)

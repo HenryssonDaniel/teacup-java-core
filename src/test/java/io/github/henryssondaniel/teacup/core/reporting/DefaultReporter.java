@@ -1,6 +1,9 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
 import io.github.henryssondaniel.teacup.core.logging.Factory;
+import io.github.henryssondaniel.teacup.core.testing.Data;
+import io.github.henryssondaniel.teacup.core.testing.Plan;
+import io.github.henryssondaniel.teacup.core.testing.Result;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
@@ -9,15 +12,15 @@ public class DefaultReporter implements Reporter {
   private static final Logger LOGGER = Factory.getLogger(DefaultReporter.class);
 
   @Override
-  public void finished(TestCase testCase, TestResult testResult) {
+  public void finished(Data data, Result result) {
     LOGGER.log(Level.FINE, "Finished");
-    testCase.getName();
+    data.getName();
   }
 
   @Override
-  public void finished(Iterable<? extends TestSuite> testSuites) {
+  public void finished(Plan plan) {
     LOGGER.log(Level.FINE, "Finished");
-    testSuites.forEach(TestSuite::getName);
+    plan.getTimeFinished();
   }
 
   @Override
@@ -27,20 +30,20 @@ public class DefaultReporter implements Reporter {
   }
 
   @Override
-  public void skipped(String reason, TestCase testCase) {
+  public void skipped(Data data, String reason) {
     LOGGER.log(Level.FINE, "Skipped");
-    testCase.getName();
+    data.getName();
   }
 
   @Override
-  public void started(TestCase testCase) {
+  public void started(Data data) {
     LOGGER.log(Level.FINE, "Started");
-    testCase.getName();
+    data.getName();
   }
 
   @Override
-  public void started(Iterable<? extends TestSuite> testSuites) {
+  public void started(Plan plan) {
     LOGGER.log(Level.FINE, "Started");
-    testSuites.forEach(TestSuite::getName);
+    plan.getTimeFinished();
   }
 }

@@ -1,24 +1,24 @@
-package io.github.henryssondaniel.teacup.core.reporting;
+package io.github.henryssondaniel.teacup.core.testing;
 
 import io.github.henryssondaniel.teacup.core.logging.Factory;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class TestResultImpl implements TestResult {
-  private static final Logger LOGGER = Factory.getLogger(TestResultImpl.class);
+class ResultImpl implements Result {
+  private static final Logger LOGGER = Factory.getLogger(ResultImpl.class);
 
-  private final TestStatus testStatus;
+  private final Status status;
   private final Throwable throwable;
 
-  TestResultImpl(TestStatus testStatus, Throwable throwable) {
-    this.testStatus = testStatus;
+  ResultImpl(Status status, Throwable throwable) {
+    this.status = status;
     this.throwable = throwable;
   }
 
   @Override
-  public TestStatus getTestStatus() {
-    return testStatus;
+  public Status getStatus() {
+    return status;
   }
 
   @Override
