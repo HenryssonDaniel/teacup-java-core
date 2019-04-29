@@ -1,7 +1,7 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
 import io.github.henryssondaniel.teacup.core.testing.Case;
-import io.github.henryssondaniel.teacup.core.testing.Plan;
+import io.github.henryssondaniel.teacup.core.testing.Container;
 import io.github.henryssondaniel.teacup.core.testing.Result;
 import io.github.henryssondaniel.teacup.core.testing.Suite;
 import java.util.logging.LogRecord;
@@ -57,10 +57,10 @@ public interface Reporter {
   /**
    * Started.
    *
-   * @param plan the plan
+   * @param container the container
    * @since 1.1
    */
-  void started(Plan plan);
+  void started(Container container);
 
   /**
    * Started.

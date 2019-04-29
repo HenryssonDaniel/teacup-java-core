@@ -1,11 +1,11 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
 /**
- * Plan.
+ * Container.
  *
  * @since 1.1
  */
-public interface Plan extends Data {
+public interface Container extends Executable {
   /**
    * Returns the cases.
    *

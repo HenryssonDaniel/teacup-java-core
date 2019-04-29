@@ -1,6 +1,11 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
-interface Data {
+/**
+ * Executable.
+ *
+ * @since 1.1
+ */
+public interface Executable {
   /**
    * Returns the time finished.
    *

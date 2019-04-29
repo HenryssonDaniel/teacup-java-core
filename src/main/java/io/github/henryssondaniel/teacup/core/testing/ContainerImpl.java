@@ -6,13 +6,13 @@ import java.util.LinkedHashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class PlanImpl extends DataImpl implements Plan {
-  private static final Logger LOGGER = Factory.getLogger(PlanImpl.class);
+class ContainerImpl extends ExecutableImpl implements Container {
+  private static final Logger LOGGER = Factory.getLogger(ContainerImpl.class);
 
   private final Collection<Case> cases = new LinkedHashSet<>(0);
   private final Collection<Suite> suites = new LinkedHashSet<>(0);
 
-  PlanImpl(Collection<? extends Case> cases, Collection<? extends Suite> suites) {
+  ContainerImpl(Collection<? extends Case> cases, Collection<? extends Suite> suites) {
     this.cases.addAll(cases);
     this.suites.addAll(suites);
   }

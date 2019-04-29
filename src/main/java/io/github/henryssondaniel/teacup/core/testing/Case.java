@@ -1,13 +1,11 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
-import java.nio.file.Path;
-
 /**
  * Case.
  *
  * @since 1.1
  */
-public interface Case extends Data {
+public interface Case extends Executable, Physical {
   /**
    * Returns the name.
    *
@@ -15,12 +13,4 @@ public interface Case extends Data {
    * @since 1.1
    */
   String getName();
-
-  /**
-   * Returns the path.
-   *
-   * @return the path
-   * @since 1.1
-   */
-  Path getPath();
 }

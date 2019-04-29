@@ -2,7 +2,7 @@ package io.github.henryssondaniel.teacup.core.testing;
 
 import java.nio.file.Path;
 
-class CaseImpl extends DataImpl implements Case {
+class CaseImpl extends ExecutableImpl implements Case {
   private final String name;
   private final Path path;
 

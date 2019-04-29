@@ -1,7 +1,7 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
 import io.github.henryssondaniel.teacup.core.testing.Case;
-import io.github.henryssondaniel.teacup.core.testing.Plan;
+import io.github.henryssondaniel.teacup.core.testing.Container;
 import io.github.henryssondaniel.teacup.core.testing.Result;
 import io.github.henryssondaniel.teacup.core.testing.Suite;
 import java.io.File;
@@ -60,9 +60,9 @@ class ReporterImpl implements Reporter {
   }
 
   @Override
-  public void started(Plan plan) {
-    LOGGER.log(Level.FINE, "Started plan");
-    reporters.forEach(reporter -> reporter.started(plan));
+  public void started(Container container) {
+    LOGGER.log(Level.FINE, "Started container");
+    reporters.forEach(reporter -> reporter.started(container));
   }
 
   @Override

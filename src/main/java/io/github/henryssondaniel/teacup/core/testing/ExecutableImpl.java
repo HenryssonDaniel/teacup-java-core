@@ -1,6 +1,6 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
-class DataImpl implements Data {
+class ExecutableImpl implements Executable {
   private long timeFinished;
   private long timeStarted;
 

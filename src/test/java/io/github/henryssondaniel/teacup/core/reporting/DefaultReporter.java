@@ -2,7 +2,7 @@ package io.github.henryssondaniel.teacup.core.reporting;
 
 import io.github.henryssondaniel.teacup.core.logging.Factory;
 import io.github.henryssondaniel.teacup.core.testing.Case;
-import io.github.henryssondaniel.teacup.core.testing.Plan;
+import io.github.henryssondaniel.teacup.core.testing.Container;
 import io.github.henryssondaniel.teacup.core.testing.Result;
 import io.github.henryssondaniel.teacup.core.testing.Suite;
 import java.util.logging.Level;
@@ -43,9 +43,9 @@ public class DefaultReporter implements Reporter {
   }
 
   @Override
-  public void started(Plan plan) {
+  public void started(Container container) {
     LOGGER.log(Level.FINE, "Started");
-    plan.getTimeFinished();
+    container.getTimeFinished();
   }
 
   @Override

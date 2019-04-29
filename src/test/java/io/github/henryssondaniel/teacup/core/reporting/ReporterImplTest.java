@@ -5,7 +5,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import io.github.henryssondaniel.teacup.core.testing.Case;
-import io.github.henryssondaniel.teacup.core.testing.Plan;
+import io.github.henryssondaniel.teacup.core.testing.Container;
 import io.github.henryssondaniel.teacup.core.testing.Result;
 import io.github.henryssondaniel.teacup.core.testing.Suite;
 import java.io.File;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.io.TempDir;
 class ReporterImplTest {
   private static final String NAME = "teacup.properties";
   private static final String REASON = "reason";
-  private final Plan plan = mock(Plan.class);
+  private final Container container = mock(Container.class);
   private final Result result = mock(Result.class);
   private final Suite suite = mock(Suite.class);
   private final Case testCase = mock(Case.class);
@@ -87,17 +87,17 @@ class ReporterImplTest {
   }
 
   @Test
-  void startedData(@TempDir File folder)
+  void startedCase(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
     createReporter(folder).started(testCase);
     verify(testCase).getName();
   }
 
   @Test
-  void startedPlan(@TempDir File folder)
+  void startedContainer(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter(folder).started(plan);
-    verify(plan).getTimeFinished();
+    createReporter(folder).started(container);
+    verify(container).getTimeFinished();
   }
 
   @Test

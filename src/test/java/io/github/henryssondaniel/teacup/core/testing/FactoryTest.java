@@ -12,9 +12,9 @@ class FactoryTest {
   }
 
   @Test
-  void createPlan() {
-    assertThat(Factory.createPlan(Collections.emptyList(), Collections.emptyList()))
-        .isExactlyInstanceOf(PlanImpl.class);
+  void createContainer() {
+    assertThat(Factory.createContainer(Collections.emptyList(), Collections.emptyList()))
+        .isExactlyInstanceOf(ContainerImpl.class);
   }
 
   @Test
