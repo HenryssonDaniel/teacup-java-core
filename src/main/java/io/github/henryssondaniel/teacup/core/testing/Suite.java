@@ -1,11 +1,13 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
+import java.nio.file.Path;
+
 /**
- * Plan.
+ * Suite.
  *
  * @since 1.1
  */
-public interface Plan {
+public interface Suite {
   /**
    * Returns the cases.
    *
@@ -13,6 +15,14 @@ public interface Plan {
    * @since 1.1
    */
   Iterable<Case> getCases();
+
+  /**
+   * Returns the path.
+   *
+   * @return the path
+   * @since 1.1
+   */
+  Path getPath();
 
   /**
    * Returns the suites.

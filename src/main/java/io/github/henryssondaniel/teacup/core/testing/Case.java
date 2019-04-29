@@ -3,11 +3,11 @@ package io.github.henryssondaniel.teacup.core.testing;
 import java.nio.file.Path;
 
 /**
- * Data.
+ * Case.
  *
  * @since 1.1
  */
-public interface Data {
+public interface Case {
   /**
    * Returns the name.
    *
@@ -39,14 +39,6 @@ public interface Data {
    * @since 1.1
    */
   long getTimeStarted();
-
-  /**
-   * Returns the type.
-   *
-   * @return the type
-   * @since 1.1
-   */
-  Type getType();
 
   /**
    * Sets the time finished.

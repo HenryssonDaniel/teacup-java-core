@@ -7,17 +7,24 @@ import org.junit.jupiter.api.Test;
 
 class FactoryTest {
   @Test
-  void createTestCase() {
-    assertThat(Factory.createData(null, null, null)).isExactlyInstanceOf(DataImpl.class);
+  void createCase() {
+    assertThat(Factory.createCase(null, null)).isExactlyInstanceOf(CaseImpl.class);
   }
 
   @Test
-  void createTestResult() {
+  void createPlan() {
+    assertThat(Factory.createPlan(Collections.emptyList(), Collections.emptyList()))
+        .isExactlyInstanceOf(PlanImpl.class);
+  }
+
+  @Test
+  void createResult() {
     assertThat(Factory.createResult(null, null)).isExactlyInstanceOf(ResultImpl.class);
   }
 
   @Test
-  void createTestSuite() {
-    assertThat(Factory.createPlan(Collections.emptyList())).isExactlyInstanceOf(PlanImpl.class);
+  void createSuite() {
+    assertThat(Factory.createSuite(Collections.emptyList(), null, Collections.emptyList()))
+        .isExactlyInstanceOf(SuiteImpl.class);
   }
 }

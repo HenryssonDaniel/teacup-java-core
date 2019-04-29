@@ -1,8 +1,9 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
-import io.github.henryssondaniel.teacup.core.testing.Data;
+import io.github.henryssondaniel.teacup.core.testing.Case;
 import io.github.henryssondaniel.teacup.core.testing.Plan;
 import io.github.henryssondaniel.teacup.core.testing.Result;
+import io.github.henryssondaniel.teacup.core.testing.Suite;
 import java.util.logging.LogRecord;
 
 /**
@@ -14,19 +15,10 @@ public interface Reporter {
   /**
    * Finished.
    *
-   * @param data the data
    * @param result the result
    * @since 1.1
    */
-  void finished(Data data, Result result);
-
-  /**
-   * Finished.
-   *
-   * @param plan the plan
-   * @since 1.1
-   */
-  void finished(Plan plan);
+  void finished(Result result);
 
   /**
    * Log.
@@ -39,19 +31,28 @@ public interface Reporter {
   /**
    * Skipped.
    *
-   * @param data the data
    * @param reason the reason
+   * @param testCase the test case
    * @since 1.1
    */
-  void skipped(Data data, String reason);
+  void skipped(String reason, Case testCase);
+
+  /**
+   * Skipped.
+   *
+   * @param reason the reason
+   * @param suite the suite
+   * @since 1.1
+   */
+  void skipped(String reason, Suite suite);
 
   /**
    * Started.
    *
-   * @param data the data
+   * @param testCase the test case
    * @since 1.1
    */
-  void started(Data data);
+  void started(Case testCase);
 
   /**
    * Started.
@@ -60,4 +61,12 @@ public interface Reporter {
    * @since 1.1
    */
   void started(Plan plan);
+
+  /**
+   * Started.
+   *
+   * @param suite the suite
+   * @since 1.1
+   */
+  void started(Suite suite);
 }

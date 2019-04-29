@@ -7,12 +7,18 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 class PlanImplTest {
-  private final Collection<Data> data = Collections.emptySet();
-  private final Plan plan = new PlanImpl(data);
+  private final Collection<Case> cases = Collections.emptySet();
+  private final Collection<Suite> suites = Collections.emptySet();
+  private final Plan plan = new PlanImpl(cases, suites);
 
   @Test
-  void getTestCases() {
-    assertThat(plan.getData()).isEqualTo(data);
+  void getCases() {
+    assertThat(plan.getCases()).isEqualTo(cases);
+  }
+
+  @Test
+  void getSuites() {
+    assertThat(plan.getSuites()).isEqualTo(suites);
   }
 
   @Test

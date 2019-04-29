@@ -16,29 +16,30 @@ public enum Factory {
   private static final Logger LOGGER = Logger.getLogger(Factory.class.getName());
 
   /**
-   * Creates a new data.
+   * Creates a new case.
    *
    * @param name the name
    * @param path the path
-   * @param type the type
-   * @return the data
+   * @return the case
    * @since 1.1
    */
-  public static Data createData(String name, Path path, Type type) {
-    LOGGER.log(Level.FINE, "Creating a new data.");
-    return new DataImpl(name, path, type);
+  public static Case createCase(String name, Path path) {
+    LOGGER.log(Level.FINE, "Creating a new case.");
+    return new CaseImpl(name, path);
   }
 
   /**
    * Creates a new plan.
    *
-   * @param data the data
+   * @param cases the cases
+   * @param suites the cases
    * @return the plan
    * @since 1.1
    */
-  public static Plan createPlan(Collection<? extends Data> data) {
+  public static Plan createPlan(
+      Collection<? extends Case> cases, Collection<? extends Suite> suites) {
     LOGGER.log(Level.FINE, "Creating a new plan.");
-    return new PlanImpl(data);
+    return new PlanImpl(cases, suites);
   }
 
   /**
@@ -52,5 +53,20 @@ public enum Factory {
   public static Result createResult(Status status, Throwable throwable) {
     LOGGER.log(Level.FINE, "Creating a new test result.");
     return new ResultImpl(status, throwable);
+  }
+
+  /**
+   * Creates a new suite.
+   *
+   * @param cases the cases
+   * @param path the path
+   * @param suites the cases
+   * @return the suite
+   * @since 1.1
+   */
+  public static Suite createSuite(
+      Collection<? extends Case> cases, Path path, Collection<? extends Suite> suites) {
+    LOGGER.log(Level.FINE, "Creating a new suite.");
+    return new SuiteImpl(cases, path, suites);
   }
 }

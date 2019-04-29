@@ -1,29 +1,35 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
 import java.nio.file.Path;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 
-class DataImpl implements Data {
-  private final String name;
+class SuiteImpl implements Suite {
+  private final Collection<Case> cases = new LinkedHashSet<>(0);
   private final Path path;
-  private final Type type;
-
+  private final Collection<Suite> suites = new LinkedHashSet<>(0);
   private long timeFinished;
   private long timeStarted;
 
-  DataImpl(String name, Path path, Type type) {
-    this.name = name;
+  SuiteImpl(Collection<? extends Case> cases, Path path, Collection<? extends Suite> suites) {
+    this.cases.addAll(cases);
     this.path = path;
-    this.type = type;
+    this.suites.addAll(suites);
   }
 
   @Override
-  public String getName() {
-    return name;
+  public Iterable<Case> getCases() {
+    return new LinkedHashSet<>(cases);
   }
 
   @Override
   public Path getPath() {
     return path;
+  }
+
+  @Override
+  public Iterable<Suite> getSuites() {
+    return new LinkedHashSet<>(suites);
   }
 
   @Override
@@ -34,11 +40,6 @@ class DataImpl implements Data {
   @Override
   public long getTimeStarted() {
     return timeStarted;
-  }
-
-  @Override
-  public Type getType() {
-    return type;
   }
 
   @Override

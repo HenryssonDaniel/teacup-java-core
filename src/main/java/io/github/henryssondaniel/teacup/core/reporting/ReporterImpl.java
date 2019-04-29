@@ -1,8 +1,9 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
-import io.github.henryssondaniel.teacup.core.testing.Data;
+import io.github.henryssondaniel.teacup.core.testing.Case;
 import io.github.henryssondaniel.teacup.core.testing.Plan;
 import io.github.henryssondaniel.teacup.core.testing.Result;
+import io.github.henryssondaniel.teacup.core.testing.Suite;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,15 +30,9 @@ class ReporterImpl implements Reporter {
   }
 
   @Override
-  public void finished(Data data, Result result) {
-    LOGGER.log(Level.FINE, "Finished data");
-    reporters.forEach(reporter -> reporter.finished(data, result));
-  }
-
-  @Override
-  public void finished(Plan plan) {
-    LOGGER.log(Level.FINE, "Finished plan");
-    reporters.forEach(reporter -> reporter.finished(plan));
+  public void finished(Result result) {
+    LOGGER.log(Level.FINE, "Finished with result");
+    reporters.forEach(reporter -> reporter.finished(result));
   }
 
   @Override
@@ -47,21 +42,33 @@ class ReporterImpl implements Reporter {
   }
 
   @Override
-  public void skipped(Data data, String reason) {
-    LOGGER.log(Level.FINE, "Skipped data");
-    reporters.forEach(reporter -> reporter.skipped(data, reason));
+  public void skipped(String reason, Case testCase) {
+    LOGGER.log(Level.FINE, "Skipped test case");
+    reporters.forEach(reporter -> reporter.skipped(reason, testCase));
   }
 
   @Override
-  public void started(Data data) {
-    LOGGER.log(Level.FINE, "Started data");
-    reporters.forEach(reporter -> reporter.started(data));
+  public void skipped(String reason, Suite suite) {
+    LOGGER.log(Level.FINE, "Skipped suite");
+    reporters.forEach(reporter -> reporter.skipped(reason, suite));
+  }
+
+  @Override
+  public void started(Case testCase) {
+    LOGGER.log(Level.FINE, "Started test case");
+    reporters.forEach(reporter -> reporter.started(testCase));
   }
 
   @Override
   public void started(Plan plan) {
     LOGGER.log(Level.FINE, "Started plan");
     reporters.forEach(reporter -> reporter.started(plan));
+  }
+
+  @Override
+  public void started(Suite suite) {
+    LOGGER.log(Level.FINE, "Started suite");
+    reporters.forEach(reporter -> reporter.started(suite));
   }
 
   private void addReporter(String name) {
