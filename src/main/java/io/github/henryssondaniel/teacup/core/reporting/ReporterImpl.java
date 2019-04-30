@@ -1,9 +1,9 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
-import io.github.henryssondaniel.teacup.core.testing.Case;
 import io.github.henryssondaniel.teacup.core.testing.Container;
+import io.github.henryssondaniel.teacup.core.testing.Executable;
 import io.github.henryssondaniel.teacup.core.testing.Result;
-import io.github.henryssondaniel.teacup.core.testing.Suite;
+import io.github.henryssondaniel.teacup.core.testing.Root;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -42,33 +42,33 @@ class ReporterImpl implements Reporter {
   }
 
   @Override
-  public void skipped(String reason, Case testCase) {
-    LOGGER.log(Level.FINE, "Skipped test case");
-    reporters.forEach(reporter -> reporter.skipped(reason, testCase));
+  public void skipped(Executable executable, String reason) {
+    LOGGER.log(Level.FINE, "Skipped executable");
+    reporters.forEach(reporter -> reporter.skipped(executable, reason));
   }
 
   @Override
-  public void skipped(String reason, Suite suite) {
-    LOGGER.log(Level.FINE, "Skipped suite");
-    reporters.forEach(reporter -> reporter.skipped(reason, suite));
+  public void skipped(Container container, String reason) {
+    LOGGER.log(Level.FINE, "Skipped container");
+    reporters.forEach(reporter -> reporter.skipped(container, reason));
   }
 
   @Override
-  public void started(Case testCase) {
-    LOGGER.log(Level.FINE, "Started test case");
-    reporters.forEach(reporter -> reporter.started(testCase));
+  public void started(Executable executable) {
+    LOGGER.log(Level.FINE, "Started executable");
+    reporters.forEach(reporter -> reporter.started(executable));
+  }
+
+  @Override
+  public void started(Root root) {
+    LOGGER.log(Level.FINE, "Started root");
+    reporters.forEach(reporter -> reporter.started(root));
   }
 
   @Override
   public void started(Container container) {
     LOGGER.log(Level.FINE, "Started container");
     reporters.forEach(reporter -> reporter.started(container));
-  }
-
-  @Override
-  public void started(Suite suite) {
-    LOGGER.log(Level.FINE, "Started suite");
-    reporters.forEach(reporter -> reporter.started(suite));
   }
 
   private void addReporter(String name) {

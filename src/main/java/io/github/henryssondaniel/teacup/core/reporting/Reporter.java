@@ -1,9 +1,9 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
-import io.github.henryssondaniel.teacup.core.testing.Case;
 import io.github.henryssondaniel.teacup.core.testing.Container;
+import io.github.henryssondaniel.teacup.core.testing.Executable;
 import io.github.henryssondaniel.teacup.core.testing.Result;
-import io.github.henryssondaniel.teacup.core.testing.Suite;
+import io.github.henryssondaniel.teacup.core.testing.Root;
 import java.util.logging.LogRecord;
 
 /**
@@ -31,28 +31,36 @@ public interface Reporter {
   /**
    * Skipped.
    *
+   * @param executable the executable
    * @param reason the reason
-   * @param testCase the test case
    * @since 1.1
    */
-  void skipped(String reason, Case testCase);
+  void skipped(Executable executable, String reason);
 
   /**
    * Skipped.
    *
+   * @param container the container
    * @param reason the reason
-   * @param suite the suite
    * @since 1.1
    */
-  void skipped(String reason, Suite suite);
+  void skipped(Container container, String reason);
 
   /**
    * Started.
    *
-   * @param testCase the test case
+   * @param executable the executable
    * @since 1.1
    */
-  void started(Case testCase);
+  void started(Executable executable);
+
+  /**
+   * Started.
+   *
+   * @param root the root
+   * @since 1.1
+   */
+  void started(Root root);
 
   /**
    * Started.
@@ -61,12 +69,4 @@ public interface Reporter {
    * @since 1.1
    */
   void started(Container container);
-
-  /**
-   * Started.
-   *
-   * @param suite the suite
-   * @since 1.1
-   */
-  void started(Suite suite);
 }

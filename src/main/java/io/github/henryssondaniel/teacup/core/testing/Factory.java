@@ -17,30 +17,39 @@ public enum Factory {
   private static final String NEW = "Creating a new {0}.";
 
   /**
-   * Creates a new case.
-   *
-   * @param name the name
-   * @param path the path
-   * @return the case
-   * @since 1.1
-   */
-  public static Case createCase(String name, Path path) {
-    LOGGER.log(Level.FINE, NEW, "case");
-    return new CaseImpl(name, path);
-  }
-
-  /**
    * Creates a new container.
    *
-   * @param cases the cases
-   * @param suites the cases
+   * @param containers the containers
+   * @param executables the executables
+   * @param path the path
    * @return the container
    * @since 1.1
    */
   public static Container createContainer(
-      Collection<? extends Case> cases, Collection<? extends Suite> suites) {
+      Collection<? extends Container> containers,
+      Collection<? extends Executable> executables,
+      Path path) {
     LOGGER.log(Level.FINE, NEW, "container");
-    return new ContainerImpl(cases, suites);
+    return new ContainerImpl(containers, executables, path);
+  }
+
+  /**
+   * Creates a new executable.
+   *
+   * @param containers the containers
+   * @param executables the executables
+   * @param name the name
+   * @param path the path
+   * @return the executable
+   * @since 1.1
+   */
+  public static Executable createExecutable(
+      Collection<? extends Container> containers,
+      Collection<? extends Executable> executables,
+      String name,
+      Path path) {
+    LOGGER.log(Level.FINE, NEW, "executable");
+    return new ExecutableImpl(containers, executables, name, path);
   }
 
   /**
@@ -57,17 +66,16 @@ public enum Factory {
   }
 
   /**
-   * Creates a new suite.
+   * Creates a new root.
    *
-   * @param cases the cases
-   * @param path the path
-   * @param suites the cases
-   * @return the suite
+   * @param executables the containers
+   * @param containers the executables
+   * @return the root
    * @since 1.1
    */
-  public static Suite createSuite(
-      Collection<? extends Case> cases, Path path, Collection<? extends Suite> suites) {
-    LOGGER.log(Level.FINE, NEW, "suite");
-    return new SuiteImpl(cases, path, suites);
+  public static Root createRoot(
+      Collection<? extends Container> containers, Collection<? extends Executable> executables) {
+    LOGGER.log(Level.FINE, NEW, "container");
+    return new RootImpl(containers, executables);
   }
 }

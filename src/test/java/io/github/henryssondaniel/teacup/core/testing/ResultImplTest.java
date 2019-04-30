@@ -8,15 +8,15 @@ class ResultImplTest {
   private static final Status STATUS = Status.SUCCESSFUL;
 
   private final Throwable throwable = new Throwable("test");
-  private final Result testResult = new ResultImpl(STATUS, throwable);
+  private final Result result = new ResultImpl(STATUS, throwable);
 
   @Test
   void getStatus() {
-    assertThat(testResult.getStatus()).isSameAs(STATUS);
+    assertThat(result.getStatus()).isSameAs(STATUS);
   }
 
   @Test
   void getThrowable() {
-    assertThat(testResult.getThrowable()).containsSame(throwable);
+    assertThat(result.getThrowable()).containsSame(throwable);
   }
 }

@@ -1,40 +1,18 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
 /**
- * Executable.
+ * Has the same behavior as {@link Container}, with the addition that it contains a name. The
+ * executable should be used for everything that can be executed as a test. This includes tests that
+ * contains other tests, or containers. In JUnit, this can be a test method.
  *
  * @since 1.1
  */
-public interface Executable {
+public interface Executable extends Container {
   /**
-   * Returns the time finished.
+   * Returns the name.
    *
-   * @return the time finished
+   * @return the name
    * @since 1.1
    */
-  long getTimeFinished();
-
-  /**
-   * Returns the time started.
-   *
-   * @return the time started
-   * @since 1.1
-   */
-  long getTimeStarted();
-
-  /**
-   * Sets the time finished.
-   *
-   * @param timeFinished the time finished
-   * @since 1.1
-   */
-  void setTimeFinished(long timeFinished);
-
-  /**
-   * Sets the time started.
-   *
-   * @param timeStarted the time started
-   * @since 1.1
-   */
-  void setTimeStarted(long timeStarted);
+  String getName();
 }

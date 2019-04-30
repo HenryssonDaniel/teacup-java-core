@@ -1,7 +1,7 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
 /**
- * Test status.
+ * Status.
  *
  * @since 1.1
  */

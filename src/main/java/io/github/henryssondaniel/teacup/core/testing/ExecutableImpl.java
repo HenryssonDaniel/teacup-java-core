@@ -1,26 +1,22 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
-class ExecutableImpl implements Executable {
-  private long timeFinished;
-  private long timeStarted;
+import java.nio.file.Path;
+import java.util.Collection;
 
-  @Override
-  public long getTimeFinished() {
-    return timeFinished;
+class ExecutableImpl extends ContainerImpl implements Executable {
+  private final String name;
+
+  ExecutableImpl(
+      Collection<? extends Container> containers,
+      Collection<? extends Executable> executables,
+      String name,
+      Path path) {
+    super(containers, executables, path);
+    this.name = name;
   }
 
   @Override
-  public long getTimeStarted() {
-    return timeStarted;
-  }
-
-  @Override
-  public void setTimeFinished(long timeFinished) {
-    this.timeFinished = timeFinished;
-  }
-
-  @Override
-  public void setTimeStarted(long timeStarted) {
-    this.timeStarted = timeStarted;
+  public String getName() {
+    return name;
   }
 }

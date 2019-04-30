@@ -9,7 +9,7 @@ import java.util.Optional;
  */
 public interface Result {
   /**
-   * Retuns the status.
+   * Returns the status.
    *
    * @return the status
    * @since 1.1

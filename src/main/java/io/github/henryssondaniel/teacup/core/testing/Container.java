@@ -1,23 +1,20 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
+import java.nio.file.Path;
+
 /**
- * Container.
+ * Has the same behavior as {@link Root}, with the addition that it contains a path. The container
+ * should be used for everything that contains other container and/or executables, but is not an
+ * executable itself. In JUnit, this can be a test class.
  *
  * @since 1.1
  */
-public interface Container extends Executable {
+public interface Container extends Root {
   /**
-   * Returns the cases.
+   * Returns the path.
    *
-   * @return the cases
+   * @return the path
    * @since 1.1
    */
-  Iterable<Case> getCases();
-
-  /**
-   * Returns the suites.
-   *
-   * @return the suites
-   */
-  Iterable<Suite> getSuites();
+  Path getPath();
 }

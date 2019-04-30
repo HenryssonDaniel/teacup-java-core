@@ -4,10 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import io.github.henryssondaniel.teacup.core.testing.Case;
 import io.github.henryssondaniel.teacup.core.testing.Container;
+import io.github.henryssondaniel.teacup.core.testing.Executable;
 import io.github.henryssondaniel.teacup.core.testing.Result;
-import io.github.henryssondaniel.teacup.core.testing.Suite;
+import io.github.henryssondaniel.teacup.core.testing.Root;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,10 +18,11 @@ import org.junit.jupiter.api.io.TempDir;
 class ReporterImplTest {
   private static final String NAME = "teacup.properties";
   private static final String REASON = "reason";
+
   private final Container container = mock(Container.class);
+  private final Executable executable = mock(Executable.class);
   private final Result result = mock(Result.class);
-  private final Suite suite = mock(Suite.class);
-  private final Case testCase = mock(Case.class);
+  private final Root root = mock(Root.class);
 
   @Test
   void constructorWithEmptyProperty(@TempDir File folder)
@@ -73,24 +74,17 @@ class ReporterImplTest {
   }
 
   @Test
-  void skippedCase(@TempDir File folder)
+  void skippedContainer(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter(folder).skipped(REASON, testCase);
-    verify(testCase).getName();
+    createReporter(folder).skipped(container, REASON);
+    verify(container).getTimeFinished();
   }
 
   @Test
-  void skippedSuite(@TempDir File folder)
+  void skippedExecutable(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter(folder).skipped(REASON, suite);
-    verify(suite).getTimeFinished();
-  }
-
-  @Test
-  void startedCase(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter(folder).started(testCase);
-    verify(testCase).getName();
+    createReporter(folder).skipped(executable, REASON);
+    verify(executable).getName();
   }
 
   @Test
@@ -101,10 +95,17 @@ class ReporterImplTest {
   }
 
   @Test
-  void startedSuite(@TempDir File folder)
+  void startedExecutable(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter(folder).started(suite);
-    verify(suite).getTimeFinished();
+    createReporter(folder).started(executable);
+    verify(executable).getName();
+  }
+
+  @Test
+  void startedRoot(@TempDir File folder)
+      throws IOException, IllegalAccessException, NoSuchFieldException {
+    createReporter(folder).started(root);
+    verify(root).getTimeFinished();
   }
 
   private static Reporter createReporter(@TempDir File folder)
