@@ -9,11 +9,26 @@ import java.util.logging.Logger;
 
 public class DefaultReporter implements Reporter {
   private static final Logger LOGGER = Factory.getLogger(DefaultReporter.class);
+  private Iterable<? extends Node> allNodes;
+
+  @Override
+  public void added(Node node) {
+    LOGGER.log(Level.FINE, "Added");
+    node.getName();
+  }
 
   @Override
   public void finished(Result result) {
     LOGGER.log(Level.FINE, "Finished");
     result.getStatus();
+  }
+
+  @Override
+  public void initialized(Iterable<? extends Node> nodes) {
+    LOGGER.log(Level.FINE, "Initialized");
+
+    allNodes = nodes;
+    nodes.forEach(Node::getName);
   }
 
   @Override
@@ -35,8 +50,8 @@ public class DefaultReporter implements Reporter {
   }
 
   @Override
-  public void started(Iterable<? extends Node> nodes) {
-    LOGGER.log(Level.FINE, "Started");
-    nodes.forEach(Node::getName);
+  public void terminated() {
+    LOGGER.log(Level.FINE, "Terminated");
+    allNodes.forEach(Node::getName);
   }
 }

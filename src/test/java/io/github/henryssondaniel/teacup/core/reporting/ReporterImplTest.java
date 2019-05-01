@@ -2,6 +2,7 @@ package io.github.henryssondaniel.teacup.core.reporting;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import io.github.henryssondaniel.teacup.core.testing.Node;
@@ -17,6 +18,13 @@ import org.junit.jupiter.api.io.TempDir;
 class ReporterImplTest {
   private static final String NAME = "teacup.properties";
   private final Node node = mock(Node.class);
+
+  @Test
+  void added(@TempDir File folder)
+      throws IOException, IllegalAccessException, NoSuchFieldException {
+    createReporter(folder).added(node);
+    verify(node).getName();
+  }
 
   @Test
   void constructorWithEmptyProperty(@TempDir File folder)
@@ -62,6 +70,13 @@ class ReporterImplTest {
   }
 
   @Test
+  void initialized(@TempDir File folder)
+      throws IOException, IllegalAccessException, NoSuchFieldException {
+    createReporter(folder).initialized(Collections.singletonList(node));
+    verify(node).getName();
+  }
+
+  @Test
   void log(@TempDir File folder) throws IOException, IllegalAccessException, NoSuchFieldException {
     var logRecord = mock(LogRecord.class);
     createReporter(folder).log(logRecord);
@@ -76,17 +91,20 @@ class ReporterImplTest {
   }
 
   @Test
-  void startedNode(@TempDir File folder)
+  void started(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
     createReporter(folder).started(node);
     verify(node).getName();
   }
 
   @Test
-  void startedNodes(@TempDir File folder)
+  void terminated(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter(folder).started(Collections.singletonList(node));
-    verify(node).getName();
+    var reporter = createReporter(folder);
+    reporter.initialized(Collections.singletonList(node));
+    reporter.terminated();
+
+    verify(node, times(2)).getName();
   }
 
   private static Reporter createReporter(@TempDir File folder)

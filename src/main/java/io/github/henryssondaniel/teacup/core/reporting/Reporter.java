@@ -11,12 +11,28 @@ import java.util.logging.LogRecord;
  */
 public interface Reporter {
   /**
+   * Added.
+   *
+   * @param node the node
+   * @since 1.1
+   */
+  void added(Node node);
+
+  /**
    * Finished.
    *
    * @param result the result
    * @since 1.1
    */
   void finished(Result result);
+
+  /**
+   * Initialized.
+   *
+   * @param nodes the nodes
+   * @since 1.1
+   */
+  void initialized(Iterable<? extends Node> nodes);
 
   /**
    * Log.
@@ -38,16 +54,15 @@ public interface Reporter {
   /**
    * Started.
    *
-   * @param nodes the nodes
-   * @since 1.1
-   */
-  void started(Iterable<? extends Node> nodes);
-
-  /**
-   * Started.
-   *
    * @param node the node
    * @since 1.1
    */
   void started(Node node);
+
+  /**
+   * Terminated.
+   *
+   * @since 1.1
+   */
+  void terminated();
 }

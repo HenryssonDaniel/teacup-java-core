@@ -28,9 +28,21 @@ class ReporterImpl implements Reporter {
   }
 
   @Override
+  public void added(Node node) {
+    LOGGER.log(Level.FINE, "Added");
+    reporters.forEach(reporter -> reporter.added(node));
+  }
+
+  @Override
   public void finished(Result result) {
-    LOGGER.log(Level.FINE, "Finished with result");
+    LOGGER.log(Level.FINE, "Finished");
     reporters.forEach(reporter -> reporter.finished(result));
+  }
+
+  @Override
+  public void initialized(Iterable<? extends Node> nodes) {
+    LOGGER.log(Level.FINE, "Initialized");
+    reporters.forEach(reporter -> reporter.initialized(nodes));
   }
 
   @Override
@@ -41,20 +53,20 @@ class ReporterImpl implements Reporter {
 
   @Override
   public void skipped(Node node, String reason) {
-    LOGGER.log(Level.FINE, "Skipped node");
+    LOGGER.log(Level.FINE, "Skipped");
     reporters.forEach(reporter -> reporter.skipped(node, reason));
   }
 
   @Override
-  public void started(Iterable<? extends Node> nodes) {
-    LOGGER.log(Level.FINE, "Started nodes");
-    reporters.forEach(reporter -> reporter.started(nodes));
+  public void started(Node node) {
+    LOGGER.log(Level.FINE, "Started");
+    reporters.forEach(reporter -> reporter.started(node));
   }
 
   @Override
-  public void started(Node node) {
-    LOGGER.log(Level.FINE, "Started node");
-    reporters.forEach(reporter -> reporter.started(node));
+  public void terminated() {
+    LOGGER.log(Level.FINE, "Terminated");
+    reporters.forEach(Reporter::terminated);
   }
 
   private void addReporter(String name) {
