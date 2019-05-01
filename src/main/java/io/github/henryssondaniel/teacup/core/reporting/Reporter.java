@@ -1,9 +1,7 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
-import io.github.henryssondaniel.teacup.core.testing.Container;
-import io.github.henryssondaniel.teacup.core.testing.Executable;
+import io.github.henryssondaniel.teacup.core.testing.Node;
 import io.github.henryssondaniel.teacup.core.testing.Result;
-import io.github.henryssondaniel.teacup.core.testing.Root;
 import java.util.logging.LogRecord;
 
 /**
@@ -31,42 +29,25 @@ public interface Reporter {
   /**
    * Skipped.
    *
-   * @param executable the executable
+   * @param node the node
    * @param reason the reason
    * @since 1.1
    */
-  void skipped(Executable executable, String reason);
-
-  /**
-   * Skipped.
-   *
-   * @param container the container
-   * @param reason the reason
-   * @since 1.1
-   */
-  void skipped(Container container, String reason);
+  void skipped(Node node, String reason);
 
   /**
    * Started.
    *
-   * @param executable the executable
+   * @param nodes the nodes
    * @since 1.1
    */
-  void started(Executable executable);
+  void started(Iterable<? extends Node> nodes);
 
   /**
    * Started.
    *
-   * @param root the root
+   * @param node the node
    * @since 1.1
    */
-  void started(Root root);
-
-  /**
-   * Started.
-   *
-   * @param container the container
-   * @since 1.1
-   */
-  void started(Container container);
+  void started(Node node);
 }

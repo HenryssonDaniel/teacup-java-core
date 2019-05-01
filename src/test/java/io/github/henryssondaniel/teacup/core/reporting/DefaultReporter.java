@@ -1,10 +1,8 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
 import io.github.henryssondaniel.teacup.core.logging.Factory;
-import io.github.henryssondaniel.teacup.core.testing.Container;
-import io.github.henryssondaniel.teacup.core.testing.Executable;
+import io.github.henryssondaniel.teacup.core.testing.Node;
 import io.github.henryssondaniel.teacup.core.testing.Result;
-import io.github.henryssondaniel.teacup.core.testing.Root;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
@@ -25,32 +23,20 @@ public class DefaultReporter implements Reporter {
   }
 
   @Override
-  public void skipped(Executable executable, String reason) {
+  public void skipped(Node node, String reason) {
     LOGGER.log(Level.FINE, "Skipped");
-    executable.getName();
+    node.getName();
   }
 
   @Override
-  public void skipped(Container container, String reason) {
-    LOGGER.log(Level.FINE, "Skipped");
-    container.getTimeFinished();
-  }
-
-  @Override
-  public void started(Executable executable) {
+  public void started(Node node) {
     LOGGER.log(Level.FINE, "Started");
-    executable.getName();
+    node.getName();
   }
 
   @Override
-  public void started(Root root) {
+  public void started(Iterable<? extends Node> nodes) {
     LOGGER.log(Level.FINE, "Started");
-    root.getTimeFinished();
-  }
-
-  @Override
-  public void started(Container container) {
-    LOGGER.log(Level.FINE, "Started");
-    container.getTimeFinished();
+    nodes.forEach(Node::getName);
   }
 }

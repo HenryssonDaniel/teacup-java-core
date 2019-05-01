@@ -1,9 +1,7 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
-import io.github.henryssondaniel.teacup.core.testing.Container;
-import io.github.henryssondaniel.teacup.core.testing.Executable;
+import io.github.henryssondaniel.teacup.core.testing.Node;
 import io.github.henryssondaniel.teacup.core.testing.Result;
-import io.github.henryssondaniel.teacup.core.testing.Root;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -42,33 +40,21 @@ class ReporterImpl implements Reporter {
   }
 
   @Override
-  public void skipped(Executable executable, String reason) {
-    LOGGER.log(Level.FINE, "Skipped executable");
-    reporters.forEach(reporter -> reporter.skipped(executable, reason));
+  public void skipped(Node node, String reason) {
+    LOGGER.log(Level.FINE, "Skipped node");
+    reporters.forEach(reporter -> reporter.skipped(node, reason));
   }
 
   @Override
-  public void skipped(Container container, String reason) {
-    LOGGER.log(Level.FINE, "Skipped container");
-    reporters.forEach(reporter -> reporter.skipped(container, reason));
+  public void started(Iterable<? extends Node> nodes) {
+    LOGGER.log(Level.FINE, "Started nodes");
+    reporters.forEach(reporter -> reporter.started(nodes));
   }
 
   @Override
-  public void started(Executable executable) {
-    LOGGER.log(Level.FINE, "Started executable");
-    reporters.forEach(reporter -> reporter.started(executable));
-  }
-
-  @Override
-  public void started(Root root) {
-    LOGGER.log(Level.FINE, "Started root");
-    reporters.forEach(reporter -> reporter.started(root));
-  }
-
-  @Override
-  public void started(Container container) {
-    LOGGER.log(Level.FINE, "Started container");
-    reporters.forEach(reporter -> reporter.started(container));
+  public void started(Node node) {
+    LOGGER.log(Level.FINE, "Started node");
+    reporters.forEach(reporter -> reporter.started(node));
   }
 
   private void addReporter(String name) {

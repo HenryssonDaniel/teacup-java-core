@@ -1,26 +1,25 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
 /**
- * This is used to mark the root of a test execution. In JUnit it's called a TestPlan. It contains
- * the start/finish time, containers and executables.
+ * Represents a node in a test. This can be either a container, a test or both.
  *
  * @since 1.1
  */
-public interface Root {
+public interface Node {
   /**
-   * Returns the containers.
+   * Returns the name.
    *
-   * @return the containers
-   */
-  Iterable<Container> getContainers();
-
-  /**
-   * Returns the executables.
-   *
-   * @return the executables
+   * @return the name
    * @since 1.1
    */
-  Iterable<Executable> getExecutables();
+  String getName();
+
+  /**
+   * Returns the test nodes.
+   *
+   * @return the test nodes
+   */
+  Iterable<Node> getNodes();
 
   /**
    * Returns the time finished.

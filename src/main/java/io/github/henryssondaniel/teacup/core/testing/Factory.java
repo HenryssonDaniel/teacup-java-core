@@ -1,6 +1,5 @@
 package io.github.henryssondaniel.teacup.core.testing;
 
-import java.nio.file.Path;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,39 +16,16 @@ public enum Factory {
   private static final String NEW = "Creating a new {0}.";
 
   /**
-   * Creates a new container.
+   * Creates a new test node.
    *
-   * @param containers the containers
-   * @param executables the executables
-   * @param path the path
-   * @return the container
-   * @since 1.1
-   */
-  public static Container createContainer(
-      Collection<? extends Container> containers,
-      Collection<? extends Executable> executables,
-      Path path) {
-    LOGGER.log(Level.FINE, NEW, "container");
-    return new ContainerImpl(containers, executables, path);
-  }
-
-  /**
-   * Creates a new executable.
-   *
-   * @param containers the containers
-   * @param executables the executables
    * @param name the name
-   * @param path the path
-   * @return the executable
+   * @param nodes the nodes
+   * @return the test node
    * @since 1.1
    */
-  public static Executable createExecutable(
-      Collection<? extends Container> containers,
-      Collection<? extends Executable> executables,
-      String name,
-      Path path) {
-    LOGGER.log(Level.FINE, NEW, "executable");
-    return new ExecutableImpl(containers, executables, name, path);
+  public static Node createNode(String name, Collection<Node> nodes) {
+    LOGGER.log(Level.FINE, NEW, "node");
+    return new NodeImpl(name, nodes);
   }
 
   /**
@@ -63,19 +39,5 @@ public enum Factory {
   public static Result createResult(Status status, Throwable throwable) {
     LOGGER.log(Level.FINE, NEW, "result");
     return new ResultImpl(status, throwable);
-  }
-
-  /**
-   * Creates a new root.
-   *
-   * @param executables the containers
-   * @param containers the executables
-   * @return the root
-   * @since 1.1
-   */
-  public static Root createRoot(
-      Collection<? extends Container> containers, Collection<? extends Executable> executables) {
-    LOGGER.log(Level.FINE, NEW, "container");
-    return new RootImpl(containers, executables);
   }
 }

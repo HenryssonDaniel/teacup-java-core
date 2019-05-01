@@ -7,26 +7,13 @@ import org.junit.jupiter.api.Test;
 
 class FactoryTest {
   @Test
-  void createContainer() {
-    assertThat(Factory.createContainer(Collections.emptyList(), Collections.emptyList(), null))
-        .isExactlyInstanceOf(ContainerImpl.class);
-  }
-
-  @Test
-  void createExecutable() {
-    assertThat(
-            Factory.createExecutable(Collections.emptyList(), Collections.emptyList(), null, null))
-        .isExactlyInstanceOf(ExecutableImpl.class);
+  void createNode() {
+    assertThat(Factory.createNode(null, Collections.emptyList()))
+        .isExactlyInstanceOf(NodeImpl.class);
   }
 
   @Test
   void createResult() {
     assertThat(Factory.createResult(null, null)).isExactlyInstanceOf(ResultImpl.class);
-  }
-
-  @Test
-  void createRoot() {
-    assertThat(Factory.createRoot(Collections.emptyList(), Collections.emptyList()))
-        .isExactlyInstanceOf(RootImpl.class);
   }
 }
