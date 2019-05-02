@@ -59,11 +59,11 @@ class ReporterImpl implements Reporter {
     LOGGER.log(Level.FINE, "Log");
 
     if (!reporters.isEmpty()) {
-      var lastNode =
-          Optional.ofNullable(runningTests.get(Thread.currentThread().getId()))
-              .map(LinkedList::getLast)
-              .orElse(null);
-      reporters.forEach(reporter -> reporter.log(logRecord, lastNode));
+      var currentNode =
+          Optional.ofNullable(node)
+              .orElseGet(() -> runningTests.get(Thread.currentThread().getId()).getLast());
+
+      reporters.forEach(reporter -> reporter.log(logRecord, currentNode));
     }
   }
 
