@@ -21,10 +21,11 @@ public interface Reporter {
   /**
    * Finished.
    *
+   * @param node the node
    * @param result the result
    * @since 1.1
    */
-  void finished(Result result);
+  void finished(Node node, Result result);
 
   /**
    * Initialized.
@@ -38,9 +39,10 @@ public interface Reporter {
    * Log.
    *
    * @param logRecord the log record
+   * @param node the node
    * @since 1.1
    */
-  void log(LogRecord logRecord);
+  void log(LogRecord logRecord, Node node);
 
   /**
    * Skipped.

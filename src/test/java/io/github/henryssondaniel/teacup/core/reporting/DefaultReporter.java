@@ -18,7 +18,7 @@ public class DefaultReporter implements Reporter {
   }
 
   @Override
-  public void finished(Result result) {
+  public void finished(Node node, Result result) {
     LOGGER.log(Level.FINE, "Finished");
     result.getStatus();
   }
@@ -32,7 +32,7 @@ public class DefaultReporter implements Reporter {
   }
 
   @Override
-  public void log(LogRecord logRecord) {
+  public void log(LogRecord logRecord, Node node) {
     LOGGER.log(Level.FINE, "Log");
     logRecord.getMessage();
   }

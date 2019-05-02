@@ -8,7 +8,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
@@ -16,7 +19,9 @@ import java.util.logging.Logger;
 
 class ReporterImpl implements Reporter {
   private static final Logger LOGGER = Logger.getLogger(ReporterImpl.class.getName());
+
   private final Collection<Reporter> reporters = new LinkedList<>();
+  private final Map<Long, LinkedList<Node>> runningTests = new HashMap<>(0);
 
   ReporterImpl(File file) {
     if (file.exists()) {
@@ -34,9 +39,13 @@ class ReporterImpl implements Reporter {
   }
 
   @Override
-  public void finished(Result result) {
+  public void finished(Node node, Result result) {
     LOGGER.log(Level.FINE, "Finished");
-    reporters.forEach(reporter -> reporter.finished(result));
+
+    if (!reporters.isEmpty()) {
+      removeNode(node);
+      reporters.forEach(reporter -> reporter.finished(node, result));
+    }
   }
 
   @Override
@@ -46,9 +55,16 @@ class ReporterImpl implements Reporter {
   }
 
   @Override
-  public void log(LogRecord logRecord) {
+  public void log(LogRecord logRecord, Node node) {
     LOGGER.log(Level.FINE, "Log");
-    reporters.forEach(reporter -> reporter.log(logRecord));
+
+    if (!reporters.isEmpty()) {
+      var lastNode =
+          Optional.ofNullable(runningTests.get(Thread.currentThread().getId()))
+              .map(LinkedList::getLast)
+              .orElse(null);
+      reporters.forEach(reporter -> reporter.log(logRecord, lastNode));
+    }
   }
 
   @Override
@@ -60,12 +76,25 @@ class ReporterImpl implements Reporter {
   @Override
   public void started(Node node) {
     LOGGER.log(Level.FINE, "Started");
-    reporters.forEach(reporter -> reporter.started(node));
+
+    if (!reporters.isEmpty()) {
+      runningTests
+          .computeIfAbsent(Thread.currentThread().getId(), key -> new LinkedList<>())
+          .add(node);
+
+      reporters.forEach(reporter -> reporter.started(node));
+    }
   }
 
   @Override
   public void terminated() {
     LOGGER.log(Level.FINE, "Terminated");
+
+    if (!runningTests.isEmpty()) {
+      LOGGER.log(Level.WARNING, "Terminated when not all nodes have been finished.");
+      runningTests.clear();
+    }
+
     reporters.forEach(Reporter::terminated);
   }
 
@@ -90,5 +119,16 @@ class ReporterImpl implements Reporter {
     }
 
     return properties;
+  }
+
+  private void removeNode(Node node) {
+    Long id = Thread.currentThread().getId();
+
+    Collection<Node> nodes = runningTests.get(id);
+    if (nodes != null) {
+      nodes.remove(node);
+
+      if (nodes.isEmpty()) runningTests.remove(id);
+    }
   }
 }

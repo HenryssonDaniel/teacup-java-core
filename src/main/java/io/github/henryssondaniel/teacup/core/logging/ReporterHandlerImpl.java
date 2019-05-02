@@ -24,6 +24,6 @@ class ReporterHandlerImpl extends Handler {
   @Override
   public void publish(LogRecord logRecord) {
     LOGGER.log(Level.FINE, "Publish");
-    REPORTER.log(logRecord);
+    REPORTER.log(logRecord, null);
   }
 }
