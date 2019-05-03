@@ -59,9 +59,7 @@ class ReporterImpl implements Reporter {
     LOGGER.log(Level.FINE, "Log");
 
     if (!reporters.isEmpty()) {
-      var currentNode =
-          Optional.ofNullable(node)
-              .orElseGet(() -> runningTests.get(Thread.currentThread().getId()).getLast());
+      var currentNode = Optional.ofNullable(node).orElseGet(this::getCurrentNode);
 
       reporters.forEach(reporter -> reporter.log(logRecord, currentNode));
     }
@@ -107,6 +105,32 @@ class ReporterImpl implements Reporter {
         | InvocationTargetException e) {
       LOGGER.log(Level.WARNING, "Could not initiate the report class.", e);
     }
+  }
+
+  private Node getCurrentNode() {
+    Node node = null;
+
+    var id = Thread.currentThread().getId();
+    var threads = new Thread[Thread.activeCount()];
+
+    var index = Thread.enumerate(threads) - 1;
+
+    while (index >= 0) {
+      var threadId = threads[index].getId();
+
+      if (threadId <= id) {
+        var nodes = runningTests.get(threadId);
+
+        if (nodes != null) {
+          node = nodes.getLast();
+          index = 0;
+        }
+      }
+
+      index--;
+    }
+
+    return node;
   }
 
   private static Properties loadProperties(File file) {

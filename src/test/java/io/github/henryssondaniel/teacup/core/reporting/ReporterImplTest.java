@@ -121,6 +121,26 @@ class ReporterImplTest {
   }
 
   @Test
+  void logWhenNoNode(@TempDir File folder)
+      throws IOException, IllegalAccessException, NoSuchFieldException {
+    var reporter = createReporter(folder);
+
+    reporter.started(node);
+    verify(node).getName();
+
+    reporter.log(logRecord, null);
+
+    verify(logRecord).getMessage();
+  }
+
+  @Test
+  void logWhenNoNodeNotStarted(@TempDir File folder)
+      throws IOException, IllegalAccessException, NoSuchFieldException {
+    createReporter(folder).log(logRecord, null);
+    verify(logRecord).getMessage();
+  }
+
+  @Test
   void logWhenNoReporters(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
     var reporter = createReporter("reporter=", folder);
