@@ -11,14 +11,6 @@ import java.util.logging.LogRecord;
  */
 public interface Reporter {
   /**
-   * Added.
-   *
-   * @param node the node
-   * @since 1.1
-   */
-  void added(Node node);
-
-  /**
    * Finished.
    *
    * @param node the node
@@ -26,6 +18,13 @@ public interface Reporter {
    * @since 1.1
    */
   void finished(Node node, Result result);
+
+  /**
+   * Initialize.
+   *
+   * @since 1.1
+   */
+  void initialize();
 
   /**
    * Initialized.

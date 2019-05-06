@@ -20,22 +20,12 @@ import java.util.logging.Logger;
 class ReporterImpl implements Reporter {
   private static final Logger LOGGER = Logger.getLogger(ReporterImpl.class.getName());
 
+  private final File file;
   private final Collection<Reporter> reporters = new LinkedList<>();
   private final Map<Long, LinkedList<Node>> runningTests = new HashMap<>(0);
 
   ReporterImpl(File file) {
-    if (file.exists()) {
-      var property = loadProperties(file).getProperty("reporter");
-
-      if (property != null && !property.isEmpty())
-        for (var name : property.split(",")) addReporter(name);
-    }
-  }
-
-  @Override
-  public void added(Node node) {
-    LOGGER.log(Level.FINE, "Added");
-    reporters.forEach(reporter -> reporter.added(node));
+    this.file = file;
   }
 
   @Override
@@ -45,6 +35,18 @@ class ReporterImpl implements Reporter {
     if (!reporters.isEmpty()) {
       removeNode(node);
       reporters.forEach(reporter -> reporter.finished(node, result));
+    }
+  }
+
+  @Override
+  public void initialize() {
+    LOGGER.log(Level.FINE, "Initialize");
+
+    if (file.exists()) {
+      var property = loadProperties(file).getProperty("reporter");
+
+      if (property != null && !property.isEmpty())
+        for (var name : property.split(",")) addReporter(name);
     }
   }
 
@@ -98,7 +100,10 @@ class ReporterImpl implements Reporter {
 
   private void addReporter(String name) {
     try {
-      reporters.add((Reporter) Class.forName(name).getConstructors()[0].newInstance());
+      var reporter = (Reporter) Class.forName(name).getConstructors()[0].newInstance();
+      reporter.initialize();
+
+      reporters.add(reporter);
     } catch (ClassNotFoundException
         | IllegalAccessException
         | InstantiationException

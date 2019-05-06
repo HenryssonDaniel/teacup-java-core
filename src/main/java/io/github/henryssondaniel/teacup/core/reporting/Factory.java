@@ -20,6 +20,10 @@ public enum Factory {
               .resolve("teacup.properties")
               .toFile());
 
+  static {
+    REPORTER.initialize();
+  }
+
   /**
    * Returns the reporter.
    *

@@ -26,37 +26,6 @@ class ReporterImplTest {
   private final Result result = mock(Result.class);
 
   @Test
-  void added(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter(folder).added(node);
-    verify(node).getName();
-  }
-
-  @Test
-  void constructorWithEmptyProperty(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter("reporter=", folder);
-  }
-
-  @Test
-  void constructorWithFolder(@TempDir File folder)
-      throws IllegalAccessException, NoSuchFieldException {
-    assertThat(getReporters(new ReporterImpl(folder))).isEmpty();
-  }
-
-  @Test
-  void constructorWithNonExistingFile() throws IllegalAccessException, NoSuchFieldException {
-    var file = mock(File.class);
-    assertThat(getReporters(new ReporterImpl(file))).isEmpty();
-  }
-
-  @Test
-  void constructorWithNonExistingReporter(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter("reporter=io.github.henryssondaniel.teacup.core.reporting.NonExisting", folder);
-  }
-
-  @Test
   void finished(@TempDir File folder)
       throws IOException, IllegalAccessException, NoSuchFieldException {
     var reporter = createReporter(folder);
@@ -103,6 +72,37 @@ class ReporterImplTest {
       throws IOException, IllegalAccessException, NoSuchFieldException {
     createReporter(folder).finished(node, result);
     verify(result).getStatus();
+  }
+
+  @Test
+  void initializeWithEmptyProperty(@TempDir File folder)
+      throws IOException, IllegalAccessException, NoSuchFieldException {
+    createReporter("reporter=", folder);
+  }
+
+  @Test
+  void initializeWithFolder(@TempDir File folder)
+      throws IllegalAccessException, NoSuchFieldException {
+    Reporter reporter = new ReporterImpl(folder);
+    reporter.initialize();
+
+    assertThat(getReporters(reporter)).isEmpty();
+  }
+
+  @Test
+  void initializeWithNonExistingFile() throws IllegalAccessException, NoSuchFieldException {
+    var file = mock(File.class);
+
+    Reporter reporter = new ReporterImpl(file);
+    reporter.initialize();
+
+    assertThat(getReporters(reporter)).isEmpty();
+  }
+
+  @Test
+  void initializeWithNonExistingReporter(@TempDir File folder)
+      throws IOException, IllegalAccessException, NoSuchFieldException {
+    createReporter("reporter=io.github.henryssondaniel.teacup.core.reporting.NonExisting", folder);
   }
 
   @Test
@@ -215,6 +215,7 @@ class ReporterImplTest {
         file.toPath(), "reporter=io.github.henryssondaniel.teacup.core.reporting.DefaultReporter");
 
     Reporter reporter = new ReporterImpl(file);
+    reporter.initialize();
 
     var reporters = getReporters(reporter);
     assertThat(reporters).hasSize(1);
@@ -231,6 +232,8 @@ class ReporterImplTest {
     Files.writeString(file.toPath(), content);
 
     Reporter reporter = new ReporterImpl(file);
+    reporter.initialize();
+
     assertThat(getReporters(reporter)).isEmpty();
 
     return reporter;

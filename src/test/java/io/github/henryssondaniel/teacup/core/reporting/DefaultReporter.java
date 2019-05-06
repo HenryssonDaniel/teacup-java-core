@@ -12,15 +12,14 @@ public class DefaultReporter implements Reporter {
   private Iterable<? extends Node> allNodes;
 
   @Override
-  public void added(Node node) {
-    LOGGER.log(Level.FINE, "Added");
-    node.getName();
-  }
-
-  @Override
   public void finished(Node node, Result result) {
     LOGGER.log(Level.FINE, "Finished");
     result.getStatus();
+  }
+
+  @Override
+  public void initialize() {
+    LOGGER.log(Level.FINE, "Initialize");
   }
 
   @Override
