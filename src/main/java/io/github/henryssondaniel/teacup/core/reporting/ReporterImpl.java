@@ -51,7 +51,7 @@ class ReporterImpl implements Reporter {
   }
 
   @Override
-  public void initialized(Iterable<? extends Node> nodes) {
+  public void initialized(Collection<? extends Node> nodes) {
     LOGGER.log(Level.FINE, "Initialized");
     reporters.forEach(reporter -> reporter.initialized(nodes));
   }

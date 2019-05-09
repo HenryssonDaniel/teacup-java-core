@@ -2,6 +2,7 @@ package io.github.henryssondaniel.teacup.core.reporting;
 
 import io.github.henryssondaniel.teacup.core.testing.Node;
 import io.github.henryssondaniel.teacup.core.testing.Result;
+import java.util.Collection;
 import java.util.logging.LogRecord;
 
 /**
@@ -32,7 +33,7 @@ public interface Reporter {
    * @param nodes the nodes
    * @since 1.1
    */
-  void initialized(Iterable<? extends Node> nodes);
+  void initialized(Collection<? extends Node> nodes);
 
   /**
    * Log.

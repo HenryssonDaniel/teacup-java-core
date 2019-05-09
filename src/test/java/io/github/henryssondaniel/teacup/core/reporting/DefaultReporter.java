@@ -3,6 +3,7 @@ package io.github.henryssondaniel.teacup.core.reporting;
 import io.github.henryssondaniel.teacup.core.logging.Factory;
 import io.github.henryssondaniel.teacup.core.testing.Node;
 import io.github.henryssondaniel.teacup.core.testing.Result;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
@@ -23,7 +24,7 @@ public class DefaultReporter implements Reporter {
   }
 
   @Override
-  public void initialized(Iterable<? extends Node> nodes) {
+  public void initialized(Collection<? extends Node> nodes) {
     LOGGER.log(Level.FINE, "Initialized");
 
     allNodes = nodes;
