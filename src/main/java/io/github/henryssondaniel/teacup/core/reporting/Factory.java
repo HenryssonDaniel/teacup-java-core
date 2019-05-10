@@ -1,6 +1,5 @@
 package io.github.henryssondaniel.teacup.core.reporting;
 
-import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,10 +14,8 @@ public enum Factory {
   private static final Logger LOGGER = Logger.getLogger(Factory.class.getName());
   private static final Reporter REPORTER =
       new ReporterImpl(
-          Path.of(System.getProperty("user.home"))
-              .resolve(".teacup")
-              .resolve("teacup.properties")
-              .toFile());
+          io.github.henryssondaniel.teacup.core.configuration.Factory.getProperties()
+              .getProperty("reporter"));
 
   static {
     REPORTER.initialize();

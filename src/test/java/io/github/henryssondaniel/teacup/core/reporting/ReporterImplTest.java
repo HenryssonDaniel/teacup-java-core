@@ -8,27 +8,20 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 
 import io.github.henryssondaniel.teacup.core.testing.Node;
 import io.github.henryssondaniel.teacup.core.testing.Result;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.logging.LogRecord;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
 class ReporterImplTest {
-  private static final String NAME = "teacup.properties";
-
   private final LogRecord logRecord = mock(LogRecord.class);
   private final Node node = mock(Node.class);
   private final Result result = mock(Result.class);
 
   @Test
-  void finished(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    var reporter = createReporter(folder);
+  void finished() throws IllegalAccessException, NoSuchFieldException {
+    var reporter = createReporter();
 
     reporter.started(node);
     verify(node).getName();
@@ -40,9 +33,8 @@ class ReporterImplTest {
   }
 
   @Test
-  void finishedWhenMultipleRunningNodes(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    var reporter = createReporter(folder);
+  void finishedWhenMultipleRunningNodes() throws IllegalAccessException, NoSuchFieldException {
+    var reporter = createReporter();
 
     reporter.started(node);
     verify(node).getName();
@@ -60,70 +52,50 @@ class ReporterImplTest {
   }
 
   @Test
-  void finishedWhenNoReporters(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    var reporter = createReporter("reporter=", folder);
+  void finishedWhenNoReporters() throws IllegalAccessException, NoSuchFieldException {
+    var reporter = createReporter("");
     reporter.finished(node, result);
     verifyZeroInteractions(result);
   }
 
   @Test
-  void finishedWhenNotStarted(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter(folder).finished(node, result);
+  void finishedWhenNotStarted() throws IllegalAccessException, NoSuchFieldException {
+    createReporter().finished(node, result);
     verify(result).getStatus();
   }
 
   @Test
-  void initializeWithEmptyProperty(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter("reporter=", folder);
+  void initializeWithEmptyProperty() throws IllegalAccessException, NoSuchFieldException {
+    createReporter("");
   }
 
   @Test
-  void initializeWithFolder(@TempDir File folder)
-      throws IllegalAccessException, NoSuchFieldException {
-    Reporter reporter = new ReporterImpl(folder);
-    reporter.initialize();
-
-    assertThat(getReporters(reporter)).isEmpty();
+  void initializeWithNonExistingReporter() throws IllegalAccessException, NoSuchFieldException {
+    createReporter("io.github.henryssondaniel.teacup.core.reporting.NonExisting");
   }
 
   @Test
-  void initializeWithNonExistingFile() throws IllegalAccessException, NoSuchFieldException {
-    var file = mock(File.class);
-
-    Reporter reporter = new ReporterImpl(file);
-    reporter.initialize();
-
-    assertThat(getReporters(reporter)).isEmpty();
+  void initializeWithNullProperty() throws IllegalAccessException, NoSuchFieldException {
+    createReporter(null);
   }
 
   @Test
-  void initializeWithNonExistingReporter(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter("reporter=io.github.henryssondaniel.teacup.core.reporting.NonExisting", folder);
-  }
-
-  @Test
-  void initialized(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter(folder).initialized(Collections.singletonList(node));
+  void initialized() throws IllegalAccessException, NoSuchFieldException {
+    createReporter().initialized(Collections.singletonList(node));
     verify(node).getName();
   }
 
   @Test
-  void log(@TempDir File folder) throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter(folder).log(logRecord, node);
+  void log() throws IllegalAccessException, NoSuchFieldException {
+    createReporter().log(logRecord, node);
 
     verify(logRecord).getMessage();
     verifyZeroInteractions(node);
   }
 
   @Test
-  void logWhenNoNode(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    var reporter = createReporter(folder);
+  void logWhenNoNode() throws IllegalAccessException, NoSuchFieldException {
+    var reporter = createReporter();
 
     reporter.started(node);
     verify(node).getName();
@@ -134,16 +106,14 @@ class ReporterImplTest {
   }
 
   @Test
-  void logWhenNoNodeNotStarted(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter(folder).log(logRecord, null);
+  void logWhenNoNodeNotStarted() throws IllegalAccessException, NoSuchFieldException {
+    createReporter().log(logRecord, null);
     verify(logRecord).getMessage();
   }
 
   @Test
-  void logWhenNoReporters(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    var reporter = createReporter("reporter=", folder);
+  void logWhenNoReporters() throws IllegalAccessException, NoSuchFieldException {
+    var reporter = createReporter("");
 
     reporter.log(logRecord, node);
 
@@ -152,16 +122,14 @@ class ReporterImplTest {
   }
 
   @Test
-  void skipped(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    createReporter(folder).skipped(node, "reason");
+  void skipped() throws IllegalAccessException, NoSuchFieldException {
+    createReporter().skipped(node, "reason");
     verify(node).getName();
   }
 
   @Test
-  void started(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    var reporter = createReporter(folder);
+  void started() throws IllegalAccessException, NoSuchFieldException {
+    var reporter = createReporter();
     reporter.started(node);
     verify(node).getName();
 
@@ -171,9 +139,8 @@ class ReporterImplTest {
   }
 
   @Test
-  void startedWhenNoReporters(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    var reporter = createReporter("reporter=", folder);
+  void startedWhenNoReporters() throws IllegalAccessException, NoSuchFieldException {
+    var reporter = createReporter("");
     reporter.started(node);
 
     assertThat(getRunningTests(reporter)).isEmpty();
@@ -183,9 +150,8 @@ class ReporterImplTest {
   }
 
   @Test
-  void terminated(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    var reporter = createReporter(folder);
+  void terminated() throws IllegalAccessException, NoSuchFieldException {
+    var reporter = createReporter();
     reporter.initialized(Collections.singletonList(node));
     reporter.terminated();
 
@@ -194,9 +160,8 @@ class ReporterImplTest {
   }
 
   @Test
-  void terminatedWhenStartedNodes(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    var reporter = createReporter(folder);
+  void terminatedWhenStartedNodes() throws IllegalAccessException, NoSuchFieldException {
+    var reporter = createReporter();
 
     reporter.initialized(Collections.singletonList(node));
     reporter.started(node);
@@ -206,15 +171,9 @@ class ReporterImplTest {
     verify(node, times(3)).getName();
   }
 
-  private static Reporter createReporter(@TempDir File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    var file = new File(folder, NAME);
-    assertThat(file.createNewFile()).isTrue();
-
-    Files.writeString(
-        file.toPath(), "reporter=io.github.henryssondaniel.teacup.core.reporting.DefaultReporter");
-
-    Reporter reporter = new ReporterImpl(file);
+  private static Reporter createReporter() throws IllegalAccessException, NoSuchFieldException {
+    Reporter reporter =
+        new ReporterImpl("io.github.henryssondaniel.teacup.core.reporting.DefaultReporter");
     reporter.initialize();
 
     var reporters = getReporters(reporter);
@@ -224,14 +183,9 @@ class ReporterImplTest {
     return reporter;
   }
 
-  private static Reporter createReporter(CharSequence content, File folder)
-      throws IOException, IllegalAccessException, NoSuchFieldException {
-    var file = new File(folder, NAME);
-    assertThat(file.createNewFile()).isTrue();
-
-    Files.writeString(file.toPath(), content);
-
-    Reporter reporter = new ReporterImpl(file);
+  private static Reporter createReporter(String content)
+      throws IllegalAccessException, NoSuchFieldException {
+    Reporter reporter = new ReporterImpl(content);
     reporter.initialize();
 
     assertThat(getReporters(reporter)).isEmpty();

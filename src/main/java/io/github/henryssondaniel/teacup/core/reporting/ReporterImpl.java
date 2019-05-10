@@ -2,17 +2,12 @@ package io.github.henryssondaniel.teacup.core.reporting;
 
 import io.github.henryssondaniel.teacup.core.testing.Node;
 import io.github.henryssondaniel.teacup.core.testing.Result;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
@@ -20,12 +15,12 @@ import java.util.logging.Logger;
 class ReporterImpl implements Reporter {
   private static final Logger LOGGER = Logger.getLogger(ReporterImpl.class.getName());
 
-  private final File file;
+  private final String property;
   private final Collection<Reporter> reporters = new LinkedList<>();
   private final Map<Long, LinkedList<Node>> runningTests = new HashMap<>(0);
 
-  ReporterImpl(File file) {
-    this.file = file;
+  ReporterImpl(String property) {
+    this.property = property;
   }
 
   @Override
@@ -42,12 +37,8 @@ class ReporterImpl implements Reporter {
   public void initialize() {
     LOGGER.log(Level.FINE, "Initialize");
 
-    if (file.exists()) {
-      var property = loadProperties(file).getProperty("reporter");
-
-      if (property != null && !property.isEmpty())
-        for (var name : property.split(",")) addReporter(name);
-    }
+    if (property != null && !property.isEmpty())
+      for (var name : property.split(",")) addReporter(name);
   }
 
   @Override
@@ -136,18 +127,6 @@ class ReporterImpl implements Reporter {
     }
 
     return node;
-  }
-
-  private static Properties loadProperties(File file) {
-    var properties = new Properties();
-
-    try (InputStream inputStream = new FileInputStream(file)) {
-      properties.load(inputStream);
-    } catch (IOException e) {
-      LOGGER.log(Level.WARNING, "The properties could not be loaded.", e);
-    }
-
-    return properties;
   }
 
   private void removeNode(Node node) {
