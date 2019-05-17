@@ -1,3 +1,6 @@
+#### 1.1.1
+- 2019-05-17
+- Release with Java 11 instead of Java 12.
 #### 1.1.0
 - 2019-05-17
 - Added configuration support. This will read various configuration from the teacup.properties file.
