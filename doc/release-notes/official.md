@@ -1,3 +1,7 @@
+#### 1.1.2
+- 2019-07-02
+- Use Gradle version 5.5, stepped from 5.4.1
+- Use JUnit version 5.5, stepped from 5.4.1
 #### 1.1.1
 - 2019-05-17
 - Release with Java 11 instead of Java 12.
