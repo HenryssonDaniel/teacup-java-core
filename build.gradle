@@ -82,7 +82,7 @@ publishing {
 
             pom {
                 name = project.group + ':' + project.name
-                description = 'Java Testing Framework for Communication Protocols and Web Services'
+                description = 'Testing Framework for Communication Protocols and Web Services'
                 url = 'https://github.com/HenryssonDaniel/teacup-java-core'
 
                 licenses {
