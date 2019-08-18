@@ -1,3 +1,8 @@
+#### 1.1.3
+- 2019-08-17
+- Use Gradle version 5.6, stepped from 5.5
+- Use JUnit version 5.5.1, stepped from 5.5.0
+- Use Mockito version 3.0.0, stepped from 2.28.2
 #### 1.1.2
 - 2019-07-02
 - Use Gradle version 5.5, stepped from 5.4.1
