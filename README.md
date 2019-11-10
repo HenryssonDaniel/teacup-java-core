@@ -12,7 +12,7 @@ protocol:
 A big library with all the base assertions such as arrays, lists and primitives.
 
 **Interfaces**  
-Interfaces such as Executor, Node and Server.
+Interfaces such as Node, Result and Reporter.
 
 **Setup**  
 Support for fixtures and other setup-related functionality.
