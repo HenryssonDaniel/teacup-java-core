@@ -92,13 +92,6 @@ public abstract class AbstractIterableAssert<
   }
 
   @Override
-  public V containsOnlyElementsOf(Iterable<? extends T> iterable) {
-    LOGGER.log(Level.FINE, "Contains only elements of: {0}", iterableToString(iterable));
-    addSupplier(() -> getAssert().containsOnlyElementsOf(iterable));
-    return getAssertType();
-  }
-
-  @Override
   public V containsOnlyNulls() {
     LOGGER.log(Level.FINE, "Contains only null");
     addSupplier(() -> getAssert().containsOnlyNulls());

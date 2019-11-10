@@ -102,15 +102,6 @@ public interface GenericIterableAssert<
   V containsOnly(T... values);
 
   /**
-   * Verifies that the iterable only contains the elements of the given iterable.
-   *
-   * @param iterable the iterable
-   * @return the iterable assert
-   * @since 1.0
-   */
-  V containsOnlyElementsOf(Iterable<? extends T> iterable);
-
-  /**
    * Verifies that the iterable only contains null element.
    *
    * @return the iterable assert

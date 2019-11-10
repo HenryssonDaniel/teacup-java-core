@@ -131,21 +131,6 @@ class AbstractIterableAssertTest {
   }
 
   @Test
-  void containsOnlyElementsOf() {
-    testGenericIterableAssert.containsOnlyElementsOf(ORDER_DESC).verify(ORDER_ASC);
-  }
-
-  @Test
-  void containsOnlyElementsOfFail() {
-    assertThatExceptionOfType(AssertionError.class)
-        .isThrownBy(
-            () ->
-                testGenericIterableAssert
-                    .containsOnlyElementsOf(Arrays.asList(3, 4))
-                    .verify(ORDER_ASC));
-  }
-
-  @Test
   void containsOnlyFail() {
     assertThatExceptionOfType(AssertionError.class)
         .isThrownBy(() -> testGenericIterableAssert.containsOnly(1).verify(ORDER_ASC));

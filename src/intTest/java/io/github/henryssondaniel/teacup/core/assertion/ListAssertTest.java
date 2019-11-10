@@ -39,7 +39,6 @@ class ListAssertTest {
         .containsSubsequence(TEST, IS)
         .containsSubsequence(Collections.singletonList(TEST))
         .containsOnly(TEST, IS, FUN)
-        .containsOnlyElementsOf(strings)
         .containsOnlyOnce(TEST)
         .containsSequence(TEST, IS)
         .containsSequence(strings)
