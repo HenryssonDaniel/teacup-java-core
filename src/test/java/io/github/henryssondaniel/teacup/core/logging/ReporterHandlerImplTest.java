@@ -1,7 +1,7 @@
 package io.github.henryssondaniel.teacup.core.logging;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
@@ -18,6 +18,6 @@ class ReporterHandlerImplTest {
     handler.flush();
     handler.close();
 
-    verifyZeroInteractions(logRecord);
+    verifyNoInteractions(logRecord);
   }
 }

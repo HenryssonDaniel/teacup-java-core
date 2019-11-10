@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import io.github.henryssondaniel.teacup.core.testing.Node;
 import io.github.henryssondaniel.teacup.core.testing.Result;
@@ -55,7 +55,7 @@ class ReporterImplTest {
   void finishedWhenNoReporters() throws IllegalAccessException, NoSuchFieldException {
     var reporter = createReporter("");
     reporter.finished(node, result);
-    verifyZeroInteractions(result);
+    verifyNoInteractions(result);
   }
 
   @Test
@@ -90,7 +90,7 @@ class ReporterImplTest {
     createReporter().log(logRecord, node);
 
     verify(logRecord).getMessage();
-    verifyZeroInteractions(node);
+    verifyNoInteractions(node);
   }
 
   @Test
@@ -117,8 +117,8 @@ class ReporterImplTest {
 
     reporter.log(logRecord, node);
 
-    verifyZeroInteractions(logRecord);
-    verifyZeroInteractions(node);
+    verifyNoInteractions(logRecord);
+    verifyNoInteractions(node);
   }
 
   @Test
@@ -145,8 +145,8 @@ class ReporterImplTest {
 
     assertThat(getRunningTests(reporter)).isEmpty();
 
-    verifyZeroInteractions(logRecord);
-    verifyZeroInteractions(node);
+    verifyNoInteractions(logRecord);
+    verifyNoInteractions(node);
   }
 
   @Test
