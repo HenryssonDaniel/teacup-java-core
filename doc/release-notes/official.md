@@ -1,3 +1,13 @@
+#### 1.2.0
+- 2019-11-17
+- Builds with Java 13
+- Executor, Fixture and Setup is moved to the protocol repository
+- Node, NodeBuilder and Server is moved to the engine repository
+- containsOnlyElementsOf is removed from assertion
+- Use AssertJ version 3.14.0, stepped from 3.12.2
+- Use Gradle version 6.0, stepped from 5.6.2
+- Use JUnit version 5.6.0-M1, stepped from 5.5.2
+- Use SonarQube plugin version 2.8, stepped from 2.7.1
 #### 1.1.4
 - 2019-10-06
 - Use Gradle version 5.6.2, stepped from 5.6
